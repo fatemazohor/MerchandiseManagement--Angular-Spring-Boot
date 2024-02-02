@@ -9,6 +9,10 @@ import { ControlSidebarComponent } from './control-sidebar/control-sidebar.compo
 import { MainFooterComponent } from './main-footer/main-footer.component';
 import { ControlWrapperComponent } from './control-wrapper/control-wrapper.component';
 import { HomeComponent } from './home/home.component';
+import { StyleCategoriesComponent } from './component/sale/style-categories/style-categories.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -18,14 +22,18 @@ import { HomeComponent } from './home/home.component';
     ControlSidebarComponent,
     MainFooterComponent,
     ControlWrapperComponent,
-    HomeComponent
+    HomeComponent,
+    StyleCategoriesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule, 
+    ReactiveFormsModule, FontAwesomeModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })
