@@ -26,7 +26,6 @@ export class StyleCategoriesComponent implements OnInit{
     this.loadStyleCategories();
     this.initStyleCatForm();
 
-
   }
 
 

@@ -13,6 +13,7 @@ import { StyleCategoriesComponent } from './component/sale/style-categories/styl
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SizeComponent } from './component/sale/size/size.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MainFooterComponent,
     ControlWrapperComponent,
     HomeComponent,
-    StyleCategoriesComponent
+    StyleCategoriesComponent,
+    SizeComponent
   ],
   imports: [
     BrowserModule,
