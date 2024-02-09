@@ -14,6 +14,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SizeComponent } from './component/sale/size/size.component';
+import { TrimComponent } from './component/sale/trim/trim.component';
+import { RawMaterialCategoriesComponent } from './component/sale/raw-material-categories/raw-material-categories.component';
+import { StyleComponent } from './component/sale/style/style.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { SizeComponent } from './component/sale/size/size.component';
     ControlWrapperComponent,
     HomeComponent,
     StyleCategoriesComponent,
-    SizeComponent
+    SizeComponent,
+    TrimComponent,
+    RawMaterialCategoriesComponent,
+    StyleComponent
   ],
   imports: [
     BrowserModule,

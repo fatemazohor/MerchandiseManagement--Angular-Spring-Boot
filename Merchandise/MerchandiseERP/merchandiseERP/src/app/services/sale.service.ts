@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Size, StyleCategories } from '../model/sale.model';
+import { RawMaterialCat, Size, StyleCategories, Trim } from '../model/sale.model';
 import { Observable } from 'rxjs';
+import { Style } from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class SaleService {
 
   constructor(private http:HttpClient) { }
 
-
+//------------------------------------------ Sale -------------------------------------------
   //Style Categories start
   getAllstyleCat():Observable<StyleCategories[]>{
     return this.http.get<StyleCategories[]>(`${this.baseUrl}/style-categories`);
@@ -49,5 +50,61 @@ export class SaleService {
   }
 
   //Size end
+  //Trim start
+
+ getAllTrim():Observable<Trim[]>{
+    return this.http.get<Trim[]>(`${this.baseUrl}/trim`);
+  }
+
+  createTrim(trim:Trim):Observable<Trim>{
+    return this.http.post<Trim>(`${this.baseUrl}/trim`,trim)
+  }
+
+  updateTrim(id:number,trim:Trim):Observable<Trim>{
+    return this.http.put<Trim>(`${this.baseUrl}/trim/${id}`,trim);
+  }
+
+  deleteTrim(id:number):Observable<void>{
+    return this.http.delete<void>(`${this.baseUrl}/trim/${id}`);
+  }
+  
+  //Raw Material Categories start
+  getAllRawMaterialCat():Observable<RawMaterialCat[]>{
+    return this.http.get<RawMaterialCat[]>(`${this.baseUrl}/raw_material_cate`);
+  }
+
+  createRawMaterialCat(materialCate:RawMaterialCat):Observable<RawMaterialCat>{
+    return this.http.post<RawMaterialCat>(`${this.baseUrl}/raw_material_cate`,materialCate)
+  }
+
+  updateRawMaterialCat(id:number,materialCate:RawMaterialCat):Observable<RawMaterialCat>{
+    return this.http.put<RawMaterialCat>(`${this.baseUrl}/raw_material_cate/${id}`,materialCate);
+  }
+
+  deleteRawMaterialCat(id:number):Observable<void>{
+    return this.http.delete<void>(`${this.baseUrl}/raw_material_cate/${id}`);
+  }
+  //------------------------------------ Sale ---------------------------------------------
+  //------------------------------------ Sale dependent -----------------------------------
+  //Style start
+  getAllStyle():Observable<Style[]>{
+    return this.http.get<Style[]>(`${this.baseUrl}/style`);
+  }
+
+  createStyle(style:Style):Observable<Style>{
+    return this.http.post<Style>(`${this.baseUrl}/style`,style)
+  }
+
+  updateStyle(id:number,style:Style):Observable<Style>{
+    return this.http.put<Style>(`${this.baseUrl}/style/${id}`,style);
+  }
+
+  deleteStyle(id:number):Observable<void>{
+    return this.http.delete<void>(`${this.baseUrl}/style/${id}`);
+  }
+
+  //------------------------------------ Inventory ----------------------------------------
+  //------------------------------------ Other --------------------------------------------
+  //------------------------------------ Report -------------------------------------------
 
 }

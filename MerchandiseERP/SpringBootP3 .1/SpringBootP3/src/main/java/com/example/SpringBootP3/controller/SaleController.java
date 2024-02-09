@@ -229,8 +229,8 @@ public String trimList(Model m){
 //    Fabric end
 
 //    Raw Material Categories start
-@GetMapping("/raw_material_categories/list")
-public String rawMaterialcatList(Model m){
+    @GetMapping("/raw_material_categories/list")
+    public String rawMaterialcatList(Model m){
     List<RawMaterialCat> rawMaterialCategoriesList=rawMaterialCatRepo.findAll();
     m.addAttribute("title","Raw Material Categories List");
     m.addAttribute("rawMaterialCategoriesList", rawMaterialCategoriesList);
