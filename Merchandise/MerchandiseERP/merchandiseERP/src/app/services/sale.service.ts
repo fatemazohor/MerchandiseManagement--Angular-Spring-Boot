@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RawMaterialCat, Size, StyleCategories, Trim } from '../model/sale.model';
+import { RawMaterialCat, Size, Style, StyleCategories, Trim } from '../model/sale.model';
 import { Observable } from 'rxjs';
-import { Style } from 'util';
+
 
 @Injectable({
   providedIn: 'root'

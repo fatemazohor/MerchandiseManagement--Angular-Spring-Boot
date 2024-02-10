@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `springbootp3.1` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `springbootp3.1`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: springbootp3.1
@@ -210,7 +208,7 @@ CREATE TABLE `measurement_attachment` (
   PRIMARY KEY (`id`),
   KEY `FKdj71blokfbe8r5v16gxu0eci7` (`style_id`),
   CONSTRAINT `FKdj71blokfbe8r5v16gxu0eci7` FOREIGN KEY (`style_id`) REFERENCES `style` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,7 +217,7 @@ CREATE TABLE `measurement_attachment` (
 
 LOCK TABLES `measurement_attachment` WRITE;
 /*!40000 ALTER TABLE `measurement_attachment` DISABLE KEYS */;
-INSERT INTO `measurement_attachment` VALUES (1,'measurement_att_1705598896585.JPG','Front',2),(2,'measurement_att_1705598928656.JPG','Back',2),(3,'measurement_att_1705598968193.JPG','Stich',2);
+INSERT INTO `measurement_attachment` VALUES (1,'measurement_att_1705598896585.JPG','Front',2),(2,'measurement_att_1705598928656.JPG','Back',2),(3,'measurement_att_1705598968193.JPG','Stich',2),(4,'measurement_att_1706865349256.png','Front',3),(5,'measurement_att_1706865358903.png','Back',3);
 /*!40000 ALTER TABLE `measurement_attachment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -339,7 +337,7 @@ CREATE TABLE `order_details` (
   CONSTRAINT `FK443dun3htm2bjja5tu58y12il` FOREIGN KEY (`style_id_id`) REFERENCES `style` (`id`),
   CONSTRAINT `FKg9x15j7e7g04cgjr4xte28od1` FOREIGN KEY (`or_status_id_id`) REFERENCES `order_status` (`id`),
   CONSTRAINT `FKmcrs12i81xsmtv0ytg31hca00` FOREIGN KEY (`buyers_id_id`) REFERENCES `buyers` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -348,7 +346,7 @@ CREATE TABLE `order_details` (
 
 LOCK TABLES `order_details` WRITE;
 /*!40000 ALTER TABLE `order_details` DISABLE KEYS */;
-INSERT INTO `order_details` VALUES (1,'2024-01-21','2024-01-01',10,10,NULL,300,10,NULL,300,1,1,1,'UK'),(2,'2024-01-22','2024-01-02',0,0,NULL,3000.02,0,NULL,3000.02,2,4,1,'UK'),(3,'2024-01-26','2024-01-03',30,20,NULL,6000.02,10,NULL,6000.02,3,2,1,'UK'),(4,'2024-02-24','2024-01-01',0,0,NULL,12000.2,0,NULL,12000.2,2,3,3,'Dhaka'),(5,'2024-01-19','2023-12-01',100,200,NULL,350000,400,NULL,35000,3,4,2,'');
+INSERT INTO `order_details` VALUES (1,'2024-01-21','2024-01-01',10,10,NULL,300,10,NULL,300,1,1,1,'UK'),(2,'2024-01-22','2024-01-02',0,0,NULL,3000.02,0,NULL,3000.02,2,4,1,'UK'),(3,'2024-01-26','2024-01-03',30,20,NULL,6000.02,10,NULL,6000.02,3,2,1,'UK'),(4,'2024-02-24','2024-01-01',0,0,NULL,12000.2,0,NULL,12000.2,2,3,3,'Dhaka'),(5,'2024-01-19','2023-12-01',100,200,NULL,350000,400,NULL,35000,3,4,2,''),(6,'2024-02-29','2024-02-01',50,50,NULL,15000,50,NULL,15000,2,1,3,'Dhaka');
 /*!40000 ALTER TABLE `order_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -404,7 +402,7 @@ CREATE TABLE `purchase` (
   CONSTRAINT `FKi4hme9d4m4t7670ql638yrwev` FOREIGN KEY (`raw_material_id_id`) REFERENCES `raw_material` (`id`),
   CONSTRAINT `FKkacrwkqm6r95293swvpi04aj0` FOREIGN KEY (`ware_house_id_id`) REFERENCES `ware_house` (`id`),
   CONSTRAINT `FKr72709t49l86uvdpv4rsupmod` FOREIGN KEY (`status_id_id`) REFERENCES `purchase_status` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -413,7 +411,7 @@ CREATE TABLE `purchase` (
 
 LOCK TABLES `purchase` WRITE;
 /*!40000 ALTER TABLE `purchase` DISABLE KEYS */;
-INSERT INTO `purchase` VALUES (2,'2024-01-23',0,100,'2024-01-01',1,100,2,1,2,1),(4,'2024-02-07',0,120,'2024-01-02',10,1200,1,2,1,1),(5,'2024-01-24',50,5,'2024-01-17',10,50,3,4,5,1),(7,'2024-01-06',21999.7,55,'2023-12-25',400,21999.7,11,3,1,2),(11,'2024-01-19',32000,20,'2024-01-04',1600,32000,16,1,5,1);
+INSERT INTO `purchase` VALUES (2,'2024-01-23',0,100,'2024-01-01',1,100,2,1,2,1),(4,'2024-02-07',0,120,'2024-01-02',10,1200,1,2,1,1),(5,'2024-01-24',50,5,'2024-01-17',10,50,3,4,5,1),(7,'2024-01-06',21999.7,55,'2023-12-25',400,21999.7,11,3,1,2),(11,'2024-01-19',32000,20,'2024-01-04',1600,32000,16,1,5,1),(12,'2024-02-14',5500,55,'2024-02-01',100,5500,12,1,4,1);
 /*!40000 ALTER TABLE `purchase` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -516,7 +514,7 @@ CREATE TABLE `size` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -554,7 +552,7 @@ CREATE TABLE `stock` (
 
 LOCK TABLES `stock` WRITE;
 /*!40000 ALTER TABLE `stock` DISABLE KEYS */;
-INSERT INTO `stock` VALUES (1,NULL,41,'2024-01-22',2),(2,'2024-01-22',19,'2024-01-22',1),(52,'2024-01-22',19,'2024-01-22',3),(102,'2024-01-24',1600,'2024-01-24',11),(152,'2024-01-24',400,'2024-01-24',12),(153,'2024-01-24',4000,'2024-01-24',13),(154,'2024-01-24',10000,'2024-01-24',15),(202,'2024-01-24',3200,'2024-01-24',16);
+INSERT INTO `stock` VALUES (1,NULL,41,'2024-01-22',2),(2,'2024-01-22',19,'2024-01-22',1),(52,'2024-01-22',19,'2024-01-22',3),(102,'2024-01-24',1600,'2024-01-24',11),(152,'2024-01-24',500,'2024-01-25',12),(153,'2024-01-24',4000,'2024-01-24',13),(154,'2024-01-24',10000,'2024-01-24',15),(202,'2024-01-24',3200,'2024-01-24',16);
 /*!40000 ALTER TABLE `stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -649,7 +647,7 @@ CREATE TABLE `style_attachment` (
   PRIMARY KEY (`id`),
   KEY `FKdk86b2fj5gis6nyl7dw8gkpcp` (`style_id`),
   CONSTRAINT `FKdk86b2fj5gis6nyl7dw8gkpcp` FOREIGN KEY (`style_id`) REFERENCES `style` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -658,7 +656,7 @@ CREATE TABLE `style_attachment` (
 
 LOCK TABLES `style_attachment` WRITE;
 /*!40000 ALTER TABLE `style_attachment` DISABLE KEYS */;
-INSERT INTO `style_attachment` VALUES (1,'style_att_1705643096760.JPG',2),(2,'style_att_1705728483604.jpg',1);
+INSERT INTO `style_attachment` VALUES (1,'style_att_1705643096760.JPG',2),(2,'style_att_1705728483604.jpg',1),(3,'style_att_1706865329728.png',3);
 /*!40000 ALTER TABLE `style_attachment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -673,7 +671,7 @@ CREATE TABLE `style_categories` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -802,7 +800,7 @@ CREATE TABLE `time_action` (
 
 LOCK TABLES `time_action` WRITE;
 /*!40000 ALTER TABLE `time_action` DISABLE KEYS */;
-INSERT INTO `time_action` VALUES (1,'2024-01-02','2024-01-02','2024-01-01','2024-01-01','Start',1,1),(2,'2024-01-03','2024-01-03','2024-01-02','2024-01-02','',1,2),(3,'2024-01-04','2024-01-04','2024-01-04','2024-01-04','',1,3),(4,'2024-01-05','2024-01-05','2024-01-05','2024-01-05','',1,4),(5,'2024-01-06','2024-01-06','2024-01-06','2024-01-06','',1,5),(6,'2024-01-10','2024-01-08','2024-01-09','2024-01-07','',1,6),(7,'2024-01-13','2024-01-11','2024-01-12','2024-01-10','',1,7),(8,'2024-01-17','2024-01-15','2024-01-16','2024-01-14','',1,8),(9,'2024-01-19','2024-01-17','2024-01-18','2024-01-16','',1,9),(10,'2024-01-24','2024-01-20','2024-01-21','2024-01-19','',1,10),(52,'2024-01-21','2024-01-21','2024-01-20','2024-01-20','',4,1),(53,'2024-01-24','2024-01-22','2024-01-21','2024-01-21','',4,2),(54,'2024-01-28','2024-01-25','2024-01-27','2024-01-24','',4,3),(55,'2024-01-30','2024-01-29','2024-01-28','2024-01-28','',4,4),(56,'2024-01-31','2024-01-30','2024-01-30','2024-01-29','',4,5),(57,'2024-02-04','2024-01-31','2024-02-03','2024-01-31','',4,6),(58,'2024-02-10','2024-02-05','2024-02-07','2024-02-04','',4,7),(59,'2024-02-13','2024-02-10','2024-02-11','2024-02-08','',4,8),(60,'2024-02-17','2024-02-14','2024-02-15','2024-02-12','',4,9);
+INSERT INTO `time_action` VALUES (1,'2024-01-02','2024-01-02','2024-01-01','2024-01-01','Start',1,1),(2,'2024-01-03','2024-01-03','2024-01-02','2024-01-02','',1,2),(3,'2024-01-04','2024-01-04','2024-01-04','2024-01-04','',1,3),(4,'2024-01-05','2024-01-05','2024-01-05','2024-01-05','',1,4),(5,'2024-01-06','2024-01-06','2024-01-06','2024-01-06','',1,5),(6,'2024-01-10','2024-01-08','2024-01-09','2024-01-07','',1,6),(7,'2024-01-13','2024-01-11','2024-01-12','2024-01-10','',1,7),(8,'2024-01-17','2024-01-15','2024-01-16','2024-01-14','',1,8),(9,'2024-01-19','2024-01-17','2024-01-18','2024-01-16','',1,9),(10,'2024-01-24','2024-01-20','2024-01-21','2024-01-19','',1,10),(52,'2024-01-21','2024-01-21','2024-01-20','2024-01-20','',4,1),(53,'2024-01-24','2024-01-22','2024-01-21','2024-01-21','',4,2),(54,'2024-01-28','2024-01-25','2024-01-27','2024-01-24','',4,3),(55,'2024-01-30','2024-01-29','2024-01-28','2024-01-28','',4,4),(56,'2024-01-31','2024-01-30','2024-01-30','2024-01-29','',4,5),(57,'2024-02-04','2024-01-31','2024-02-03','2024-01-31','',4,6),(58,'2024-02-10','2024-02-05','2024-02-07','2024-02-04','',4,7),(59,'2024-02-13','2024-02-10','2024-02-11','2024-02-08','',4,8),(60,'2024-02-17','2024-02-14','2024-02-15','2024-02-12','',4,9),(102,'2024-02-24','2024-02-18','2024-02-24','2024-02-16','',4,10);
 /*!40000 ALTER TABLE `time_action` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -824,7 +822,7 @@ CREATE TABLE `time_action_seq` (
 
 LOCK TABLES `time_action_seq` WRITE;
 /*!40000 ALTER TABLE `time_action_seq` DISABLE KEYS */;
-INSERT INTO `time_action_seq` VALUES (151);
+INSERT INTO `time_action_seq` VALUES (201);
 /*!40000 ALTER TABLE `time_action_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -939,4 +937,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-24  2:16:04
+-- Dump completed on 2024-02-09 16:54:52

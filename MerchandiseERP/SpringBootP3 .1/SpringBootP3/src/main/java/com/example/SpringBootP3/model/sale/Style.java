@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -23,8 +25,10 @@ public class Style {
     private int id;
     private String code;
     private String description;
+    @CreatedDate
     private Date CreatedAt;
-    private Date UpdatedAt=new Date();
+    @UpdateTimestamp
+    private Date UpdatedAt;
 
     @ManyToOne
     @JoinColumn(name = "style_cat_id")

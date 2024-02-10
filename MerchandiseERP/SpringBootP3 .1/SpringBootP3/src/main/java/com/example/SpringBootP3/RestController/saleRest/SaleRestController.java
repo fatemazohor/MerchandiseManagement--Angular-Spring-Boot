@@ -243,6 +243,9 @@ public class SaleRestController {
 
     @PostMapping("/style")
     public ResponseEntity<Style> styleSave(@RequestBody Style style){
+        String categoryName=style.categoriesId.getName();
+        StyleCategories category=styleCatApiRepo.findByName(categoryName);
+        style.setCategoriesId(category);
         styleRepo.save(style);
         return ResponseEntity.ok(style);
 
@@ -256,7 +259,12 @@ public class SaleRestController {
 
             Style style1=styleRepo.findById(id).get();
             style1.setCode(style.getCode());
+            style1.setDescription(style.getDescription());
+
             //style category
+            String categoryName=style.categoriesId.getName();
+            StyleCategories category=styleCatApiRepo.findByName(categoryName);
+            style1.setCategoriesId(category);
 
             styleRepo.save(style1);
             return ResponseEntity.ok(style1);

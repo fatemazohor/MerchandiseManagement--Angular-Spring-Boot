@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IStyleCategories extends JpaRepository<StyleCategories,Integer> {
+    StyleCategories findByName(String name);
 }
