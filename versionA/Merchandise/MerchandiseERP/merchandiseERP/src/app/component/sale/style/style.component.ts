@@ -17,7 +17,7 @@ export class StyleComponent implements OnInit{
   category:StyleCategories[]=[]
   styleForm!:FormGroup
   styleModel:Style=new Style();
-  title:string="style list";
+  title:string="Style list";
   //font awesome icon list
   fatrash=faTrash;
   editicon=faPenToSquare
@@ -88,8 +88,8 @@ export class StyleComponent implements OnInit{
       const styleData:Style =this.styleForm.value;
       this.saleService.createStyle(styleData).subscribe({
         next:res=>{
-          console.log("style saved",res)
-          alert("style saved.")
+          console.log("Style saved",res)
+          alert("Style saved.")
           this.loadstyle();
           this.styleForm.reset();
         },
@@ -116,8 +116,8 @@ export class StyleComponent implements OnInit{
       this.styleModel.categoriesId=this.styleForm.value.categoriesId
       this.saleService.updatestyleCat(this.styleModel.id,this.styleModel).subscribe({
         next:res=>{
-          console.log("style updated",res)
-          alert("style updated.")
+          console.log("Style updated",res)
+          alert("Style updated.")
           this.loadstyle();
           this.styleForm.reset();
         },

@@ -18,4 +18,8 @@ public class StyleCategories {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
+    public StyleCategories(String name) {
+        this.name = name;
+    }
 }

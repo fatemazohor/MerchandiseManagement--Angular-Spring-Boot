@@ -17,7 +17,7 @@ public class MeasurementAttachment {
     private Integer id;
     private String name;
     private String attachment;
-    
+
     @ManyToOne
     @JoinColumn(name = "style_Id")
     private Style styleId;

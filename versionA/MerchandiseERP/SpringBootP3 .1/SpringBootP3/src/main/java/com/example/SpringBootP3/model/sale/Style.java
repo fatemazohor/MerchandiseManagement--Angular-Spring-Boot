@@ -3,9 +3,11 @@ package com.example.SpringBootP3.model.sale;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import jdk.jfr.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -25,7 +27,7 @@ public class Style {
     private int id;
     private String code;
     private String description;
-    @CreatedDate
+    @CreationTimestamp
     private Date CreatedAt;
     @UpdateTimestamp
     private Date UpdatedAt;
