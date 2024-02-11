@@ -262,9 +262,12 @@ public class SaleRestController {
             style1.setDescription(style.getDescription());
 
             //style category
-            String categoryName=style.categoriesId.getName();
-            StyleCategories category=styleCatApiRepo.findByName(categoryName);
-            style1.setCategoriesId(category);
+//            String categoryName=style.categoriesId.getName();
+            int categoryId=style.categoriesId.getId();
+
+//            StyleCategories category=styleCatApiRepo.findByName(categoryName);
+            StyleCategories category2=styleCatApiRepo.findById(categoryId).get();
+            style1.setCategoriesId(category2);
 
             styleRepo.save(style1);
 //            return ResponseEntity.ok(style1);
