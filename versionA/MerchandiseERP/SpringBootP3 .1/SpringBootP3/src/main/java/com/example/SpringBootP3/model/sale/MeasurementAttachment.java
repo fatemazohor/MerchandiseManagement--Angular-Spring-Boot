@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Blob;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,6 +17,7 @@ public class MeasurementAttachment {
     private Integer id;
     private String name;
     private String attachment;
+    
     @ManyToOne
     @JoinColumn(name = "style_Id")
     private Style styleId;
