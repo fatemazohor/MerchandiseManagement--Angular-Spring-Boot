@@ -251,8 +251,34 @@ public class SaleRestController {
 
     }
 
+//    @PutMapping("/style/{id}")
+//    public void styleUpdate(@RequestBody Style style,
+//                                           @PathVariable("id") int id){
+//        boolean exist=styleRepo.existsById(id);
+//        if (exist) {
+//
+//            Style style1=styleRepo.findById(id).get();
+//            style1.setCode(style.getCode());
+//            style1.setDescription(style.getDescription());
+//
+//            style category
+//            String categoryName=style.categoriesId.getName();
+//            int categoryId=style.categoriesId.getId();
+//
+//            StyleCategories category=styleCatApiRepo.findByName(categoryName);
+//            StyleCategories category2=styleCatApiRepo.findById(categoryId).get();
+//            style1.setCategoriesId(category);
+//
+//            styleRepo.save(style1);
+//            return ResponseEntity.ok(style1);
+//        }
+//        return ResponseEntity.notFound().build();
+//    }
+
+
+
     @PutMapping("/style/{id}")
-    public void styleUpdate(@RequestBody Style style,
+    public ResponseEntity<Style> styleUpdate(@RequestBody Style style,
                                            @PathVariable("id") int id){
         boolean exist=styleRepo.existsById(id);
         if (exist) {
@@ -262,41 +288,15 @@ public class SaleRestController {
             style1.setDescription(style.getDescription());
 
             //style category
-//            String categoryName=style.categoriesId.getName();
-            int categoryId=style.categoriesId.getId();
-
-//            StyleCategories category=styleCatApiRepo.findByName(categoryName);
-            StyleCategories category2=styleCatApiRepo.findById(categoryId).get();
-            style1.setCategoriesId(category2);
+            String categoryName=style.categoriesId.getName();
+            StyleCategories category=styleCatApiRepo.findByName(categoryName);
+            style1.setCategoriesId(category);
 
             styleRepo.save(style1);
-//            return ResponseEntity.ok(style1);
+            return ResponseEntity.ok(style1);
         }
-//        return ResponseEntity.notFound().build();
+        return ResponseEntity.notFound().build();
     }
-
-
-
-//    @PutMapping("/style/{id}")
-//    public ResponseEntity<Style> styleUpdate(@RequestBody Style style,
-//                                           @PathVariable("id") int id){
-//        boolean exist=styleRepo.existsById(id);
-//        if (exist) {
-//
-//            Style style1=styleRepo.findById(id).get();
-//            style1.setCode(style.getCode());
-//            style1.setDescription(style.getDescription());
-//
-//            //style category
-//            String categoryName=style.categoriesId.getName();
-//            StyleCategories category=styleCatApiRepo.findByName(categoryName);
-//            style1.setCategoriesId(category);
-//
-//            styleRepo.save(style1);
-//            return ResponseEntity.ok(style1);
-//        }
-//        return ResponseEntity.notFound().build();
-//    }
 
     // api Style end
 

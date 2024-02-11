@@ -114,7 +114,7 @@ export class StyleComponent implements OnInit{
       this.styleModel.code=this.styleForm.value.code
       this.styleModel.description=this.styleForm.value.description
       this.styleModel.categoriesId=this.styleForm.value.categoriesId
-      this.saleService.updatestyleCat(this.styleModel.id,this.styleModel).subscribe({
+      this.saleService.updateStyle(this.styleModel.id,this.styleModel).subscribe({
         next:res=>{
           console.log("Style updated",res)
           alert("Style updated.")
