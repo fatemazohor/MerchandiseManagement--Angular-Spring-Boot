@@ -1,6 +1,12 @@
 package com.example.SpringBootP3.RestController.saleRest;
 
+import com.example.SpringBootP3.model.UOM;
+import com.example.SpringBootP3.model.Vendors;
+import com.example.SpringBootP3.model.bom.Department;
 import com.example.SpringBootP3.model.sale.*;
+import com.example.SpringBootP3.repository.bom.IDepartmentRepo;
+import com.example.SpringBootP3.repository.other.IUOMRepo;
+import com.example.SpringBootP3.repository.other.IVendorRepo;
 import com.example.SpringBootP3.repository.sale.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +33,14 @@ public class SaleRestController {
     private IStyle styleRepo;
     @Autowired
     private IMeasurementDetailsRepo detailsRepo;
+    @Autowired
+    private IRawMaterialRepo rawMaterialRepo;
+    @Autowired
+    private IVendorRepo vendorRepo;
+    @Autowired
+    private IUOMRepo iuomRepo;
+    @Autowired
+    private IDepartmentRepo departmentRepo;
 
 
 
@@ -346,11 +360,150 @@ public class SaleRestController {
     }
 
     // api Measurement Details end
+    // api Raw Material start
+
+    @GetMapping("/raw_material")
+    private List<RawMaterial> rawMaterialsList(){
+        return rawMaterialRepo.findAll();
+    }
+
+
+    @DeleteMapping("/raw_material/{id}")
+    public void deleteRawMaterial(@PathVariable("id")int id){
+        boolean exist=rawMaterialRepo.existsById(id);
+        if (exist){
+            rawMaterialRepo.deleteById(id);
+        }
+    }
+
+    // api Raw Material end
+
 
 
 
 
 //---------------------------------------- Inventory Table-------------------------------
+  // api Warehouse start
+  // api Purchase Status start
+    // api Stock Adjustment start
+  // api Adjustment Material start
+  // api Purchase start
+  // api Stock start
+
 //---------------------------------------- Other Table-----------------------------------
+    // api Vendors start
+
+    @GetMapping("/vendors")
+    private List<Vendors> vendorsList(){
+        return vendorRepo.findAll();
+    }
+
+    @DeleteMapping("/vendors/{id}")
+    public void deleteVendor(@PathVariable("id")int id){
+        boolean exist=vendorRepo.existsById(id);
+        if (exist){
+            vendorRepo.deleteById(id);
+        }
+    }
+    @PostMapping("/vendors")
+    public ResponseEntity<Vendors> vendorsSave(@RequestBody Vendors vendors){
+        vendorRepo.save(vendors);
+        return ResponseEntity.ok(vendors);
+    }
+    @PutMapping("/vendors/{id}")
+    public ResponseEntity<Vendors> vendorsUpdate(@RequestBody Vendors vendors,@PathVariable("id")int id){
+        boolean exist=vendorRepo.existsById(id);
+        if(exist){
+            Vendors vendors1=vendorRepo.findById(id).get();
+            vendors1.setCompany(vendors.getCompany());
+            vendors1.setContactPerson(vendors.getContactPerson());
+            vendors1.setCell(vendors.getCell());
+            vendors1.setEmail(vendors.getEmail());
+            vendors1.setAddress(vendors.getAddress());
+            vendorRepo.save(vendors1);
+            return ResponseEntity.ok(vendors1);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+
+    // api Vendors end
+    // api Unit of Measurement start
+
+    @GetMapping("/uom")
+    private List<UOM> uomList(){
+        return iuomRepo.findAll();
+    }
+
+    @DeleteMapping("/uom/{id}")
+    public void deleteUom(@PathVariable("id")int id){
+        boolean exist=iuomRepo.existsById(id);
+        if (exist){
+            iuomRepo.deleteById(id);
+        }
+    }
+    @PostMapping("/uom")
+    public ResponseEntity<UOM> uomSave(@RequestBody UOM uom){
+        iuomRepo.save(uom);
+        return ResponseEntity.ok(uom);
+    }
+    @PutMapping("/uom/{id}")
+    public ResponseEntity<UOM> uomUpdate(@RequestBody UOM uom,@PathVariable("id")int id){
+        boolean exist=iuomRepo.existsById(id);
+        if(exist){
+            UOM uom1=iuomRepo.findById(id).get();
+            uom1.setName(uom.getName());
+
+
+            iuomRepo.save(uom1);
+            return ResponseEntity.ok(uom1);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    // api Unit of Measurement end
+//---------------------------------------- BOM Table----------------------------------
+    // api Department start
+
+    @GetMapping("/department")
+    private List<Department> departmentsList(){
+        return departmentRepo.findAll();
+    }
+
+    @DeleteMapping("/department/{id}")
+    public void deleteDepartments(@PathVariable("id")int id){
+        boolean exist=departmentRepo.existsById(id);
+        if (exist){
+            departmentRepo.deleteById(id);
+        }
+    }
+    @PostMapping("/department")
+    public ResponseEntity<Department> departmentSave(@RequestBody Department department){
+        departmentRepo.save(department);
+        return ResponseEntity.ok(department);
+    }
+    @PutMapping("/department/{id}")
+    public ResponseEntity<Department> depatmentUpdate(@RequestBody Department department,@PathVariable("id")int id){
+        boolean exist=departmentRepo.existsById(id);
+        if(exist){
+            Department department1=departmentRepo.findById(id).get();
+            department1.setName(department.getName());
+
+
+            departmentRepo.save(department1);
+            return ResponseEntity.ok(department1);
+        }
+        return ResponseEntity.notFound().build();
+    }
+    // api Department end
+    // api Labor Cost start
+
+    // api Labor Cost end
+//---------------------------------------- Buyers Table----------------------------------
+    // api Buyers start
+    // api Task start
+    // api Orders Status start
+    // api Orders start
+    // api Time Action start
 //---------------------------------------- Report Table----------------------------------
     }

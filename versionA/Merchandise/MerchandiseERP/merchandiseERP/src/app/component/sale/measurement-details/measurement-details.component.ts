@@ -49,6 +49,7 @@ export class MeasurementDetailsComponent implements OnInit{
       next:res=>{
         this.details=res;
         this.totalItems=this.details.length;
+        // console.log(`TotalItems= ${this.totalItems}`)
       },
       error:err=>{
         console.log(err);
