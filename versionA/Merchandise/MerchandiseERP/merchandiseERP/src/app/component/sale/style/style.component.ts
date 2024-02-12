@@ -24,7 +24,7 @@ export class StyleComponent implements OnInit{
 
   constructor(
     private saleService:SaleService,
-    private formBuilder:FormBuilder,
+    private formBuilder:FormBuilder
    
   ){}
 
@@ -69,8 +69,8 @@ export class StyleComponent implements OnInit{
   deletestyle(styleId:number){
     this.saleService.deleteStyle(styleId).subscribe({
       next:res=>{
-        console.log("style deleted",res)
-        alert("style deleted.")
+        console.log("Style deleted",res)
+        alert("Style deleted.")
         this.loadstyle();
         //after delete page reload to dashboard .fix it to list page.
          
@@ -81,7 +81,7 @@ export class StyleComponent implements OnInit{
       }
     })
   }
-// ??????categories save update not working????
+
   // create new style
   onSubmit(){
     if(this.styleForm.valid){

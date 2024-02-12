@@ -10,6 +10,6 @@ public interface IStyleCategories extends JpaRepository<StyleCategories,Integer>
     StyleCategories findByName(String name);
 
 
-    @Query("select s from StyleCategories s where s.id=:id")
-    StyleCategories findByCatId(int id);
+//    @Query("select s from StyleCategories s where s.id=:id")
+//    StyleCategories findByCatId(int id);
 }

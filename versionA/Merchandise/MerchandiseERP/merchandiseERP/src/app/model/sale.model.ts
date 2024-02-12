@@ -1,4 +1,7 @@
 //---------------------------------------- Sale ---------------------------------------------
+
+import exp from "constants";
+
     //style Categories start
 export class StyleCategories{
     id:number=0
@@ -38,6 +41,26 @@ export class Style{
         name?: string
       }
 }
+    //Measuremant Details
+export class MeasuremntDetails{
+    
+        id:number=0
+        description?: string;
+        tolerance?: string;
+        small?: string;
+        medium?: string;
+        large?: string
+        styleId?: {
+          id: number,
+          code?: string,
+          description?: string,
+          categoriesId?: {
+            id: number,
+            name?: string
+          }
+      }
+}
+    //
 //-------------------------------------- Inventory ----------------------------------------
 //-------------------------------------- Other --------------------------------------------
 //-------------------------------------- Report -------------------------------------------

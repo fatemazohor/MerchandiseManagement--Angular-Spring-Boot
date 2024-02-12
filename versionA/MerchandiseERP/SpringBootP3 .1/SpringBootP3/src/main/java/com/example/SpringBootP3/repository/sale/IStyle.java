@@ -19,5 +19,7 @@ public interface IStyle extends JpaRepository<Style,Integer> {
 //    @Query("SELECT s from  Style s join RawMaterial raw on raw.styleId.id= s.id where s.id=:id")
     public List<Style> findStyleById(int id);
 
+    Style findByCode(String code);
+
 
 }

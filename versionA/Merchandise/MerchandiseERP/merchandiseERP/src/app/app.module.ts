@@ -17,6 +17,8 @@ import { SizeComponent } from './component/sale/size/size.component';
 import { TrimComponent } from './component/sale/trim/trim.component';
 import { RawMaterialCategoriesComponent } from './component/sale/raw-material-categories/raw-material-categories.component';
 import { StyleComponent } from './component/sale/style/style.component';
+import { MeasurementDetailsComponent } from './component/sale/measurement-details/measurement-details.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { StyleComponent } from './component/sale/style/style.component';
     SizeComponent,
     TrimComponent,
     RawMaterialCategoriesComponent,
-    StyleComponent
+    StyleComponent,
+    MeasurementDetailsComponent
+    
   ],
   imports: [
     BrowserModule,

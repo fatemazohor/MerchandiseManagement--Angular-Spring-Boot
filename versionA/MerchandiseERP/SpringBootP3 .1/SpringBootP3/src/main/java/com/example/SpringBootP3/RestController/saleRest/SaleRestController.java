@@ -25,6 +25,8 @@ public class SaleRestController {
     private IRawMaterialCat materialCatRepo;
     @Autowired
     private IStyle styleRepo;
+    @Autowired
+    private IMeasurementDetailsRepo detailsRepo;
 
 
 
@@ -299,6 +301,51 @@ public class SaleRestController {
     }
 
     // api Style end
+    // api Measurement Details start
+
+    @GetMapping("/measurement_details")
+    private List<MeasurementDetails> measurementDetailsList(){
+        return detailsRepo.findAll();
+    }
+
+
+    @DeleteMapping("/measurement_details/{id}")
+    public void deleteMeasurementDetails(@PathVariable("id")int id){
+        boolean exist=detailsRepo.existsById(id);
+        if (exist){
+            detailsRepo.deleteById(id);
+        }
+    }
+    @PostMapping("/measurement_details")
+    public ResponseEntity<MeasurementDetails> mdetailsSave(@RequestBody MeasurementDetails details){
+        String styleCode=details.getStyleId().getCode();
+        Style code=styleRepo.findByCode(styleCode);
+        details.setStyleId(code);
+        detailsRepo.save(details);
+        return ResponseEntity.ok(details);
+    }
+    @PutMapping("/measurement_details/{id}")
+    public ResponseEntity<MeasurementDetails> mDetailsUpdate(@RequestBody MeasurementDetails details,
+                                                             @PathVariable("id") int id){
+        boolean exist=detailsRepo.existsById(id);
+        if (exist){
+            MeasurementDetails measurementDetails=detailsRepo.findById(id).get();
+            measurementDetails.setDescription(details.getDescription());
+            measurementDetails.setTolerance(details.getTolerance());
+            measurementDetails.setSmall(details.getSmall());
+            measurementDetails.setMedium(details.getMedium());
+            measurementDetails.setLarge(details.getLarge());
+            //style code set
+            String styleCode=details.getStyleId().getCode();
+            Style code=styleRepo.findByCode(styleCode);
+            measurementDetails.setStyleId(code);
+            detailsRepo.save(measurementDetails);
+            return ResponseEntity.ok(measurementDetails);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    // api Measurement Details end
 
 
 

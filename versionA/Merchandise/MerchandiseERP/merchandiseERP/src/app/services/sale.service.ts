@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RawMaterialCat, Size, Style, StyleCategories, Trim } from '../model/sale.model';
+import { MeasuremntDetails, RawMaterialCat, Size, Style, StyleCategories, Trim } from '../model/sale.model';
 import { Observable } from 'rxjs';
 
 
@@ -101,6 +101,23 @@ export class SaleService {
 
   deleteStyle(id:number):Observable<void>{
     return this.http.delete<void>(`${this.baseUrl}/style/${id}`);
+  }
+  
+  //Measurement Details 
+  getAllMeasurementDetails():Observable<MeasuremntDetails[]>{
+    return this.http.get<MeasuremntDetails[]>(`${this.baseUrl}/measurement_details`);
+  }
+
+  createMeasurementDetails(details:MeasuremntDetails):Observable<MeasuremntDetails>{
+    return this.http.post<MeasuremntDetails>(`${this.baseUrl}/measurement_details`,details);
+  }
+
+  updateMeasurementDetails(id:number,details:MeasuremntDetails):Observable<MeasuremntDetails>{
+    return this.http.put<MeasuremntDetails>(`${this.baseUrl}/measurement_details/${id}`,details)
+  }
+
+  deleteMeasurementDetails(id:number):Observable<void>{
+    return this.http.delete<void>(`${this.baseUrl}/measurement_details/${id}`)
   }
 
   //------------------------------------ Inventory ----------------------------------------
