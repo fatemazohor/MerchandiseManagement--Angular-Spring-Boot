@@ -360,6 +360,7 @@ public class SaleRestController {
     }
 
     // api Measurement Details end
+    // api Measurement Attachment start
     // api Raw Material start
 
     @GetMapping("/raw_material")
@@ -377,6 +378,10 @@ public class SaleRestController {
     }
 
     // api Raw Material end
+    // api Raw Material Attachment start
+    // api Style Attachment start
+    // api Style Material Quantity start
+
 
 
 

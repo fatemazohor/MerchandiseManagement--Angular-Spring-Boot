@@ -120,9 +120,30 @@ export class SaleService {
     return this.http.delete<void>(`${this.baseUrl}/measurement_details/${id}`)
   }
   //Measurement Attachment
-  
-//-------------------------------------- Inventory ----------------------------------------
+  // api Raw Material end
+  // api Raw Material Attachment start
+  // api Style Attachment start
+  // api Style Material Quantity start
+//---------------------------------------- Inventory Table-------------------------------
+  // api Warehouse start
+  // api Purchase Status start
+    // api Stock Adjustment start
+  // api Adjustment Material start
+  // api Purchase start
+  // api Stock start
 //-------------------------------------- Other --------------------------------------------
-//-------------------------------------- Report -------------------------------------------
+  // api Vendors start
+  // api Unit of Measurement start
+  // api Department end
+  // api Labor Cost start
+
+  // api Labor Cost end
+//---------------------------------------- Buyers Table----------------------------------
+    // api Buyers start
+    // api Task start
+    // api Orders Status start
+    // api Orders start
+    // api Time Action start
+//---------------------------------------- Report Table----------------------------------
 
 }
