@@ -16,6 +16,7 @@ export class MeasurementDetailsComponent implements OnInit{
   detailsForm!:FormGroup;
   detailsModel:MeasuremntDetails=new MeasuremntDetails();
   title:string="Measuremnt Details list";
+  totalItems:number=0
   //font awesome icon list
   fatrash=faTrash;
   editicon=faPenToSquare
@@ -47,6 +48,7 @@ export class MeasurementDetailsComponent implements OnInit{
     this.service.getAllMeasurementDetails().subscribe({
       next:res=>{
         this.details=res;
+        this.totalItems=this.details.length;
       },
       error:err=>{
         console.log(err);
@@ -105,7 +107,8 @@ export class MeasurementDetailsComponent implements OnInit{
     this.detailsForm.controls["small"].setValue(detailsRow.small)
     this.detailsForm.controls["medium"].setValue(detailsRow.medium)
     this.detailsForm.controls["large"].setValue(detailsRow.large)
-    this.detailsForm.controls["styleId"].setValue(detailsRow.styleId)
+    this.detailsForm.controls["styleId"].setValue(detailsRow.styleId.code)
+    
   }
   //update Measurement Details
   editMeasurementDetails(){
@@ -118,8 +121,8 @@ export class MeasurementDetailsComponent implements OnInit{
       this.detailsModel.styleId=this.detailsForm.value.styleId
       this.service.updateMeasurementDetails(this.detailsModel.id,this.detailsModel).subscribe({
         next:res=>{
-          console.log("Style updated",res)
-          alert("Style updated.")
+          console.log("Measurement Details updated",res)
+          alert("Measurement Details updated.")
           this.loadMeasurementDetails();
           this.detailsForm.reset();
         },

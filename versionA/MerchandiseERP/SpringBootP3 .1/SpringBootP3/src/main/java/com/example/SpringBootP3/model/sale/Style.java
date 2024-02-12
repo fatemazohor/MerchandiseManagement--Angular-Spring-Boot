@@ -35,8 +35,13 @@ public class Style {
     @ManyToOne
     @JoinColumn(name = "style_cat_id")
     public StyleCategories categoriesId;
-    
-//    @OneToMany(mappedBy = "style")
+
+    public Style(String code) {
+        this.code = code;
+    }
+
+
+    //    @OneToMany(mappedBy = "style")
 //    private List<Measurement> styleMeasurement;
 
 //    @ManyToMany

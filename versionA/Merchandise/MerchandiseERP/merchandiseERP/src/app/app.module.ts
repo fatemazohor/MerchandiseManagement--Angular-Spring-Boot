@@ -18,6 +18,7 @@ import { TrimComponent } from './component/sale/trim/trim.component';
 import { RawMaterialCategoriesComponent } from './component/sale/raw-material-categories/raw-material-categories.component';
 import { StyleComponent } from './component/sale/style/style.component';
 import { MeasurementDetailsComponent } from './component/sale/measurement-details/measurement-details.component';
+import { PaginationComponent } from './component/sale/pagination/pagination.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { MeasurementDetailsComponent } from './component/sale/measurement-detail
     TrimComponent,
     RawMaterialCategoriesComponent,
     StyleComponent,
-    MeasurementDetailsComponent
+    MeasurementDetailsComponent,
+    PaginationComponent
     
   ],
   imports: [

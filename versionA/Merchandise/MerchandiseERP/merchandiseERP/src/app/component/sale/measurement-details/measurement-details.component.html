@@ -16,9 +16,13 @@
                 <tr>
                     <th scope="col">SI</th>
                     <th scope="col">Id</th>
-                    <th scope="col">style</th>
+                    <th scope="col">Style</th>
                     <th scope="col">Description</th>
-                    <th scope="col">Category</th>
+                    <th scope="col">Tolerance</th>
+                    <th scope="col">Small</th>
+                    <th scope="col">Medium</th>
+                    <th scope="col">Large</th>
+                    
                     <th scope="col">Action</th>
 
                 </tr>
@@ -27,12 +31,13 @@
                 <tr *ngFor="let detailsRow of details; index as i">
                     <td>{{i+1}}</td>
                     <td>{{detailsRow.id}}</td>
+                    <td>{{detailsRow.styleId?.code}}</td>
                     <td>{{detailsRow.description}}</td>
                     <td>{{detailsRow.tolerance}}</td>
                     <td>{{detailsRow.small}}</td>
                     <td>{{detailsRow.medium}}</td>
                     <td>{{detailsRow.large}}</td>
-                    <td>{{detailsRow.styleId?.code}}</td>
+                    
                     <td>
 
                         <div class="btn-group">
@@ -41,7 +46,7 @@
                                 <fa-icon [icon]="editicon" style="color: #5c34d5;"></fa-icon></a>
                                 <!-- style={{color: "#5c34d5",}} -->
 
-                            <a class="btn " href="#" (click)="deleteMesurementDet(detailsRow.id)">
+                            <a class="btn" (click)="deleteMesurementDet(detailsRow.id)">
                                 <fa-icon [icon]="fatrash" style="color: #d53449;"></fa-icon></a>
                         </div>
                     </td>
@@ -50,6 +55,10 @@
 
             </tbody>
         </table>
+        <app-pagination>
+            [totalItems]="totalItems"
+            [itemsPerPage]="10"
+        </app-pagination>
     </div>
 
 
@@ -74,19 +83,36 @@
 
             <form [formGroup]="detailsForm">
                 <div class="mb-3">
-                    <label  class="form-label">Style Name</label>
-                    <input type="text" class="form-control" formControlName="code" >                        
+                    <label  class="form-label">Style Code</label>
+                    <select id="styleId" class="form-select" formControlName="styleId">
+                    <option *ngFor="let st of styleCode" [value]="st.code">{{st.code}}</option>
+                </select>
                 </div>
                 <div class="mb-3">
                     <label  class="form-label">Description</label>
                     <input type="text" class="form-control" formControlName="description" >                        
                 </div>
                 <div class="mb-3">
-                    <label  class="form-label">Category</label>
-                    <select id="categoryId" class="form-select" formControlName="categoriesId">
-                    <option *ngFor="let cate of styleCode" [value]="cate.code">{{cate.code}}</option>
-                </select>
+                    <label  class="form-label">Tolerance</label>
+                    <input type="text" class="form-control" formControlName="tolerance" >                        
                 </div>
+                
+                <div class="row">
+                    <div class="mb-3 col-md-4">
+                        <label  class="form-label">Small</label>
+                        <input type="text" class="form-control" formControlName="small" >                        
+                    </div>
+                    <div class="mb-3 col-md-4">
+                        <label  class="form-label">Medium</label>
+                        <input type="text" class="form-control" formControlName="medium" >                        
+                    </div>
+                    <div class="mb-3 col-md-4">
+                        <label  class="form-label">Large</label>
+                        <input type="text" class="form-control" formControlName="large" >                        
+                    </div>
+
+                </div>
+                
 
             </form>
           
