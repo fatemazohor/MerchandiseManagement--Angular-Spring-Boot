@@ -10,6 +10,7 @@ import { StyleComponent } from './component/sale/style/style.component';
 import { RawMaterialCategoriesComponent } from './component/sale/raw-material-categories/raw-material-categories.component';
 import { MeasurementDetailsComponent } from './component/sale/measurement-details/measurement-details.component';
 import { VendorsComponent } from './component/other/vendors/vendors.component';
+import { UomComponent } from './component/other/uom/uom.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: "style", component:StyleComponent},
   { path: "measurement-details", component:MeasurementDetailsComponent},
   { path: "vendors", component:VendorsComponent},
+  { path: "uom", component:UomComponent},
   {path:"dashboard", component:ControlWrapperComponent},
   {path:"**",redirectTo:"/dashboard",pathMatch:'full'}
 ];

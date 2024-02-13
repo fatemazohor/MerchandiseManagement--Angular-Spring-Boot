@@ -5,7 +5,8 @@
     <br>
     <p></p>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary py-2" data-toggle="modal" data-target="#exampleModal">
+    <button type="button" class="btn btn-primary py-2"(click)="menuType? true: false "
+     data-toggle="modal" data-target="#exampleModal">
         Create New
       </button>
     
@@ -28,15 +29,28 @@
                     <td>{{trimRow.name}}</td>
                     <td>
 
-                        <div class="btn-group">
+                        <!-- <div class="btn-group">
                             <a class="btn" (click)="onEditById(trimRow)"
                             data-toggle="modal" data-target="#exampleModal">
                                 <fa-icon [icon]="editicon" style="color: #5c34d5;"></fa-icon></a>
-                                <!-- style={{color: "#5c34d5",}} -->
+                                
 
                             <a class="btn" (click)="deleteTrim(trimRow.id)">
                                 <fa-icon [icon]="fatrash" style="color: #d53449;"></fa-icon></a>
-                        </div>
+                        </div> -->
+                        <div class="btn-group">
+                          <div class="px-2">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                          <div *ngIf=" menuType == true">
+                              <button type="submit" class="btn btn-success" [disabled]="trimForm.invalid"
+                                  (click)="onSubmit()" data-bs-dismiss="modal">Submit</button>
+                          </div>
+                          <div *ngIf="menuType == false">
+                              <button type="submit" class="btn btn-warning" [disabled]="trimForm.invalid"
+                                  (click)="editTrim()" data-bs-dismiss="modal">Update</button>
+                          </div>
+                      </div>
                     </td>
 
                 </tr>

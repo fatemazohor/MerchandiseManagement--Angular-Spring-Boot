@@ -14,6 +14,7 @@ export class TrimComponent implements OnInit{
   trimForm!:FormGroup
   trimModel:Trim=new Trim();
   title:string="Trim list";
+  menuType: boolean=true;
   //font awesome icon list
   fatrash=faTrash;
   editicon=faPenToSquare
@@ -81,6 +82,7 @@ export class TrimComponent implements OnInit{
 
   // set data on form to update
   onEditById(trimRow:any){
+    this.menuType=false;
     this.trimModel.id=trimRow.id;
     this.trimForm.controls['name'].setValue(trimRow.name)
   }

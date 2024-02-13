@@ -16,6 +16,8 @@ export class VendorsComponent implements OnInit{
   vendorModel:Vendors=new Vendors();
   title:string="Vendor list";
   title2:string="Vendor Entry Form";
+  // menuType: string = '';
+  menuType: boolean=true;
   //font awesome icon list
   fatrash=faTrash;
   editicon=faPenToSquare
@@ -68,6 +70,7 @@ export class VendorsComponent implements OnInit{
   // create new vendor
   onSubmit(){
     if(this.vendorForm.valid){
+      
       const vendorData:Vendors=this.vendorForm.value;
       this.service.createVendors(vendorData).subscribe({
         next:res=>{
@@ -85,7 +88,8 @@ export class VendorsComponent implements OnInit{
   }
 // set data on form to update
 onEditById(vendorRow:any){
-  this.vendorModel=vendorRow.id;
+  this.menuType=false;
+  this.vendorModel.id=vendorRow.id;
   this.vendorForm.controls['company'].setValue(vendorRow.company)
   this.vendorForm.controls['contactPerson'].setValue(vendorRow.contactPerson)
   this.vendorForm.controls['cell'].setValue(vendorRow.cell)
@@ -95,6 +99,7 @@ onEditById(vendorRow:any){
 //update vendor data
 editVendors(){
   if(this.vendorForm.valid){
+    
     this.vendorModel.company=this.vendorForm.value.company
     this.vendorModel.contactPerson=this.vendorForm.value.contactPerson
     this.vendorModel.cell=this.vendorForm.value.cell
@@ -103,10 +108,12 @@ editVendors(){
 
     this.service.updateVendors(this.vendorModel.id,this.vendorModel).subscribe({
       next:res=>{
+        
         console.log("Vendor updated",res)
         alert("Vendor updated.")
-        this.loadVendors;
+        this.loadVendors();
         this.vendorForm.reset();
+        console.log("inside vendor update")
       },
       error:er=>{
         console.log(er)

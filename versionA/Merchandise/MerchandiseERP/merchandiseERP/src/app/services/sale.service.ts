@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MeasuremntDetails, RawMaterialCat, Size, Style, StyleCategories, Trim, Vendors } from '../model/sale.model';
+import { MeasuremntDetails, RawMaterialCat, Size, Style, StyleCategories, Trim, UOM, Vendors } from '../model/sale.model';
 import { Observable } from 'rxjs';
 
 
@@ -150,6 +150,24 @@ export class SaleService {
   }
   // api Vendors end
   // api Unit of Measurement start
+
+  getAllUOM():Observable<UOM[]>{
+    return this.http.get<UOM[]>(`${this.baseUrl}/uom`);
+  }
+
+  createUOM(uom:UOM):Observable<UOM>{
+    return this.http.post<UOM>(`${this.baseUrl}/uom`,uom);
+  }
+
+  updateUOM(id:number,uom:UOM):Observable<UOM>{
+    return this.http.put<UOM>(`${this.baseUrl}/uom/${id}`,uom)
+  }
+
+  deleteUOM(id:number):Observable<void>{
+    return this.http.delete<void>(`${this.baseUrl}/uom/${id}`)
+  }
+
+  // api Unit of Measurement end
 //---------------------------------------- BOM Table----------------------------------
   // api Department end
   // api Labor Cost start
