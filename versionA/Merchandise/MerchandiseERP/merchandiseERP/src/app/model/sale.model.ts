@@ -60,7 +60,46 @@ export class MeasuremntDetails{
           }
       }
 }
-    //
-//-------------------------------------- Inventory ----------------------------------------
-//-------------------------------------- Other --------------------------------------------
-//-------------------------------------- Report -------------------------------------------
+ 
+  // Raw Material end
+  //  Raw Material Attachment start
+  //  Style Attachment start
+  //  Style Material Quantity start
+//---------------------------------------- Inventory Table-------------------------------
+  //  Warehouse start
+  //  Purchase Status start
+    //  Stock Adjustment start
+  //  Adjustment Material start
+  //  Purchase start
+  //  Stock start
+//---------------------------------------- Other --------------------------------------------
+  //  Vendors start
+  export class Vendors{
+    id:number= 0;
+    company?: string;
+    contactPerson?: string;
+    cell?: string;
+    email?: string;
+    address?: string;
+  }
+  //  Unit of Measurement start
+  export class UOM{
+    id:number= 0;
+    name?: string;
+  }
+//---------------------------------------- BOM Table----------------------------------
+  //  Department start
+  export class Department{
+    id:number= 0;
+    name?: string;
+  }
+  //  Labor Cost start
+
+  
+//---------------------------------------- Buyers Table----------------------------------
+    //  Buyers start
+    //  Task start
+    //  Orders Status start
+    //  Orders start
+    //  Time Action start
+//---------------------------------------- Report Table----------------------------------

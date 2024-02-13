@@ -19,6 +19,8 @@ import { RawMaterialCategoriesComponent } from './component/sale/raw-material-ca
 import { StyleComponent } from './component/sale/style/style.component';
 import { MeasurementDetailsComponent } from './component/sale/measurement-details/measurement-details.component';
 import { PaginationComponent } from './component/sale/pagination/pagination.component';
+import { VendorsComponent } from './component/other/vendors/vendors.component';
+import { UomComponent } from './component/other/uom/uom.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { PaginationComponent } from './component/sale/pagination/pagination.comp
     RawMaterialCategoriesComponent,
     StyleComponent,
     MeasurementDetailsComponent,
-    PaginationComponent
+    PaginationComponent,
+    VendorsComponent,
+    UomComponent
     
   ],
   imports: [

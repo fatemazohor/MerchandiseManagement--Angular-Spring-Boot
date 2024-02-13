@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MeasuremntDetails, RawMaterialCat, Size, Style, StyleCategories, Trim } from '../model/sale.model';
+import { MeasuremntDetails, RawMaterialCat, Size, Style, StyleCategories, Trim, Vendors } from '../model/sale.model';
 import { Observable } from 'rxjs';
 
 
@@ -133,7 +133,24 @@ export class SaleService {
   // api Stock start
 //-------------------------------------- Other --------------------------------------------
   // api Vendors start
+  getAllVendors():Observable<Vendors[]>{
+    return this.http.get<Vendors[]>(`${this.baseUrl}/vendors`);
+  }
+
+  createVendors(vendor:Vendors):Observable<Vendors>{
+    return this.http.post<Vendors>(`${this.baseUrl}/vendors`,vendor);
+  }
+  
+  updateVendors(id:number,vendor:Vendors):Observable<Vendors>{
+    return this.http.put<Vendors>(`${this.baseUrl}/vendors/${id}`,vendor)
+  }
+
+  deleteVendors(id:number):Observable<void>{
+    return this.http.delete<void>(`${this.baseUrl}/vendors/${id}`)
+  }
+  // api Vendors end
   // api Unit of Measurement start
+//---------------------------------------- BOM Table----------------------------------
   // api Department end
   // api Labor Cost start
 

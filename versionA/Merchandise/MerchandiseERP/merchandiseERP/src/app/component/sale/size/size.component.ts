@@ -24,7 +24,7 @@ export class SizeComponent implements OnInit{
   constructor(
     private saleService:SaleService,
     private formBuilder:FormBuilder,
-    private router:Router
+  
   ){}
 
   ngOnInit(): void {
@@ -57,8 +57,7 @@ export class SizeComponent implements OnInit{
         console.log("Size deleted",res)
         alert("Size deleted.")
         this.loadSize();
-        //after delete page reload to dashboard .fix it to list page.
-        this.router.navigate(['/size'])  
+          
       },
       error:er=>{
         console.log(er)
