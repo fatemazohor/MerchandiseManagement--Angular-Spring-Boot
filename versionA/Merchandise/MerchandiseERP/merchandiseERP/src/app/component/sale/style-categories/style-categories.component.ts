@@ -14,6 +14,8 @@ export class StyleCategoriesComponent implements OnInit{
   styleCatForm!:FormGroup
   styleCatModel:StyleCategories=new StyleCategories();
   title:string="Style categories list";
+  title2:string="Style categories Entry Form";
+  menuType: boolean=true;
   //font awesome icon list
   fatrash=faTrash;
   editicon=faPenToSquare
@@ -82,6 +84,7 @@ deleteStyleCat(styleCatId:number){
 }
 
 onEditById(cate:any){
+  this.menuType=false;
   this.styleCatModel.id=cate.id;
   this.styleCatForm.controls['name'].setValue(cate.name)
 }

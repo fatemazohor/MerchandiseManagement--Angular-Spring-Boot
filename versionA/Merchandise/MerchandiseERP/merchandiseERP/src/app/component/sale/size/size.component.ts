@@ -17,6 +17,8 @@ export class SizeComponent implements OnInit{
   sizeForm!:FormGroup
   sizeModel:Size=new Size();
   title:string="Size list";
+  title2:string="Size Entry Form";
+  menuType: boolean=true;
   //font awesome icon list
   fatrash=faTrash;
   editicon=faPenToSquare
@@ -87,6 +89,7 @@ export class SizeComponent implements OnInit{
 
   // set data on form to update
   onEditById(sizeRow:any){
+    this.menuType=false;
     this.sizeModel.id=sizeRow.id;
     this.sizeForm.controls['name'].setValue(sizeRow.name)
   }

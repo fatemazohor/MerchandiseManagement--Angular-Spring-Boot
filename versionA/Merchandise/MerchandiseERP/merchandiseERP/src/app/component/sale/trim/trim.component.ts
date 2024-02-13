@@ -13,7 +13,8 @@ export class TrimComponent implements OnInit{
   trim:Trim[]=[]
   trimForm!:FormGroup
   trimModel:Trim=new Trim();
-  title:string="Trim list";
+  title:string="Trim List";
+  title2:string="Trim Entry Form";
   menuType: boolean=true;
   //font awesome icon list
   fatrash=faTrash;
@@ -49,8 +50,8 @@ export class TrimComponent implements OnInit{
   deleteTrim(trimId:number){
     this.saleService.deleteTrim(trimId).subscribe({
       next:res=>{
-        console.log("trim deleted",res)
-        alert("trim deleted.")
+        console.log("Trim deleted",res)
+        alert("Trim deleted.")
         this.loadTrim();
         //after delete page reload to dashboard .fix it to list page.
         // this.router.navigate(['/trim'])  
@@ -67,8 +68,8 @@ export class TrimComponent implements OnInit{
       const trimData:Trim =this.trimForm.value;
       this.saleService.createTrim(trimData).subscribe({
         next:res=>{
-          console.log("trim saved",res)
-          alert("trim saved.")
+          console.log("Trim saved",res)
+          alert("Trim saved.")
           this.loadTrim();
           this.trimForm.reset();
         },
@@ -92,8 +93,8 @@ export class TrimComponent implements OnInit{
       this.trimModel.name=this.trimForm.value.name
       this.saleService.updateTrim(this.trimModel.id,this.trimModel).subscribe({
         next:res=>{
-          console.log("trim updated",res)
-          alert("trim updated.")
+          console.log("Trim updated",res)
+          alert("Trim updated.")
           this.loadTrim();
           this.trimForm.reset();
         },

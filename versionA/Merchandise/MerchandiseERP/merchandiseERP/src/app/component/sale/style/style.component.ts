@@ -18,6 +18,8 @@ export class StyleComponent implements OnInit{
   styleForm!:FormGroup
   styleModel:Style=new Style();
   title:string="Style list";
+  title2:string="Style Entry Form";
+  menuType: boolean=true;
   //font awesome icon list
   fatrash=faTrash;
   editicon=faPenToSquare
@@ -103,6 +105,7 @@ export class StyleComponent implements OnInit{
 
   // set data on form to update
   onEditById(styleRow:any){
+    this.menuType=false;
     this.styleModel.id=styleRow.id;
     this.styleForm.controls['code'].setValue(styleRow.code)
     this.styleForm.controls['description'].setValue(styleRow.description)

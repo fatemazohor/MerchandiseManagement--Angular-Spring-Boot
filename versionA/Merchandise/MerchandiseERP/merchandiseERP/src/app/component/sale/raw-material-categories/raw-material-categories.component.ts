@@ -14,7 +14,9 @@ export class RawMaterialCategoriesComponent implements OnInit{
   materialCat:RawMaterialCat[]=[]
   materialCatForm!:FormGroup
   materialCatModel:RawMaterialCat=new RawMaterialCat();
-  title:string="materialCat list";
+  title:string="Raw Material Categories List";
+  title2:string="Raw Material Categories Entry Form";
+  menuType: boolean=true;
   //font awesome icon list
   fatrash=faTrash;
   editicon=faPenToSquare
@@ -86,6 +88,7 @@ export class RawMaterialCategoriesComponent implements OnInit{
 
   // set data on form to update
   onEditById(materialCatRow:any){
+    this.menuType=false;
     this.materialCatModel.id=materialCatRow.id;
     this.materialCatForm.controls['name'].setValue(materialCatRow.name)
   }

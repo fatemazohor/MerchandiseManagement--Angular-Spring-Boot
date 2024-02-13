@@ -16,7 +16,9 @@ export class MeasurementDetailsComponent implements OnInit{
   detailsForm!:FormGroup;
   detailsModel:MeasuremntDetails=new MeasuremntDetails();
   title:string="Measuremnt Details list";
+  title2:string="Measuremnt Details Entry Form";
   totalItems:number=0
+  menuType: boolean=true;
   //font awesome icon list
   fatrash=faTrash;
   editicon=faPenToSquare
@@ -102,6 +104,7 @@ export class MeasurementDetailsComponent implements OnInit{
   }
   //set data on form to update
   onEditById(detailsRow:any){
+    this.menuType=false;
     this.detailsModel.id=detailsRow.id;
     this.detailsForm.controls["description"].setValue(detailsRow.description)
     this.detailsForm.controls["tolerance"].setValue(detailsRow.tolerance)

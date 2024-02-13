@@ -5,7 +5,8 @@
     <br>
     <p></p>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary py-2" data-toggle="modal" data-target="#exampleModal">
+    <button type="button" class="btn btn-primary py-2" (click)=" menuType=true"
+    data-toggle="modal" data-target="#exampleModal">
         Create New
       </button>
     <!-- <a href="/stylecategories/addform" class="btn btn-sm btn-primary">Create New</a> -->
@@ -29,13 +30,13 @@
                     <td>
 
                         <div class="btn-group">
-                            <a class="btn btn-warning" (click)="onEditById(cate)"
+                            <a class="btn" (click)="onEditById(cate)"
                             data-toggle="modal" data-target="#exampleModal">
-                                <fa-icon [icon]="editicon"></fa-icon></a>
+                                <fa-icon [icon]="editicon" style="color: #5c34d5;"></fa-icon></a>
                                 <!-- style={{color: "#5c34d5",}} -->
 
                             <a class="btn" (click)="deleteStyleCat(cate.id)">
-                                <fa-icon [icon]="fatrash" style="color: #5c34d5;"></fa-icon></a>
+                                <fa-icon [icon]="fatrash" style="color: #d53449;"></fa-icon></a>
                         </div>
                     </td>
 
@@ -58,7 +59,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+          <h5 class="modal-title" id="exampleModalLabel">{{title2}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -75,13 +76,26 @@
           
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary">Save changes</button>
           <button type="submit"  class="btn btn-success"
           [disabled]="styleCatForm.invalid" (click)="onSubmit()" data-bs-dismiss="modal">Create Book</button>
           
               <button type="submit"  class="btn btn-warning"
-              [disabled]="styleCatForm.invalid" (click)="editStyleCat()" data-bs-dismiss="modal">Update</button>
+              [disabled]="styleCatForm.invalid" (click)="editStyleCat()" data-bs-dismiss="modal">Update</button> -->
+              <div class="btn-group">
+                <div class="px-2">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                <div *ngIf=" menuType == true">
+                    <button type="submit" class="btn btn-success" [disabled]="styleCatForm.invalid"
+                        (click)="onSubmit()" data-bs-dismiss="modal">Submit</button>
+                </div>
+                <div *ngIf="menuType == false">
+                    <button type="submit" class="btn btn-warning" [disabled]="styleCatForm.invalid"
+                        (click)="editStyleCat()" data-bs-dismiss="modal">Update</button>
+                </div>
+            </div>
         
         </div>
       </div>

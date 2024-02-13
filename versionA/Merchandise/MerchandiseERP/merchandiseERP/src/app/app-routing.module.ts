@@ -5,12 +5,14 @@ import { ControlWrapperComponent } from './control-wrapper/control-wrapper.compo
 import { StyleCategoriesComponent } from './component/sale/style-categories/style-categories.component';
 import { SizeComponent } from './component/sale/size/size.component';
 import { TrimComponent } from './component/sale/trim/trim.component';
-import { RawMaterialCat } from './model/sale.model';
+import { Department, RawMaterialCat } from './model/sale.model';
 import { StyleComponent } from './component/sale/style/style.component';
 import { RawMaterialCategoriesComponent } from './component/sale/raw-material-categories/raw-material-categories.component';
 import { MeasurementDetailsComponent } from './component/sale/measurement-details/measurement-details.component';
 import { VendorsComponent } from './component/other/vendors/vendors.component';
 import { UomComponent } from './component/other/uom/uom.component';
+import { DepartmentComponent } from './component/other/department/department.component';
+import { LaborCostComponent } from './component/other/labor-cost/labor-cost.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent},
@@ -22,6 +24,8 @@ const routes: Routes = [
   { path: "measurement-details", component:MeasurementDetailsComponent},
   { path: "vendors", component:VendorsComponent},
   { path: "uom", component:UomComponent},
+  { path: "department", component:DepartmentComponent},
+  { path: "labor-cost", component:LaborCostComponent},
   {path:"dashboard", component:ControlWrapperComponent},
   {path:"**",redirectTo:"/dashboard",pathMatch:'full'}
 ];

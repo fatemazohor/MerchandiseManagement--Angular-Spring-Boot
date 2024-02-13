@@ -18,4 +18,7 @@ public class Department {
     public Integer id;
     public String name;
 
+    public Department(String name) {
+        this.name = name;
+    }
 }

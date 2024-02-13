@@ -3,11 +3,14 @@ package com.example.SpringBootP3.RestController.saleRest;
 import com.example.SpringBootP3.model.UOM;
 import com.example.SpringBootP3.model.Vendors;
 import com.example.SpringBootP3.model.bom.Department;
+import com.example.SpringBootP3.model.bom.LaborCost;
 import com.example.SpringBootP3.model.sale.*;
 import com.example.SpringBootP3.repository.bom.IDepartmentRepo;
+import com.example.SpringBootP3.repository.bom.ILaborCost;
 import com.example.SpringBootP3.repository.other.IUOMRepo;
 import com.example.SpringBootP3.repository.other.IVendorRepo;
 import com.example.SpringBootP3.repository.sale.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,31 +20,36 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/sale")
 @CrossOrigin("*")
+@RequiredArgsConstructor
 public class SaleRestController {
 
-    @Autowired
-    private IStyleCategories styleCatApiRepo;
-    @Autowired
-    private ISizeRepo iSizeRepo;
-    @Autowired
-    private ITrim trimRepo;
-    @Autowired
-    private IFabricName fabricRepo;
-    @Autowired
-    private IRawMaterialCat materialCatRepo;
-    @Autowired
-    private IStyle styleRepo;
-    @Autowired
-    private IMeasurementDetailsRepo detailsRepo;
-    @Autowired
-    private IRawMaterialRepo rawMaterialRepo;
-    @Autowired
-    private IVendorRepo vendorRepo;
-    @Autowired
-    private IUOMRepo iuomRepo;
-    @Autowired
-    private IDepartmentRepo departmentRepo;
+    private final IStyleCategories styleCatApiRepo;
+    private final ISizeRepo iSizeRepo;
+    private final ITrim trimRepo;
+    private final IFabricName fabricRepo;
+    private final IRawMaterialCat materialCatRepo;
+    private final IStyle styleRepo;
+    private final IMeasurementDetailsRepo detailsRepo;
+    private final IRawMaterialRepo rawMaterialRepo;
+    private final IVendorRepo vendorRepo;
+    private final IUOMRepo iuomRepo;
+    private final IDepartmentRepo departmentRepo;
+    private final ILaborCost costRepo;
 
+//    public SaleRestController(IMeasurementDetailsRepo detailsRepo, IStyleCategories styleCatApiRepo, ISizeRepo iSizeRepo, ITrim trimRepo, IFabricName fabricRepo, IRawMaterialCat materialCatRepo, IStyle styleRepo, IRawMaterialRepo rawMaterialRepo, IVendorRepo vendorRepo, ILaborCost costRepo, IUOMRepo iuomRepo, IDepartmentRepo departmentRepo) {
+//        this.detailsRepo = detailsRepo;
+//        this.styleCatApiRepo = styleCatApiRepo;
+//        this.iSizeRepo = iSizeRepo;
+//        this.trimRepo = trimRepo;
+//        this.fabricRepo = fabricRepo;
+//        this.materialCatRepo = materialCatRepo;
+//        this.styleRepo = styleRepo;
+//        this.rawMaterialRepo = rawMaterialRepo;
+//        this.vendorRepo = vendorRepo;
+//        this.costRepo = costRepo;
+//        this.iuomRepo = iuomRepo;
+//        this.departmentRepo = departmentRepo;
+//    }
 
 
     //    swagger link: http://localhost:8098/swagger-ui/index.html#/
@@ -73,8 +81,15 @@ public class SaleRestController {
     @PutMapping("/style-categories/{id}")
     public ResponseEntity<StyleCategories> styleCatUpdate(@RequestBody StyleCategories styleCategories,
                                                           @PathVariable("id") int id){
-        boolean exist=styleCatApiRepo.existsById(id);
+//        boolean exist=styleCatApiRepo.existsById(id);
+        boolean exist=styleCatApiRepo.findById(id).isPresent();
         if (exist) {
+//            if(styleCatApiRepo.findById(id).isPresent()){
+//                StyleCategories categories=styleCatApiRepo.findById(id).get();
+//                categories.setName(styleCategories.getName());
+//                styleCatApiRepo.save(categories);
+//                return ResponseEntity.ok(categories);
+//            }
 
             StyleCategories categories=styleCatApiRepo.findById(id).get();
             categories.setName(styleCategories.getName());
@@ -111,7 +126,7 @@ public class SaleRestController {
     @PutMapping("/size/{id}")
     public ResponseEntity<Size> sizeUpdate(@RequestBody Size size,
                                                           @PathVariable("id") int id){
-        boolean exist=iSizeRepo.existsById(id);
+        boolean exist=iSizeRepo.findById(id).isPresent();
         if (exist) {
 
             Size size1=iSizeRepo.findById(id).get();
@@ -149,7 +164,7 @@ public class SaleRestController {
     @PutMapping("/trim/{id}")
     public ResponseEntity<Trim> trimUpdate(@RequestBody Trim trim,
                                            @PathVariable("id") int id){
-        boolean exist=trimRepo.existsById(id);
+        boolean exist=trimRepo.findById(id).isPresent();
         if (exist) {
 
             Trim trim1=trimRepo.findById(id).get();
@@ -187,7 +202,7 @@ public class SaleRestController {
     @PutMapping("/fabric/{id}")
     public ResponseEntity<Fabric> fabricUpdate(@RequestBody Fabric fabric,
                                            @PathVariable("id") int id){
-        boolean exist=fabricRepo.existsById(id);
+        boolean exist=fabricRepo.findById(id).isPresent();
         if (exist) {
 
             Fabric fabric1=fabricRepo.findById(id).get();
@@ -488,12 +503,11 @@ public class SaleRestController {
         return ResponseEntity.ok(department);
     }
     @PutMapping("/department/{id}")
-    public ResponseEntity<Department> depatmentUpdate(@RequestBody Department department,@PathVariable("id")int id){
+    public ResponseEntity<Department> departmentUpdate(@RequestBody Department department,@PathVariable("id")int id){
         boolean exist=departmentRepo.existsById(id);
         if(exist){
             Department department1=departmentRepo.findById(id).get();
             department1.setName(department.getName());
-
 
             departmentRepo.save(department1);
             return ResponseEntity.ok(department1);
@@ -502,7 +516,52 @@ public class SaleRestController {
     }
     // api Department end
     // api Labor Cost start
+    @GetMapping("/labor_cost")
+    private List<LaborCost> laborCostList(){
+        return costRepo.findAll();
+    }
 
+    @DeleteMapping("/labor_cost/{id}")
+    public void deleteLaborCost(@PathVariable("id")int id){
+        boolean exist=costRepo.existsById(id);
+        if (exist){
+            costRepo.deleteById(id);
+        }
+    }
+
+    @PostMapping("/labor_cost")
+    public ResponseEntity<LaborCost> laborCostSave(@RequestBody LaborCost cost){
+        // department set
+        String dept=cost.getDepartmentId().getName();
+        Department department=departmentRepo.findByName(dept);
+        cost.setDepartmentId(department);
+        //style code set
+        String styleCode=cost.getStyleId().getCode();
+        Style code=styleRepo.findByCode(styleCode);
+        cost.setStyleId(code);
+        costRepo.save(cost);
+        return ResponseEntity.ok(cost);
+    }
+    @PutMapping("/labor_cost/{id}")
+    public ResponseEntity<LaborCost> departmentUpdate(@RequestBody LaborCost cost,@PathVariable("id")int id){
+        boolean exist=costRepo.existsById(id);
+        if(exist){
+            LaborCost cost1=costRepo.findById(id).get();
+            cost1.setUnitCost(cost.getUnitCost());
+            cost1.setHour(cost.getHour());
+            // department set
+            String dept=cost.getDepartmentId().getName();
+            Department department=departmentRepo.findByName(dept);
+            cost1.setDepartmentId(department);
+            //style code set
+            String styleCode=cost.getStyleId().getCode();
+            Style code=styleRepo.findByCode(styleCode);
+            cost1.setStyleId(code);
+            costRepo.save(cost1);
+            return ResponseEntity.ok(cost1);
+        }
+        return ResponseEntity.notFound().build();
+    }
     // api Labor Cost end
 //---------------------------------------- Buyers Table----------------------------------
     // api Buyers start

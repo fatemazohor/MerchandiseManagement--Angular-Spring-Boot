@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MeasuremntDetails, RawMaterialCat, Size, Style, StyleCategories, Trim, UOM, Vendors } from '../model/sale.model';
+import { Department, LaborCost, MeasuremntDetails, RawMaterialCat, Size, Style, StyleCategories, Trim, UOM, Vendors } from '../model/sale.model';
 import { Observable } from 'rxjs';
 
 
@@ -169,9 +169,41 @@ export class SaleService {
 
   // api Unit of Measurement end
 //---------------------------------------- BOM Table----------------------------------
+  // api Department start
+
+  getAllDepartment():Observable<Department[]>{
+    return this.http.get<Department[]>(`${this.baseUrl}/department`);
+  }
+
+  createDepartment(dept:Department):Observable<Department>{
+    return this.http.post<Department>(`${this.baseUrl}/department`,dept);
+  }
+
+  updateDepartment(id:number,dept:Department):Observable<Department>{
+    return this.http.put<Department>(`${this.baseUrl}/department/${id}`,dept)
+  }
+
+  deleteDepartment(id:number):Observable<void>{
+    return this.http.delete<void>(`${this.baseUrl}/department/${id}`)
+  }
+
   // api Department end
   // api Labor Cost start
+  getAllLaborCost():Observable<LaborCost[]>{
+    return this.http.get<LaborCost[]>(`${this.baseUrl}/labor_cost`);
+  }
 
+  createLaborCost(cost:LaborCost):Observable<LaborCost>{
+    return this.http.post<LaborCost>(`${this.baseUrl}/labor_cost`,cost);
+  }
+
+  updateLaborCost(id:number,cost:LaborCost):Observable<LaborCost>{
+    return this.http.put<LaborCost>(`${this.baseUrl}/labor_cost/${id}`,cost)
+  }
+
+  deleteLaborCost(id:number):Observable<void>{
+    return this.http.delete<void>(`${this.baseUrl}/labor_cost/${id}`)
+  }
   // api Labor Cost end
 //---------------------------------------- Buyers Table----------------------------------
     // api Buyers start

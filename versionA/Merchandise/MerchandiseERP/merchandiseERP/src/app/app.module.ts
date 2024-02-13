@@ -21,6 +21,8 @@ import { MeasurementDetailsComponent } from './component/sale/measurement-detail
 import { PaginationComponent } from './component/sale/pagination/pagination.component';
 import { VendorsComponent } from './component/other/vendors/vendors.component';
 import { UomComponent } from './component/other/uom/uom.component';
+import { DepartmentComponent } from './component/other/department/department.component';
+import { LaborCostComponent } from './component/other/labor-cost/labor-cost.component';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { UomComponent } from './component/other/uom/uom.component';
     MeasurementDetailsComponent,
     PaginationComponent,
     VendorsComponent,
-    UomComponent
+    UomComponent,
+    DepartmentComponent,
+    LaborCostComponent
     
   ],
   imports: [
