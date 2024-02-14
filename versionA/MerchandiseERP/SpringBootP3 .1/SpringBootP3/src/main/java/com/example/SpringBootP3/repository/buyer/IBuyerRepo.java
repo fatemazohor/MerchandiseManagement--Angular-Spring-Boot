@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IBuyerRepo extends JpaRepository<Buyers,Integer> {
+    Buyers findByOrganization(String organization);
 }

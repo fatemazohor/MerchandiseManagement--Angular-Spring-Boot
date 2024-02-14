@@ -23,4 +23,7 @@ public class Buyers {
     private String address;
     private String country;
 
+    public Buyers(String organization) {
+        this.organization = organization;
+    }
 }

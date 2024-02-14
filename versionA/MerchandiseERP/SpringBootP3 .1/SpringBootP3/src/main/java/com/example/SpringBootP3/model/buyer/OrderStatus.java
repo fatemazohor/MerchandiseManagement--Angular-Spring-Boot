@@ -17,4 +17,8 @@ public class OrderStatus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
+    public OrderStatus(String name) {
+        this.name = name;
+    }
 }
