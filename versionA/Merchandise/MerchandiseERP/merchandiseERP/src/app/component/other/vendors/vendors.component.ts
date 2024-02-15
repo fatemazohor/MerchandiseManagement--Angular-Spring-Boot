@@ -16,7 +16,7 @@ export class VendorsComponent implements OnInit{
   vendorModel:Vendors=new Vendors();
   title:string="Vendor list";
   title2:string="Vendor Entry Form";
-  // menuType: string = '';
+  
   menuType: boolean=true;
   //font awesome icon list
   fatrash=faTrash;

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Department, LaborCost, MeasuremntDetails, RawMaterialCat, Size, Style, StyleCategories, Trim, UOM, Vendors } from '../model/sale.model';
+import { Department, LaborCost, MeasuremntDetails, PurchaseStatus, RawMaterialCat, Size, Style, StyleCategories, Trim, UOM, Vendors, Warehouse } from '../model/sale.model';
 import { Observable } from 'rxjs';
 
 
@@ -126,7 +126,39 @@ export class SaleService {
   // api Style Material Quantity start
 //---------------------------------------- Inventory Table-------------------------------
   // api Warehouse start
+  getAllWarehouse():Observable<Warehouse[]>{
+    return this.http.get<Warehouse[]>(`${this.baseUrl}/warehouse`);
+  }
+
+  createWarehouse(warehouse:Warehouse):Observable<Warehouse>{
+    return this.http.post<Warehouse>(`${this.baseUrl}/warehouse`,warehouse);
+  }
+
+  updateWarehouse(id:number,warehouse:Warehouse):Observable<Warehouse>{
+    return this.http.put<Warehouse>(`${this.baseUrl}/warehouse/${id}`,warehouse)
+  }
+
+  deleteWarehouse(id:number):Observable<void>{
+    return this.http.delete<void>(`${this.baseUrl}/warehouse/${id}`)
+  }
+
   // api Purchase Status start
+  getAllPurchaseStatus():Observable<PurchaseStatus[]>{
+    return this.http.get<PurchaseStatus[]>(`${this.baseUrl}/purchase_status`);
+  }
+
+  createPurchaseStatus(status:PurchaseStatus):Observable<PurchaseStatus>{
+    return this.http.post<PurchaseStatus>(`${this.baseUrl}/purchase_status`,status);
+  }
+
+  updatePurchaseStatus(id:number,status:PurchaseStatus):Observable<PurchaseStatus>{
+    return this.http.put<PurchaseStatus>(`${this.baseUrl}/purchase_status/${id}`,status)
+  }
+
+  deletePurchaseStatus(id:number):Observable<void>{
+    return this.http.delete<void>(`${this.baseUrl}/purchase_status/${id}`)
+  }
+
     // api Stock Adjustment start
   // api Adjustment Material start
   // api Purchase start

@@ -67,7 +67,17 @@ export class MeasuremntDetails {
 //  Style Material Quantity start
 //---------------------------------------- Inventory Table-------------------------------
 //  Warehouse start
+export class Warehouse{
+  id:number = 0 
+  name?: string
+  city?: string
+  contact?: string
+}
 //  Purchase Status start
+export class PurchaseStatus{
+  id:number= 0
+  name?: string
+}
 //  Stock Adjustment start
 //  Adjustment Material start
 //  Purchase start

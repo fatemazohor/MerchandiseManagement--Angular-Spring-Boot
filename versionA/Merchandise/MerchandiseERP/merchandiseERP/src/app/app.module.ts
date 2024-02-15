@@ -23,6 +23,8 @@ import { VendorsComponent } from './component/other/vendors/vendors.component';
 import { UomComponent } from './component/other/uom/uom.component';
 import { DepartmentComponent } from './component/other/department/department.component';
 import { LaborCostComponent } from './component/other/labor-cost/labor-cost.component';
+import { WarehouseComponent } from './component/inventory/warehouse/warehouse.component';
+import { PurchaseStatusComponent } from './component/inventory/purchase-status/purchase-status.component';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { LaborCostComponent } from './component/other/labor-cost/labor-cost.comp
     VendorsComponent,
     UomComponent,
     DepartmentComponent,
-    LaborCostComponent
+    LaborCostComponent,
+    WarehouseComponent,
+    PurchaseStatusComponent
     
   ],
   imports: [

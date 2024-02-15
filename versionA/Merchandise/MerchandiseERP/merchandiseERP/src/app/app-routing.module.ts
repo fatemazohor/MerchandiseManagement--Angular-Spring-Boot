@@ -13,6 +13,8 @@ import { VendorsComponent } from './component/other/vendors/vendors.component';
 import { UomComponent } from './component/other/uom/uom.component';
 import { DepartmentComponent } from './component/other/department/department.component';
 import { LaborCostComponent } from './component/other/labor-cost/labor-cost.component';
+import { WarehouseComponent } from './component/inventory/warehouse/warehouse.component';
+import { PurchaseStatusComponent } from './component/inventory/purchase-status/purchase-status.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent},
@@ -22,10 +24,15 @@ const routes: Routes = [
   { path: "raw-material-categories", component:RawMaterialCategoriesComponent},
   { path: "style", component:StyleComponent},
   { path: "measurement-details", component:MeasurementDetailsComponent},
+  //----------------- Other--------------------------------------
   { path: "vendors", component:VendorsComponent},
   { path: "uom", component:UomComponent},
   { path: "department", component:DepartmentComponent},
   { path: "labor-cost", component:LaborCostComponent},
+  //----------------- Inventory------------------------------
+  { path: "warehouse", component:WarehouseComponent},
+  { path: "purchase_status", component:PurchaseStatusComponent},
+  //----------------- Dashboard----------------------------------
   {path:"dashboard", component:ControlWrapperComponent},
   {path:"**",redirectTo:"/dashboard",pathMatch:'full'}
 ];
