@@ -79,6 +79,11 @@ export class PurchaseStatus{
   name?: string
 }
 //  Stock Adjustment start
+export class StockAdjustment{
+  id:number= 0
+  name?: string
+  factor?:number
+}
 //  Adjustment Material start
 //  Purchase start
 //  Stock start

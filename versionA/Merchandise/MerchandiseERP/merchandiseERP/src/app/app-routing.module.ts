@@ -5,7 +5,7 @@ import { ControlWrapperComponent } from './control-wrapper/control-wrapper.compo
 import { StyleCategoriesComponent } from './component/sale/style-categories/style-categories.component';
 import { SizeComponent } from './component/sale/size/size.component';
 import { TrimComponent } from './component/sale/trim/trim.component';
-import { Department, RawMaterialCat } from './model/sale.model';
+import { Department, RawMaterialCat, StockAdjustment } from './model/sale.model';
 import { StyleComponent } from './component/sale/style/style.component';
 import { RawMaterialCategoriesComponent } from './component/sale/raw-material-categories/raw-material-categories.component';
 import { MeasurementDetailsComponent } from './component/sale/measurement-details/measurement-details.component';
@@ -15,6 +15,7 @@ import { DepartmentComponent } from './component/other/department/department.com
 import { LaborCostComponent } from './component/other/labor-cost/labor-cost.component';
 import { WarehouseComponent } from './component/inventory/warehouse/warehouse.component';
 import { PurchaseStatusComponent } from './component/inventory/purchase-status/purchase-status.component';
+import { StockAdjustmentComponent } from './component/inventory/stock-adjustment/stock-adjustment.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent},
@@ -24,15 +25,16 @@ const routes: Routes = [
   { path: "raw-material-categories", component:RawMaterialCategoriesComponent},
   { path: "style", component:StyleComponent},
   { path: "measurement-details", component:MeasurementDetailsComponent},
-  //----------------- Other--------------------------------------
+  //----------------------------------- Other-----------------------------------------------------
   { path: "vendors", component:VendorsComponent},
   { path: "uom", component:UomComponent},
   { path: "department", component:DepartmentComponent},
   { path: "labor-cost", component:LaborCostComponent},
-  //----------------- Inventory------------------------------
+  //---------------------------------- Inventory-----------------------------------------------
   { path: "warehouse", component:WarehouseComponent},
   { path: "purchase_status", component:PurchaseStatusComponent},
-  //----------------- Dashboard----------------------------------
+  { path: "stock_adjustment", component:StockAdjustmentComponent},
+  //---------------------------------- Dashboard--------------------------------------------------
   {path:"dashboard", component:ControlWrapperComponent},
   {path:"**",redirectTo:"/dashboard",pathMatch:'full'}
 ];

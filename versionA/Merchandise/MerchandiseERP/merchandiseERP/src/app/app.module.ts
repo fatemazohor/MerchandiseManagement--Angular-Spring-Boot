@@ -25,6 +25,7 @@ import { DepartmentComponent } from './component/other/department/department.com
 import { LaborCostComponent } from './component/other/labor-cost/labor-cost.component';
 import { WarehouseComponent } from './component/inventory/warehouse/warehouse.component';
 import { PurchaseStatusComponent } from './component/inventory/purchase-status/purchase-status.component';
+import { StockAdjustmentComponent } from './component/inventory/stock-adjustment/stock-adjustment.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { PurchaseStatusComponent } from './component/inventory/purchase-status/p
     DepartmentComponent,
     LaborCostComponent,
     WarehouseComponent,
-    PurchaseStatusComponent
+    PurchaseStatusComponent,
+    StockAdjustmentComponent
     
   ],
   imports: [
