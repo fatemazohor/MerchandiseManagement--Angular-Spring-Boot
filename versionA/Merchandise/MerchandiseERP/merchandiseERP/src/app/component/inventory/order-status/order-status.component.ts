@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { PurchaseStatus } from '../../../model/sale.model';
+import { OrderStatus } from '../../../model/sale.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { SaleService } from '../../../services/sale.service';
 
 @Component({
-  selector: 'app-purchase-status',
-  templateUrl: './purchase-status.component.html',
-  styleUrl: './purchase-status.component.css'
+  selector: 'app-order-status',
+  templateUrl: './order-status.component.html',
+  styleUrl: './order-status.component.css'
 })
-export class PurchaseStatusComponent implements OnInit {
+export class OrderStatusComponent implements OnInit {
 
-  status: PurchaseStatus[] = []
+  status: OrderStatus[] = []
   statusForm!: FormGroup
-  statusModel: PurchaseStatus = new PurchaseStatus();
-  title: string = "Purchase Status list";
-  title2: string = "Purchase Status Entry Form";
+  statusModel: OrderStatus = new OrderStatus();
+  title: string = "Order Status list";
+  title2: string = "Order Status Entry Form";
 
   menuType: boolean = true;
   //font awesome icon list
@@ -25,20 +25,21 @@ export class PurchaseStatusComponent implements OnInit {
     private service: SaleService,
     private formBuilder: FormBuilder
   ) { }
+
   ngOnInit(): void {
-    this.initPurchaeStatusForm();
-    this.loadPurchaseStatus()
+    this.initOrderStatusForm()
+    this.loadOrderStatus();
   }
 
-  initPurchaeStatusForm() {
+  initOrderStatusForm() {
     this.statusForm = this.formBuilder.group({
       name: ['', Validators.required]
     })
   }
 
-  //all Purchase Status list
-  private loadPurchaseStatus() {
-    this.service.getAllPurchaseStatus().subscribe({
+  //all Order Status list
+  private loadOrderStatus() {
+    this.service.getAllOrdersStatus().subscribe({
       next: res => {
         this.status = res;
       },
@@ -49,12 +50,12 @@ export class PurchaseStatusComponent implements OnInit {
   }
 
   //delete a Purchase Status
-  deletePurchaseStatus(statusId: number) {
-    this.service.deletePurchaseStatus(statusId).subscribe({
+  deleteOrderStatus(statusId: number) {
+    this.service.deleteOrdersStatus(statusId).subscribe({
       next: res => {
-        console.log("Purchase Status deleted", res)
-        alert("Purchase Status deleted.")
-        this.loadPurchaseStatus();
+        console.log("Order Status deleted")
+        alert("Order Status deleted.")
+        this.loadOrderStatus();
 
       },
       error: er => {
@@ -64,16 +65,16 @@ export class PurchaseStatusComponent implements OnInit {
     })
   }
 
-  // create new Purchase Status
+  // create new Order Status
   onSubmit() {
     if (this.statusForm.valid) {
 
-      const statusData: PurchaseStatus = this.statusForm.value;
-      this.service.createPurchaseStatus(statusData).subscribe({
+      const statusData: OrderStatus = this.statusForm.value;
+      this.service.createOrdersStatus(statusData).subscribe({
         next: res => {
-          console.log("Purchase Status saved", res)
-          alert("Purchase Status saved.")
-          this.loadPurchaseStatus();
+          console.log("Order Status saved", res)
+          alert("Order Status saved.")
+          this.loadOrderStatus();
           this.statusForm.reset();
         },
         error: er => {
@@ -91,18 +92,18 @@ export class PurchaseStatusComponent implements OnInit {
     this.statusForm.controls['name'].setValue(statusRow.name)
   }
 
-  //update Purchase data
-  editPurchaseStatus() {
+  //update Order Status data
+  editOrderStatus() {
     if (this.statusForm.valid) {
 
       this.statusModel.name = this.statusForm.value.name
 
-      this.service.updatePurchaseStatus(this.statusModel.id, this.statusModel).subscribe({
+      this.service.updateOrdersStatus(this.statusModel.id, this.statusModel).subscribe({
         next: res => {
 
-          console.log("Purchase Status updated")
-          alert("Purchase Status updated.")
-          this.loadPurchaseStatus();
+          console.log("Order Status updated")
+          alert("Order Status updated.")
+          this.loadOrderStatus();
           this.statusForm.reset();
           // console.log("inside vendor update")
         },
@@ -113,5 +114,7 @@ export class PurchaseStatusComponent implements OnInit {
       })
     }
   }
+
+
 
 }

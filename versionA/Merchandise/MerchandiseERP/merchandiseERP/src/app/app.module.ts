@@ -26,6 +26,8 @@ import { LaborCostComponent } from './component/other/labor-cost/labor-cost.comp
 import { WarehouseComponent } from './component/inventory/warehouse/warehouse.component';
 import { PurchaseStatusComponent } from './component/inventory/purchase-status/purchase-status.component';
 import { StockAdjustmentComponent } from './component/inventory/stock-adjustment/stock-adjustment.component';
+import { OrderStatusComponent } from './component/inventory/order-status/order-status.component';
+import { TaskComponent } from './component/inventory/task/task.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { StockAdjustmentComponent } from './component/inventory/stock-adjustment
     LaborCostComponent,
     WarehouseComponent,
     PurchaseStatusComponent,
-    StockAdjustmentComponent
+    StockAdjustmentComponent,
+    OrderStatusComponent,
+    TaskComponent
     
   ],
   imports: [

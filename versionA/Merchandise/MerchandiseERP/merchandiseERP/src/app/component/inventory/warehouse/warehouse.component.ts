@@ -66,7 +66,7 @@ export class WarehouseComponent implements OnInit{
     })
   }
 
-  // create new vendorWarehouse
+  // create new Warehouse
   onSubmit(){
     if(this.warehouseForm.valid){
       
@@ -95,7 +95,7 @@ onEditById(warehouseRow:any){
   this.warehouseForm.controls['contact'].setValue(warehouseRow.contact)
 }
 
-//update vendor data
+//update warehouse data
 editWarehouse(){
   if(this.warehouseForm.valid){
     

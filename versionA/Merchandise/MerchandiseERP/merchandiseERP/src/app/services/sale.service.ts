@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Department, LaborCost, MeasuremntDetails, PurchaseStatus, RawMaterialCat, Size, StockAdjustment, Style, StyleCategories, Trim, UOM, Vendors, Warehouse } from '../model/sale.model';
+import { Buyers, Department, LaborCost, MeasuremntDetails, OrderStatus, PurchaseStatus, RawMaterialCat, Size, StockAdjustment, Style, StyleCategories, Task, Trim, UOM, Vendors, Warehouse } from '../model/sale.model';
 import { Observable } from 'rxjs';
 
 
@@ -13,7 +13,11 @@ export class SaleService {
 
   constructor(private http: HttpClient) { }
 
+  
   //------------------------------------------ Sale -------------------------------------------
+  
+  
+  
   //Style Categories start
   getAllstyleCat(): Observable<StyleCategories[]> {
     return this.http.get<StyleCategories[]>(`${this.baseUrl}/style-categories`);
@@ -84,8 +88,14 @@ export class SaleService {
   deleteRawMaterialCat(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/raw_material_cate/${id}`);
   }
-  //------------------------------------ Sale ---------------------------------------------
-  //------------------------------------ Sale dependent -----------------------------------
+  
+  
+  
+  //------------------------------------ Sale -----------------------------------------------------
+  //------------------------------------ Sale dependent ------------------------------------------
+  
+  
+  
   //Style start
   getAllStyle(): Observable<Style[]> {
     return this.http.get<Style[]>(`${this.baseUrl}/style`);
@@ -124,7 +134,13 @@ export class SaleService {
   // api Raw Material Attachment start
   // api Style Attachment start
   // api Style Material Quantity start
-  //---------------------------------------- Inventory Table-------------------------------
+  
+  
+  
+  //---------------------------------------- Inventory Table-----------------------------------------
+  
+  
+  
   // api Warehouse start
   getAllWarehouse(): Observable<Warehouse[]> {
     return this.http.get<Warehouse[]>(`${this.baseUrl}/warehouse`);
@@ -180,7 +196,13 @@ export class SaleService {
   // api Adjustment Material start
   // api Purchase start
   // api Stock start
-  //-------------------------------------- Other --------------------------------------------
+  
+  
+  
+  //-------------------------------------- Other ---------------------------------------------------
+  
+  
+  
   // api Vendors start
   getAllVendors(): Observable<Vendors[]> {
     return this.http.get<Vendors[]>(`${this.baseUrl}/vendors`);
@@ -217,7 +239,13 @@ export class SaleService {
   }
 
   // api Unit of Measurement end
-  //---------------------------------------- BOM Table----------------------------------
+  
+  
+  
+  //---------------------------------------- BOM Table----------------------------------------------
+  
+  
+  
   // api Department start
 
   getAllDepartment(): Observable<Department[]> {
@@ -254,10 +282,63 @@ export class SaleService {
     return this.http.delete<void>(`${this.baseUrl}/labor_cost/${id}`)
   }
   // api Labor Cost end
-  //---------------------------------------- Buyers Table----------------------------------
+  
+  
+  
+  //---------------------------------------- Buyers Table--------------------------------------------
+
+
+
   // api Buyers start
+  getAllBuyers(): Observable<Buyers[]> {
+    return this.http.get<Buyers[]>(`${this.baseUrl}/buyers`);
+  }
+
+  createBuyers(buyer: Buyers): Observable<Buyers> {
+    return this.http.post<Buyers>(`${this.baseUrl}/buyers`, buyer);
+  }
+
+  updateBuyers(id: number, buyer: Buyers): Observable<Buyers> {
+    return this.http.put<Buyers>(`${this.baseUrl}/buyers/${id}`, buyer)
+  }
+
+  deleteBuyers(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/buyers/${id}`)
+  }
   // api Task start
+
+  getAllTask(): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.baseUrl}/task`);
+  }
+
+  createTask(task: Task): Observable<Task> {
+    return this.http.post<Task>(`${this.baseUrl}/task`, task);
+  }
+
+  updateTask(id: number, task: Task): Observable<Task> {
+    return this.http.put<Task>(`${this.baseUrl}/task/${id}`, task)
+  }
+
+  deleteTask(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/task/${id}`)
+  }
+  
   // api Orders Status start
+  getAllOrdersStatus(): Observable<OrderStatus[]> {
+    return this.http.get<OrderStatus[]>(`${this.baseUrl}/order_status`);
+  }
+
+  createOrdersStatus(orderStatus: OrderStatus): Observable<OrderStatus> {
+    return this.http.post<OrderStatus>(`${this.baseUrl}/order_status`, orderStatus);
+  }
+
+  updateOrdersStatus(id: number, orderStatus: OrderStatus): Observable<OrderStatus> {
+    return this.http.put<OrderStatus>(`${this.baseUrl}/order_status/${id}`, orderStatus)
+  }
+
+  deleteOrdersStatus(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/order_status/${id}`)
+  }
   // api Orders start
   // api Time Action start
   //---------------------------------------- Report Table----------------------------------

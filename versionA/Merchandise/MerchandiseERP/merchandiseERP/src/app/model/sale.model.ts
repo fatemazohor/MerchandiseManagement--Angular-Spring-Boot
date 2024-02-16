@@ -30,7 +30,13 @@ export class RawMaterialCat {
   id: number = 0
   name?: string;
 }
-//-------------------------------------- Sale dependent -----------------------------------
+
+
+
+//-------------------------------------- Sale dependent --------------------------------------
+
+
+
 // Style start
 export class Style {
   id: number = 0
@@ -65,7 +71,13 @@ export class MeasuremntDetails {
 //  Raw Material Attachment start
 //  Style Attachment start
 //  Style Material Quantity start
-//---------------------------------------- Inventory Table-------------------------------
+
+
+
+//---------------------------------------- Inventory Table--------------------------------------
+
+
+
 //  Warehouse start
 export class Warehouse{
   id:number = 0 
@@ -87,7 +99,13 @@ export class StockAdjustment{
 //  Adjustment Material start
 //  Purchase start
 //  Stock start
-//---------------------------------------- Other --------------------------------------------
+
+
+
+//---------------------------------------- Other ------------------------------------------------
+
+
+
 //  Vendors start
 export class Vendors {
   id: number = 0;
@@ -102,7 +120,13 @@ export class UOM {
   id: number = 0;
   name?: string;
 }
-//---------------------------------------- BOM Table----------------------------------
+
+
+
+//---------------------------------------- BOM Table-----------------------------------------------
+
+
+
 //  Department start
 export class Department {
   id: number = 0;
@@ -128,10 +152,35 @@ export class LaborCost {
   }
 }
 
-//---------------------------------------- Buyers Table----------------------------------
+
+
+//---------------------------------------- Buyers Table ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
 //  Buyers start
+export class Buyers{
+  id:number= 0
+  organization?: string
+  contactPerson?: string
+  phone?: string
+  email?: string
+  address?: string
+  country?: string
+}
 //  Task start
+export class Task{
+  id:number= 0
+  name?: string
+}
 //  Orders Status start
+export class OrderStatus{
+  id:number= 0
+  name?: string
+}
 //  Orders start
 //  Time Action start
+
+
+
 //---------------------------------------- Report Table----------------------------------
