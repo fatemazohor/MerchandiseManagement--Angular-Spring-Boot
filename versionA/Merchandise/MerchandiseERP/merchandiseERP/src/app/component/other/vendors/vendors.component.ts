@@ -52,7 +52,7 @@ export class VendorsComponent implements OnInit{
       }
     })
   }
-  //delete a size
+  //delete a vendor
   deleteVendors(vendorId:number){
     this.service.deleteVendors(vendorId).subscribe({
       next:res=>{

@@ -17,6 +17,8 @@ import { WarehouseComponent } from './component/inventory/warehouse/warehouse.co
 import { PurchaseStatusComponent } from './component/inventory/purchase-status/purchase-status.component';
 import { StockAdjustmentComponent } from './component/inventory/stock-adjustment/stock-adjustment.component';
 import { OrderStatusComponent } from './component/inventory/order-status/order-status.component';
+import { TaskComponent } from './component/inventory/task/task.component';
+import { BuyerComponent } from './component/buyers/buyer/buyer.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent},
@@ -43,6 +45,8 @@ const routes: Routes = [
   //---------------------------------- Buyers--------------------------------------------------------------
 
   { path: "order_status", component:OrderStatusComponent},
+  { path: "task", component:TaskComponent},
+  { path: "buyers", component:BuyerComponent},
 
   //---------------------------------- Dashboard--------------------------------------------------------------
   
