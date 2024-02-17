@@ -24,9 +24,9 @@ export class OrderDetailsComponent implements OnInit{
   fatrash=faTrash;
   editicon=faPenToSquare
   //calculation
-  smallQuantity?:number=0;
-  mediumQuantity?:number=0;
-  largeQuantity?:number=0;
+  smallQuantity:string='';
+  mediumQuantity:string='';
+  largeQuantity:string='';
   subTotal?:number=0;
   vat?:number=0;
  
@@ -59,7 +59,8 @@ export class OrderDetailsComponent implements OnInit{
       lAmount: ['', Validators.required],
       orStatusId: ['', Validators.required],
       buyersId: ['', Validators.required],
-      styleId: ['', Validators.required]
+      styleId: ['', Validators.required],
+      smallQuantity: ['', Validators.required]
 
     })
   }
@@ -159,8 +160,8 @@ export class OrderDetailsComponent implements OnInit{
     this.orderForm.controls['lAmount'].setValue(orderRow.lAmount)
     this.orderForm.controls['mAmount'].setValue(orderRow.mAmount)
     this.orderForm.controls['orStatusId'].setValue(orderRow.orStatusId.name)
-    this.orderForm.controls['buyersId'].setValue(orderRow.buyerId.organization)
-    this.orderForm.controls['styleId'].setValue(orderRow.styleId.code)
+    this.orderForm.controls['buyersId'].setValue(orderRow.buyersId?.organization)
+    this.orderForm.controls['styleId'].setValue(orderRow.styleId?.code)
     this.orderForm.controls['totalAmount'].setValue(orderRow.totalAmount)
     this.orderForm.controls['paid'].setValue(orderRow.paid)
     
@@ -199,7 +200,31 @@ export class OrderDetailsComponent implements OnInit{
     }
   }
 
-  emptybox(){}
-  totalbox(){}
+  emptybox(){
+    // let priceS=parseFloat(document.getElementById('txtPrceS').value)||0
+    // var sprice = parseFloat(document.getElementById('txtPriceS').value) || 0;
+    // let priceM=document.getElementById('txtPriceM').
+    // let priceL=document.getElementById('txtPriceL')
+    // if(priceL != null && priceS !=null && priceM !=null){
+      
+    //   console.log(priceS+priceM+priceL);
+    // }
+    
+  }
+  totalbox(){
+    // this.subTotal=parseFloat(this.smallQuantity)+parseFloat(this.largeQuantity)+parseFloat(this.mediumQuantity);
+    
+    console.log('small Quantity '+this.orderForm.value.smallQuantity);
+  }
+  onChange(event: Event) {
+    // Get the new input value
+    const newValue = (event.target as HTMLInputElement).value;
+    // Perform actions based on the new value
+    console.log('Input value changed:', newValue);
+  }
+
+  getValue(qty:string){
+    console.log('Get value'+parseFloat(qty));
+  }
 
 }
