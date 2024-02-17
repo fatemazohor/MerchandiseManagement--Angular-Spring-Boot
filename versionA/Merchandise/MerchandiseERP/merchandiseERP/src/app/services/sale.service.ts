@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Buyers, Department, LaborCost, MeasuremntDetails, OrderStatus, PurchaseStatus, RawMaterialCat, Size, StockAdjustment, Style, StyleCategories, Task, Trim, UOM, Vendors, Warehouse } from '../model/sale.model';
+import { Buyers, Department, LaborCost, MeasuremntDetails, OrderDetails, OrderStatus, PurchaseStatus, RawMaterialCat, Size, StockAdjustment, Style, StyleCategories, Task, Trim, UOM, Vendors, Warehouse } from '../model/sale.model';
 import { Observable } from 'rxjs';
 
 
@@ -340,6 +340,23 @@ export class SaleService {
     return this.http.delete<void>(`${this.baseUrl}/order_status/${id}`)
   }
   // api Orders start
+
+  getAllOrdersDetails(): Observable<OrderDetails[]> {
+    return this.http.get<OrderDetails[]>(`${this.baseUrl}/orders`);
+  }
+
+  createOrdersDetails(order: OrderDetails): Observable<OrderDetails> {
+    return this.http.post<OrderDetails>(`${this.baseUrl}/orders`, order);
+  }
+
+  updateOrdersDetails(id: number, order: OrderDetails): Observable<OrderDetails> {
+    return this.http.put<OrderDetails>(`${this.baseUrl}/orders/${id}`, order)
+  }
+
+  deleteOrdersDetails(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/orders/${id}`)
+  }
+
   // api Time Action start
   //---------------------------------------- Report Table----------------------------------
 

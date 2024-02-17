@@ -179,6 +179,43 @@ export class OrderStatus{
   name?: string
 }
 //  Orders start
+export class OrderDetails{
+    id:number= 0
+    oderDate?: Date
+    deliveryDate?: Date
+    shippingAddress?: string
+    orderUniId?: string
+    totalAmount?:number
+    paid?:number
+    styleId?: {
+      id:number
+      code?: string
+      description?:string
+      categoriesId?: {
+        id: number
+        name?: string
+      }
+      createdAt?: Date
+      updatedAt?: Date
+    }
+    buyersId?: {
+      id:number
+      organization?: string
+      contactPerson?: string
+      phone?: string
+      email?: string
+      address?: string
+      country?: string
+    }
+    orStatusId?: {
+      id:number
+      name?: string
+    }
+    sAmount?: number
+    mAmount?: number
+    lAmount?: number
+  }
+
 //  Time Action start
 
 

@@ -69,7 +69,7 @@ export class BuyerComponent implements OnInit {
     })
   }
 
-  // create new vendor
+  // create new buyer
   onSubmit() {
     if (this.buyerForm.valid) {
 

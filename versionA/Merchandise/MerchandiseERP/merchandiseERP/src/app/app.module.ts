@@ -29,6 +29,7 @@ import { StockAdjustmentComponent } from './component/inventory/stock-adjustment
 import { OrderStatusComponent } from './component/inventory/order-status/order-status.component';
 import { TaskComponent } from './component/inventory/task/task.component';
 import { BuyerComponent } from './component/buyers/buyer/buyer.component';
+import { OrderDetailsComponent } from './component/buyers/order-details/order-details.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { BuyerComponent } from './component/buyers/buyer/buyer.component';
     StockAdjustmentComponent,
     OrderStatusComponent,
     TaskComponent,
-    BuyerComponent
+    BuyerComponent,
+    OrderDetailsComponent
     
   ],
   imports: [

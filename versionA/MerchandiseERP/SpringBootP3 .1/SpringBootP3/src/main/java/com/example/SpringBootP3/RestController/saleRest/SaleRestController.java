@@ -797,6 +797,20 @@ public class SaleRestController {
 
     @PostMapping("/orders")
     public ResponseEntity<OrderDetails> orderDetailsSave(@RequestBody OrderDetails orderDetails){
+
+        //style code set
+        String styleCode = orderDetails.getStyleId().getCode();
+        Style code = styleRepo.findByCode(styleCode);
+        orderDetails.setStyleId(code);
+        //buyers set
+        String buyers = orderDetails.getBuyersId().getOrganization();
+        Buyers buyerId = buyerRepo.findByOrganization(buyers);
+        orderDetails.setBuyersId(buyerId);
+        //order status set
+        String status = orderDetails.getOrStatusId().getName();
+        OrderStatus  statusId= statusRepo.findByName(status);
+        orderDetails.setOrStatusId(statusId);
+
         orderDetailsRepo.save(orderDetails);
         return ResponseEntity.ok(orderDetails);
     }
@@ -818,6 +832,7 @@ public class SaleRestController {
             String status = orderDetails.getOrStatusId().getName();
             OrderStatus  statusId= statusRepo.findByName(status);
             orderDetails1.setOrStatusId(statusId);
+
             orderDetails1.setSAmount(orderDetails.getSAmount());
             orderDetails1.setMAmount(orderDetails.getMAmount());
             orderDetails1.setLAmount(orderDetails.getLAmount());
