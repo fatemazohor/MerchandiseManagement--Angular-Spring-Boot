@@ -187,6 +187,9 @@ export class OrderDetails{
     orderUniId?: string
     totalAmount?:number
     paid?:number
+    sAmount?: number
+    mAmount?: number
+    lAmount?: number
     styleId?: {
       id:number
       code?: string
@@ -211,9 +214,7 @@ export class OrderDetails{
       id:number
       name?: string
     }
-    sAmount?: number
-    mAmount?: number
-    lAmount?: number
+    
   }
 
 //  Time Action start
