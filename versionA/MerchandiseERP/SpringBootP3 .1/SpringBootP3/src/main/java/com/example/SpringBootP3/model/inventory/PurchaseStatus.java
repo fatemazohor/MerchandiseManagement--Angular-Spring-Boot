@@ -17,4 +17,8 @@ public class PurchaseStatus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
+    public PurchaseStatus(String name) {
+        this.name = name;
+    }
 }

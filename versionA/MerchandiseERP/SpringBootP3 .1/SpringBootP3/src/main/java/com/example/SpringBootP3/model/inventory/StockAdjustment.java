@@ -19,4 +19,8 @@ public class StockAdjustment {
     private Integer id;
     private String name;
     private int factor;
+
+    public StockAdjustment(String name) {
+        this.name = name;
+    }
 }

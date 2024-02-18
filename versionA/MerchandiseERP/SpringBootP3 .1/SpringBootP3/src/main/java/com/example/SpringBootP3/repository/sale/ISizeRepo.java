@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ISizeRepo extends JpaRepository<Size,Integer> {
+    Size findByName(String name);
 }

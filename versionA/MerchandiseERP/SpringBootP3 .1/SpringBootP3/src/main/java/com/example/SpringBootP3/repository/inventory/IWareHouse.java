@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IWareHouse extends JpaRepository<WareHouse,Integer> {
+    WareHouse findByName(String name);
 }

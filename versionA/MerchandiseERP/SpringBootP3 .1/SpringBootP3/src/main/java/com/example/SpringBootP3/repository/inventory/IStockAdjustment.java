@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IStockAdjustment extends JpaRepository<StockAdjustment,Integer> {
+    StockAdjustment findByName(String name);
 }

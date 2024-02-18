@@ -18,4 +18,8 @@ public class Size {
     private Integer id;
 
     private String name;
+
+    public Size(String name) {
+        this.name = name;
+    }
 }

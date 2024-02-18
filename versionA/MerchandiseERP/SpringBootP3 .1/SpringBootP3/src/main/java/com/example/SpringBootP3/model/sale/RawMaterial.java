@@ -32,7 +32,7 @@ public class RawMaterial {
     @JoinColumn(name = "vendor_id")
     private Vendors vendorId;
 
-
-
-
+    public RawMaterial(String name) {
+        this.name = name;
+    }
 }

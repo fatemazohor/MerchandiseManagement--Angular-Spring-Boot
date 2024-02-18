@@ -17,4 +17,7 @@ public interface IRawMaterialRepo extends JpaRepository<RawMaterial,Integer> {
 //    @Query("SELECT raw.description, raw.name from  Style s join RawMaterial raw on raw.styleId.id= s.id where s.id=:id")
     @Query("SELECT raw from RawMaterial raw inner JOIN raw.styleId s where s.id=:id order by raw.rawMaterialCatId.id")
     public  List<RawMaterial> findRawMaterialByStyleId(int id);
+
+
+    RawMaterial findByName(String name);
 }

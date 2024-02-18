@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IPurchaseStatus extends JpaRepository<PurchaseStatus,Integer> {
+
+    PurchaseStatus findByName(String name);
 }

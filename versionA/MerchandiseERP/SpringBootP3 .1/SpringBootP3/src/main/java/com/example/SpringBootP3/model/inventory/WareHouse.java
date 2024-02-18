@@ -19,4 +19,8 @@ public class WareHouse {
     private String name;
     private String city;
     private String contact;
+
+    public WareHouse(String name) {
+        this.name = name;
+    }
 }

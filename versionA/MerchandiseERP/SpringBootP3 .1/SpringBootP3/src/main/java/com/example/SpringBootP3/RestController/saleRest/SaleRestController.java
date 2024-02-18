@@ -8,19 +8,16 @@ import com.example.SpringBootP3.model.buyer.Buyers;
 import com.example.SpringBootP3.model.buyer.OrderDetails;
 import com.example.SpringBootP3.model.buyer.OrderStatus;
 import com.example.SpringBootP3.model.buyer.Task;
-import com.example.SpringBootP3.model.inventory.PurchaseStatus;
-import com.example.SpringBootP3.model.inventory.StockAdjustment;
-import com.example.SpringBootP3.model.inventory.WareHouse;
+import com.example.SpringBootP3.model.inventory.*;
 import com.example.SpringBootP3.model.sale.*;
 import com.example.SpringBootP3.repository.bom.IDepartmentRepo;
 import com.example.SpringBootP3.repository.bom.ILaborCost;
 import com.example.SpringBootP3.repository.buyer.*;
-import com.example.SpringBootP3.repository.inventory.IPurchaseStatus;
-import com.example.SpringBootP3.repository.inventory.IStockAdjustment;
-import com.example.SpringBootP3.repository.inventory.IWareHouse;
+import com.example.SpringBootP3.repository.inventory.*;
 import com.example.SpringBootP3.repository.other.IUOMRepo;
 import com.example.SpringBootP3.repository.other.IVendorRepo;
 import com.example.SpringBootP3.repository.sale.*;
+import com.example.SpringBootP3.service.Stock.StockUpdateService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpHeaders;
@@ -62,6 +59,12 @@ public class SaleRestController {
     private final IOrderDetails orderDetailsRepo;
     private final IMeasurementAttachmentRepo measurementAttachmentRepo;
     private final IStyleAttachmentRepo styleAttachmentRepo ;
+    private final IPurchase purchaseRepo;
+    private final StockUpdateService stockUpdateService;
+
+    private final IAdjustmentMaterial adjustmentMaterialRepo;
+    private final IStock stockRepo;
+    private final IStyleMaterialQuantityRepo styleMaterialQuantityRepo;
     private final ITimeActionRepo timeActionRepo;
 
 //    public SaleRestController(IMeasurementDetailsRepo detailsRepo, IStyleCategories styleCatApiRepo, ISizeRepo iSizeRepo, ITrim trimRepo, IFabricName fabricRepo, IRawMaterialCat materialCatRepo, IStyle styleRepo, IRawMaterialRepo rawMaterialRepo, IVendorRepo vendorRepo, ILaborCost costRepo, IUOMRepo iuomRepo, IDepartmentRepo departmentRepo) {
@@ -667,6 +670,66 @@ public class SaleRestController {
 
     // api Style Material Quantity start
 
+    @GetMapping("/style_material_qty")
+    private List<StyleMaterialQuantity> styleMaterialList() {
+        return styleMaterialQuantityRepo.findAll();
+    }
+
+    @DeleteMapping("/style_material_qty/{id}")
+    public void deleteStyleMaterial(@PathVariable("id") int id) {
+        boolean exist = styleMaterialQuantityRepo.existsById(id);
+        if (exist) {
+            styleMaterialQuantityRepo.deleteById(id);
+        }
+    }
+
+    @PostMapping("/style_material_qty")
+    public ResponseEntity<StyleMaterialQuantity> styleMaterialSave(@RequestBody StyleMaterialQuantity quantity) {
+
+        //Raw material set
+        String rawMaterial = quantity.getRawMaterialId().getName();
+        RawMaterial mat = rawMaterialRepo.findByName(rawMaterial);
+        quantity.setRawMaterialId(mat);
+        //Size set
+        String size = quantity.getSizeId().getName();
+        Size size1 = iSizeRepo.findByName(size);
+        quantity.setSizeId(size1);
+        //style code set
+        String styleCode = quantity.getStyleId().getCode();
+        Style code = styleRepo.findByCode(styleCode);
+        quantity.setStyleId(code);
+
+        styleMaterialQuantityRepo.save(quantity);
+        return ResponseEntity.ok(quantity);
+    }
+
+    @PutMapping("/style_material_qty/{id}")
+    public ResponseEntity<StyleMaterialQuantity> styleMaterialUpdate(@RequestBody StyleMaterialQuantity quantity, @PathVariable("id") int id) {
+        boolean exist = styleMaterialQuantityRepo.findById(id).isPresent();
+        if (exist) {
+            StyleMaterialQuantity quantity1 = styleMaterialQuantityRepo.findById(id).get();
+            quantity1.setQuantity(quantity.getQuantity());
+
+            //Raw material set
+            String rawMaterial = quantity.getRawMaterialId().getName();
+            RawMaterial mat = rawMaterialRepo.findByName(rawMaterial);
+            quantity1.setRawMaterialId(mat);
+            //Size set
+            String size = quantity.getSizeId().getName();
+            Size size1 = iSizeRepo.findByName(size);
+            quantity1.setSizeId(size1);
+            //style code set
+            String styleCode = quantity.getStyleId().getCode();
+            Style code = styleRepo.findByCode(styleCode);
+            quantity1.setStyleId(code);
+
+            styleMaterialQuantityRepo.save(quantity1);
+
+            return ResponseEntity.ok(quantity1);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 
     //---------------------------------------- Inventory Table-------------------------------
     // api Warehouse start
@@ -768,8 +831,181 @@ public class SaleRestController {
         return ResponseEntity.notFound().build();
     }
     // api Adjustment Material start
+    @GetMapping("/adjustment_material")
+    private List<AdjustmentMaterial> materialsAdjustmentsList() {
+        return adjustmentMaterialRepo.findAll();
+    }
+
+    @DeleteMapping("/adjustment_material/{id}")
+    public void deleteMaterialAdjustment(@PathVariable("id") int id) {
+        boolean exist = adjustmentMaterialRepo.existsById(id);
+        if (exist) {
+            adjustmentMaterialRepo.deleteById(id);
+        }
+    }
+
+    @PostMapping("/adjustment_material")
+    public ResponseEntity<AdjustmentMaterial> materialAdjustmentSave(@RequestBody AdjustmentMaterial material){
+
+        //Raw material set
+        String rawMaterial = material.getRawMaterialId().getName();
+        RawMaterial mat = rawMaterialRepo.findByName(rawMaterial);
+        material.setRawMaterialId(mat);
+
+        //warehouse set
+        String warehouse = material.getWareHouseId().getName();
+        WareHouse house = houseRepo.findByName(warehouse);
+        material.setWareHouseId(house);
+
+        //Stock Adjustment set
+        String stockStatus = material.getStockAdjustmentId().getName();
+        StockAdjustment stockAdjustment = stockAdjustmentRepo.findByName(stockStatus);
+        material.setStockAdjustmentId(stockAdjustment);
+
+        //Order Details set
+        String order = String.valueOf(material.getOrderDetailsId().getId());
+        int orderId=material.getOrderDetailsId().getId();
+        boolean exist=orderDetailsRepo.findById(orderId).isPresent();
+
+        OrderDetails orderDetails=orderDetailsRepo.findById(orderId).get();
+        material.setOrderDetailsId(orderDetails);
+
+        //stock subtract
+        double myquantity = material.getQuantity();
+        int myid=material.getRawMaterialId().getId();
+        stockUpdateService.subtractStock(myid,myquantity);
+        //stock subtract end
+        adjustmentMaterialRepo.save(material);
+        return ResponseEntity.ok(material);
+    }
+    @PutMapping("/adjustment_material/{id}")
+    public ResponseEntity<AdjustmentMaterial> materialAdjustmentUpdate(@RequestBody AdjustmentMaterial material,@PathVariable("id")int id){
+        boolean exist=adjustmentMaterialRepo.findById(id).isPresent();
+        if(exist){
+            AdjustmentMaterial material1=adjustmentMaterialRepo.findById(id).get();
+            material1.setPrice(material.getPrice());
+            material1.setQuantity(material.getQuantity());
+            material1.setRemarks(material.getRemarks());
+
+            //Raw material set
+            String rawMaterial = material.getRawMaterialId().getName();
+            RawMaterial mat = rawMaterialRepo.findByName(rawMaterial);
+            material1.setRawMaterialId(mat);
+
+            //warehouse set
+            String warehouse = material.getWareHouseId().getName();
+            WareHouse house = houseRepo.findByName(warehouse);
+            material1.setWareHouseId(house);
+
+            //Stock Adjustment set
+            String stockStatus = material.getStockAdjustmentId().getName();
+            StockAdjustment stockAdjustment = stockAdjustmentRepo.findByName(stockStatus);
+            material1.setStockAdjustmentId(stockAdjustment);
+
+            //Order Details set
+            String order = String.valueOf(material.getOrderDetailsId().getId());
+            int orderId=material.getOrderDetailsId().getId();
+            boolean exist1=orderDetailsRepo.findById(orderId).isPresent();
+
+            OrderDetails orderDetails=orderDetailsRepo.findById(orderId).get();
+            material1.setOrderDetailsId(orderDetails);
+
+
+            adjustmentMaterialRepo.save(material1);
+            return ResponseEntity.ok(material1);
+        }
+        return ResponseEntity.notFound().build();
+    }
     // api Purchase start
+    @GetMapping("/purchase")
+    private List<Purchase> stockPurchaseList() {
+        return purchaseRepo.findAll();
+    }
+
+    @DeleteMapping("/purchase/{id}")
+    public void deletePurchase(@PathVariable("id") int id) {
+        boolean exist = purchaseRepo.existsById(id);
+        if (exist) {
+            purchaseRepo.deleteById(id);
+        }
+    }
+
+    @PostMapping("/purchase")
+    public ResponseEntity<Purchase> PurchaseSave(@RequestBody Purchase purchase){
+        //Raw material set
+        String rawMaterial = purchase.getRawMaterialId().getName();
+        RawMaterial material = rawMaterialRepo.findByName(rawMaterial);
+        purchase.setRawMaterialId(material);
+
+        //purchase status set
+        String status = purchase.getStatusId().getName();
+        PurchaseStatus status1 = purchaseStatusRepo.findByName(status);
+        purchase.setStatusId(status1);
+
+        //vendor set
+        String vendor = purchase.getVendorsId().getCompany();
+        Vendors vendors = vendorRepo.findByCompany(vendor);
+        purchase.setVendorsId(vendors);
+
+        //warehouse set
+        String warehouse = purchase.getWareHouseId().getName();
+        WareHouse house = houseRepo.findByName(warehouse);
+        purchase.setWareHouseId(house);
+        double myquantity = purchase.getQuantity();
+        int myid=purchase.getRawMaterialId().getId();
+        stockUpdateService.addStockData(myid,myquantity);
+
+        purchaseRepo.save(purchase);
+        return ResponseEntity.ok(purchase);
+    }
+    @PutMapping("/purchase/{id}")
+    public ResponseEntity<Purchase> PurchaseUpdate(@RequestBody Purchase purchase,@PathVariable("id")int id){
+        boolean exist=purchaseRepo.findById(id).isPresent();
+        if(exist){
+            Purchase purchase1=purchaseRepo.findById(id).get();
+            purchase1.setPurchaseDate(purchase.getPurchaseDate());
+            purchase1.setDeliveryDate(purchase.getDeliveryDate());
+            purchase1.setPrice(purchase.getPrice());
+            purchase1.setQuantity(purchase.getQuantity());
+            purchase1.setTotal(purchase.getTotal());
+            purchase1.setPaid(purchase.getPaid());
+
+            //style code set
+            String rawMaterial = purchase.getRawMaterialId().getName();
+            RawMaterial material = rawMaterialRepo.findByName(rawMaterial);
+            purchase1.setRawMaterialId(material);
+
+            //purchase status set
+            String status = purchase.getStatusId().getName();
+            PurchaseStatus status1 = purchaseStatusRepo.findByName(status);
+            purchase1.setStatusId(status1);
+
+            //vendor set
+            String vendor = purchase.getVendorsId().getCompany();
+            Vendors vendors = vendorRepo.findByCompany(vendor);
+            purchase1.setVendorsId(vendors);
+
+            //warehouse set
+            String warehouse = purchase.getWareHouseId().getName();
+            WareHouse house = houseRepo.findByName(warehouse);
+            purchase1.setWareHouseId(house);
+
+            //stock update
+//            double myquantity = purchase1.getQuantity();
+//            int myid=purchase1.getRawMaterialId().getId();
+//            stockUpdateService.addStockData(myid,myquantity);
+
+            purchaseRepo.save(purchase1);
+            return ResponseEntity.ok(purchase1);
+        }
+        return ResponseEntity.notFound().build();
+    }
     // api Stock start
+
+    @GetMapping("/stock")
+    private List<Stock> stocksList() {
+        return stockRepo.findAll();
+    }
 
 //---------------------------------------- Other Table-----------------------------------
     // api Vendors start

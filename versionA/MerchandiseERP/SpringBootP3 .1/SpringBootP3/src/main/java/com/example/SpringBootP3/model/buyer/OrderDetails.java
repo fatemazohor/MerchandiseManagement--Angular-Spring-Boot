@@ -39,6 +39,7 @@ public class OrderDetails {
     @JoinColumn
     private OrderStatus orStatusId;
 
-
-
+    public OrderDetails(Integer id) {
+        this.id = id;
+    }
 }
