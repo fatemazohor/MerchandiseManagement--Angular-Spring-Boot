@@ -20,15 +20,21 @@ import { OrderStatusComponent } from './component/inventory/order-status/order-s
 import { TaskComponent } from './component/inventory/task/task.component';
 import { BuyerComponent } from './component/buyers/buyer/buyer.component';
 import { OrderDetailsComponent } from './component/buyers/order-details/order-details.component';
+import { RawMaterialComponent } from './component/sale/raw-material/raw-material.component';
+import { MeasurementAttachmentComponent } from './component/sale/measurement-attachment/measurement-attachment.component';
+import { StyleAttachmentComponent } from './component/sale/style-attachment/style-attachment.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent},
   { path: "style-categories", component:StyleCategoriesComponent},
   { path: "size", component:SizeComponent},
   { path: "trim", component:TrimComponent},
+  { path: "raw-material", component:RawMaterialComponent},
   { path: "raw-material-categories", component:RawMaterialCategoriesComponent},
   { path: "style", component:StyleComponent},
+  { path: "style-attachment", component:StyleAttachmentComponent},
   { path: "measurement-details", component:MeasurementDetailsComponent},
+  { path: "measurement-attachment", component:MeasurementAttachmentComponent},
 
   //----------------------------------- Other------------------------------------------------------
 

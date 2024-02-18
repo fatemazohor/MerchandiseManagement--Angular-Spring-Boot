@@ -134,12 +134,13 @@
                                 </div>
                                 <div class="mb-3 col-md-5">
                                     <label class="form-label">Small Qty</label>
-                                    <input type="text" class="form-control" formControlName="sAmount">
+                                    <input type="text" class="form-control" formControlName="samount">
                                 </div>
                                 <div class="mb-3 col-md-4">
                                     <label class="form-label">Price </label>
                                     <!-- <input type="text" class="form-control" id="txtPriceS" [(value)]="smallQuantity"> -->
-                                    <input type="text" class="form-control" id="txtPriceS" value="0" (change)="onChange($event)" formControlName="smallQuantity">
+                                    <input type="text" class="form-control" id="txtPriceS" 
+                                     (change)="onChange($event)" formControlName="smallPrice">
                                 </div>
                                 <div class="mb-3 col-md-3">
                                     <label class="form-label">Medium</label>
@@ -147,12 +148,12 @@
                                 </div>
                                 <div class="mb-3 col-md-5">
                                     <label class="form-label">Medium Qty</label>
-                                    <input type="text" class="form-control" formControlName="mAmount">
+                                    <input type="text" class="form-control" formControlName="mamount">
                                 </div>
                                 <div class="mb-3 col-md-4">
                                     <label class="form-label">Price </label>
                                     <!-- <input type="text" class="form-control" id="txtPriceM" [(value)]="mediumQuantity"> -->
-                                    <input type="text" class="form-control" id="txtPriceM" >
+                                    <input type="text" class="form-control" id="txtPriceM" formControlName="mediumPrice">
                                 </div>
 
                                 <div class="mb-3 col-md-3">
@@ -161,12 +162,13 @@
                                 </div>
                                 <div class="mb-3 col-md-5">
                                     <label class="form-label">Large Qty</label>
-                                    <input type="text" class="form-control" formControlName="lAmount">
+                                    <input type="text" class="form-control" formControlName="lamount">
                                 </div>
                                 <div class="mb-3 col-md-4">
                                     <label class="form-label">Price </label>
                                     <!-- <input type="text" class="form-control" id="txtPriceL" [(value)]="largeQuantity"> -->
-                                    <input type="text" class="form-control" id="txtPriceL" placeholder="0" #txtPriceL (change)="getValue(txtPriceL.value)">
+                                    <input type="text" class="form-control" id="txtPriceL" placeholder="0" 
+                                    #txtPriceL  formControlName="largePrice">
                                 </div>
                             </div>
                         </div>
@@ -187,21 +189,21 @@
                                 <div class="mb-3">
                                     <label class="form-label">Subtotal</label>
                                     <!-- <input type="text" class="form-control" [(value)]="subTotal"> -->
-                                    <input type="text" class="form-control" value="0">
+                                    <input type="text" class="form-control" formControlName="subTotal" readonly>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Vat</label>
-                                    <input type="text" class="form-control" value="0">
+                                    <input type="text" class="form-control" formControlName="vat" (change)="getValue()">
                                     <!-- <input type="text" class="form-control" [(value)]="vat"> -->
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Paid</label>
-                                    <input type="number" class="form-control" formControlName="paid">
+                                    <input type="number" class="form-control" formControlName="paid" (keyup)="getDue()">
                                     <!-- <input type="text" class="form-control" [(value)]="paid"> -->
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Due</label>
-                                    <input type="text" class="form-control" value="0">
+                                    <input type="text" class="form-control" formControlName="due" readonly>
                                     <!-- <input type="text" class="form-control" [(value)]="due"> -->
                                 </div>
                                 <div class="mb-3">

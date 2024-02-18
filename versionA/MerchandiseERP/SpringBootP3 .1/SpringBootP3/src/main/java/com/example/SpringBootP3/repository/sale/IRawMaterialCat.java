@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IRawMaterialCat extends JpaRepository<RawMaterialCat,Integer> {
+    RawMaterialCat findByName(String name);
 }

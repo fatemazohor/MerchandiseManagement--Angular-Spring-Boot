@@ -23,10 +23,17 @@ import com.example.SpringBootP3.repository.other.IVendorRepo;
 import com.example.SpringBootP3.repository.sale.*;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/sale")
@@ -53,6 +60,8 @@ public class SaleRestController {
     private final ITask taskRepo;
     private final IOrderStatus statusRepo;
     private final IOrderDetails orderDetailsRepo;
+    private final IMeasurementAttachmentRepo measurementAttachmentRepo;
+    private final IStyleAttachmentRepo styleAttachmentRepo ;
     private final ITimeActionRepo timeActionRepo;
 
 //    public SaleRestController(IMeasurementDetailsRepo detailsRepo, IStyleCategories styleCatApiRepo, ISizeRepo iSizeRepo, ITrim trimRepo, IFabricName fabricRepo, IRawMaterialCat materialCatRepo, IStyle styleRepo, IRawMaterialRepo rawMaterialRepo, IVendorRepo vendorRepo, ILaborCost costRepo, IUOMRepo iuomRepo, IDepartmentRepo departmentRepo) {
@@ -348,6 +357,81 @@ public class SaleRestController {
     }
 
     // api Style end
+    // api Style Attachment start
+    @GetMapping("/style_attachment")
+    private List<StyleAttachment> styleAttachmentList() {
+        return styleAttachmentRepo.findAll();
+    }
+
+    //style image display display image
+    @GetMapping("/style_attachment/display")
+    public ResponseEntity<byte[]> getStyleAttachment(@RequestParam("id") int id)
+            throws IOException{
+        Optional<StyleAttachment> styleAttachment=styleAttachmentRepo.findById(id);
+        if (styleAttachment.isPresent()){
+            StyleAttachment styleImage=styleAttachment.get();
+            //select directory
+            String uploadDirectory="src/main/resources/static/assets/image/style_att/";
+            String fileName=styleImage.getAttachment();
+            String filePath=Path.of(uploadDirectory,fileName).toString();
+            try {
+                Path path=Path.of(filePath);
+                byte[] imageByte=Files.readAllBytes(path);
+                return ResponseEntity
+                        .ok()
+                        .contentType(MediaType.IMAGE_JPEG)
+                        .header(HttpHeaders.CONTENT_DISPOSITION,"inline + filename="
+                                +path.getFileName().toString())
+                        .body(imageByte);
+            }catch (IOException e){
+                e.printStackTrace();
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            }
+
+        }
+        return ResponseEntity.notFound().build();
+    }
+    //style image display end
+
+    @DeleteMapping("/style_attachment/{id}")
+    public void deletestyleAttachment(@PathVariable("id") int id) {
+        boolean exist = styleAttachmentRepo.existsById(id);
+        if (exist) {
+            styleAttachmentRepo.deleteById(id);
+        }
+    }
+
+    @PostMapping("/style_attachment")
+    public ResponseEntity<StyleAttachment> styleAttachmentSave(@RequestBody StyleAttachment attachment) {
+        String styleCode = attachment.getStyleId().getCode();
+        Style code = styleRepo.findByCode(styleCode);
+        attachment.setStyleId(code);
+        styleAttachmentRepo.save(attachment);
+        return ResponseEntity.ok(attachment);
+    }
+
+    @PutMapping("/style_attachment/{id}")
+    public ResponseEntity<StyleAttachment> styleAttachmentUpdate(@RequestBody StyleAttachment attachment,
+                                                                             @PathVariable("id") int id) {
+        boolean exist = styleAttachmentRepo.findById(id).isPresent();
+        if (exist) {
+
+            StyleAttachment attachment1 = styleAttachmentRepo.findById(id).get();
+
+
+
+            //style code set
+            String styleCode = attachment.getStyleId().getCode();
+            Style code = styleRepo.findByCode(styleCode);
+            attachment1.setStyleId(code);
+
+
+            styleAttachmentRepo.save(attachment1);
+            return ResponseEntity.ok(attachment1);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     // api Measurement Details start
 
     @GetMapping("/measurement_details")
@@ -396,11 +480,122 @@ public class SaleRestController {
 
     // api Measurement Details end
     // api Measurement Attachment start
+    @GetMapping("/measurement_attachment")
+    private List<MeasurementAttachment> mAttachmentList() {
+        return measurementAttachmentRepo.findAll();
+    }
+
+
+    //measurement attachment display image
+    @GetMapping("/measurement_attachment/display")
+    public ResponseEntity<byte[]> getMeasurementAttachment(@RequestParam("id") int id)
+            throws IOException{
+        Optional<MeasurementAttachment> mattachment=measurementAttachmentRepo.findById(id);
+        if (mattachment.isPresent()){
+            MeasurementAttachment attachmentImage=mattachment.get();
+            //select directory
+            String uploadDirectory="src/main/resources/static/assets/image/measurement_att/";
+            String fileName=attachmentImage.getAttachment();
+            String filePath=Path.of(uploadDirectory,fileName).toString();
+            try {
+                Path path=Path.of(filePath);
+                byte[] imageByte=Files.readAllBytes(path);
+                return ResponseEntity
+                        .ok()
+                        .contentType(MediaType.IMAGE_JPEG)
+                        .header(HttpHeaders.CONTENT_DISPOSITION,"inline + filename="
+                                +path.getFileName().toString())
+                        .body(imageByte);
+            }catch (IOException e){
+                e.printStackTrace();
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            }
+
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/measurement_attachment/{id}")
+    public void deletemeasurementAttachment(@PathVariable("id") int id) {
+        boolean exist = measurementAttachmentRepo.existsById(id);
+        if (exist) {
+            measurementAttachmentRepo.deleteById(id);
+        }
+    }
+
+    @PostMapping("/measurement_attachment")
+    public ResponseEntity<MeasurementAttachment> measurementAttachmentSave(@RequestBody MeasurementAttachment attachment) {
+
+        //style code set
+        String styleCode = attachment.getStyleId().getCode();
+        Style code = styleRepo.findByCode(styleCode);
+        attachment.setStyleId(code);
+
+
+        measurementAttachmentRepo.save(attachment);
+        return ResponseEntity.ok(attachment);
+    }
+
+    @PutMapping("/measurement_attachment/{id}")
+    public ResponseEntity<MeasurementAttachment> measurementAttachmentUpdate(@RequestBody MeasurementAttachment attachment,
+                                             @PathVariable("id") int id) {
+        boolean exist = measurementAttachmentRepo.findById(id).isPresent();
+        if (exist) {
+
+            MeasurementAttachment attachment1 = measurementAttachmentRepo.findById(id).get();
+            attachment1.setName(attachment.getName());
+
+
+            //style code set
+            String styleCode = attachment.getStyleId().getCode();
+            Style code = styleRepo.findByCode(styleCode);
+            attachment1.setStyleId(code);
+
+
+            measurementAttachmentRepo.save(attachment1);
+            return ResponseEntity.ok(attachment1);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+
+
+
+
     // api Raw Material start
 
     @GetMapping("/raw_material")
     private List<RawMaterial> rawMaterialsList() {
         return rawMaterialRepo.findAll();
+    }
+
+    //raw material attachment display image
+    @GetMapping("/raw_material/display")
+    public ResponseEntity<byte[]> getRawMaterialAttachment(@RequestParam("id") int id)
+            throws IOException {
+        Optional<RawMaterial> rawAttachment=rawMaterialRepo.findById(id);
+        if (rawAttachment.isPresent()){
+            RawMaterial rawImage=rawAttachment.get();
+            //select directory
+            String uploadDirectory="src/main/resources/static/assets/image/material_att/";
+            String fileName=rawImage.getAttachment();
+            String filePath= Path.of(uploadDirectory,fileName).toString();
+            try {
+                Path path=Path.of(filePath);
+                byte[] imageByte= Files.readAllBytes(path);
+                return ResponseEntity
+                        .ok()
+                        .contentType(MediaType.IMAGE_JPEG)
+                        .header(HttpHeaders.CONTENT_DISPOSITION,"inline + filename="
+                                +path.getFileName().toString())
+                        .body(imageByte);
+            }catch (IOException e){
+                e.printStackTrace();
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            }
+
+        }
+        return ResponseEntity.notFound().build();
     }
 
 
@@ -412,9 +607,64 @@ public class SaleRestController {
         }
     }
 
+    @PostMapping("/raw_material")
+    public ResponseEntity<RawMaterial> RawMaterialSave(@RequestBody RawMaterial rawMaterial) {
+
+        //style code set
+        String styleCode = rawMaterial.getStyleId().getCode();
+        Style code = styleRepo.findByCode(styleCode);
+        rawMaterial.setStyleId(code);
+        //raw material Category set
+        String rawCategory = rawMaterial.getRawMaterialCatId().getName();
+        RawMaterialCat category = materialCatRepo.findByName(rawCategory);
+        rawMaterial.setRawMaterialCatId(category);
+        //Vendor set
+        String  vendors = rawMaterial.getVendorId().getCompany();
+        Vendors company = vendorRepo.findByCompany(vendors);
+        rawMaterial.setVendorId(company);
+        //UOM set
+        String uom = rawMaterial.getUomId().getName();
+        UOM uom1 = iuomRepo.findByName(uom);
+        rawMaterial.setUomId(uom1);
+        rawMaterialRepo.save(rawMaterial);
+        return ResponseEntity.ok(rawMaterial);
+    }
+
+    @PutMapping("/raw_material/{id}")
+    public ResponseEntity<RawMaterial> RawMaterialUpdate(@RequestBody RawMaterial rawMaterial, @PathVariable("id") int id) {
+        boolean exist = rawMaterialRepo.findById(id).isPresent();
+        if (exist) {
+            RawMaterial rawMaterial1 = rawMaterialRepo.findById(id).get();
+            rawMaterial1.setName(rawMaterial.getName());
+            rawMaterial1.setDescription(rawMaterial.getDescription());
+            rawMaterial1.setUnitPrice(rawMaterial.getUnitPrice());
+
+            //style code set
+            String styleCode = rawMaterial.getStyleId().getCode();
+            Style code = styleRepo.findByCode(styleCode);
+            rawMaterial1.setStyleId(code);
+            //raw material Category set
+            String rawCategory = rawMaterial.getRawMaterialCatId().getName();
+            RawMaterialCat category = materialCatRepo.findByName(rawCategory);
+            rawMaterial1.setRawMaterialCatId(category);
+            //Vendor set
+            String  vendors = rawMaterial.getVendorId().getCompany();
+            Vendors company = vendorRepo.findByCompany(vendors);
+            rawMaterial1.setVendorId(company);
+            //UOM set
+            String uom = rawMaterial.getUomId().getName();
+            UOM uom1 = iuomRepo.findByName(uom);
+            rawMaterial1.setUomId(uom1);
+
+
+            return ResponseEntity.ok(rawMaterial1);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     // api Raw Material end
-    // api Raw Material Attachment start
-    // api Style Attachment start
+
+
     // api Style Material Quantity start
 
 

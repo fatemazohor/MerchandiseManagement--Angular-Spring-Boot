@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IUOMRepo extends JpaRepository<UOM,Integer> {
+    UOM findByName(String name);
 }

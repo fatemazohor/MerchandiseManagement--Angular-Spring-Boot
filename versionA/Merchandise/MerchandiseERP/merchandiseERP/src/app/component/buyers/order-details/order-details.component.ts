@@ -24,15 +24,13 @@ export class OrderDetailsComponent implements OnInit{
   fatrash=faTrash;
   editicon=faPenToSquare
   //calculation
-  smallQuantity:string='';
-  mediumQuantity:string='';
-  largeQuantity:string='';
-  subTotal?:number=0;
-  vat?:number=0;
+  
+  // subTotal?:number=0;
+  // vat?:number=0;
  
-  paid?:number=0;
-  due?:number=0;
-  total?:number=0;
+  // paid?:number=0;
+  // due?:number=0;
+  // total?:number=0;
   
   constructor(
     private service:SaleService,
@@ -51,16 +49,21 @@ export class OrderDetailsComponent implements OnInit{
       oderDate: ['', Validators.required],
       deliveryDate: ['', Validators.required],
       shippingAddress: ['', Validators.required],
-      
       totalAmount: ['', Validators.required],
       paid: ['', Validators.required],
-      sAmount: ['', Validators.required],
-      mAmount: ['', Validators.required],
-      lAmount: ['', Validators.required],
+      samount: ['', Validators.required],
+      mamount: ['', Validators.required],
+      lamount: ['', Validators.required],
       orStatusId: ['', Validators.required],
       buyersId: ['', Validators.required],
       styleId: ['', Validators.required],
-      smallQuantity: ['', Validators.required]
+
+      smallPrice: ['', Validators.required],
+      mediumPrice: ['', Validators.required],
+      largePrice: ['', Validators.required],
+      subTotal: ['', Validators.required],
+      vat: ['', Validators.required],
+      due: ['', Validators.required]
 
     })
   }
@@ -156,9 +159,9 @@ export class OrderDetailsComponent implements OnInit{
     this.orderForm.controls['oderDate'].setValue(orderRow.oderDate)
     this.orderForm.controls['deliveryDate'].setValue(orderRow.deliveryDate)
     this.orderForm.controls['shippingAddress'].setValue(orderRow.shippingAddress)
-    this.orderForm.controls['sAmount'].setValue(orderRow.sAmount)
-    this.orderForm.controls['lAmount'].setValue(orderRow.lAmount)
-    this.orderForm.controls['mAmount'].setValue(orderRow.mAmount)
+    this.orderForm.controls['samount'].setValue(orderRow.samount)
+    this.orderForm.controls['lamount'].setValue(orderRow.lamount)
+    this.orderForm.controls['mamount'].setValue(orderRow.mamount)
     this.orderForm.controls['orStatusId'].setValue(orderRow.orStatusId.name)
     this.orderForm.controls['buyersId'].setValue(orderRow.buyersId?.organization)
     this.orderForm.controls['styleId'].setValue(orderRow.styleId?.code)
@@ -174,9 +177,9 @@ export class OrderDetailsComponent implements OnInit{
       this.orderModel.oderDate = this.orderForm.value.orderData
       this.orderModel.deliveryDate = this.orderForm.value.deliveryDate
       this.orderModel.shippingAddress = this.orderForm.value.shippingAddress
-      this.orderModel.sAmount = this.orderForm.value.sAmount
-      this.orderModel.lAmount = this.orderForm.value.lAmount
-      this.orderModel.mAmount = this.orderForm.value.mAmount
+      this.orderModel.samount = this.orderForm.value.samount
+      this.orderModel.lamount = this.orderForm.value.lamount
+      this.orderModel.mamount = this.orderForm.value.mamount
       this.orderModel.orStatusId = this.orderForm.value.orStatusId
       this.orderModel.buyersId = this.orderForm.value.buyerId
       this.orderModel.styleId = this.orderForm.value.styleId
@@ -213,8 +216,17 @@ export class OrderDetailsComponent implements OnInit{
   }
   totalbox(){
     // this.subTotal=parseFloat(this.smallQuantity)+parseFloat(this.largeQuantity)+parseFloat(this.mediumQuantity);
-    
-    console.log('small Quantity '+this.orderForm.value.smallQuantity);
+    let smallQty:number=this.orderForm.value.samount;
+    let mediumQty:number=this.orderForm.value.mamount;
+    let largeQty:number=this.orderForm.value.lamount;
+    let smallPrice:number=this.orderForm.value.smallPrice;
+    let midPrice:number=this.orderForm.value.mediumPrice;
+    let largePrice:number=this.orderForm.value.largePrice;
+    let result:number=(smallQty*smallPrice+mediumQty*midPrice+largeQty*largePrice)
+    this.orderForm.controls['subTotal'].setValue(result);
+    console.log(`small Quantity ${smallQty} midQty ${mediumQty} larQty${largeQty}
+    smaprice ${smallPrice} midPrice ${midPrice} largePrice ${largePrice}`);
+    console.log(`Total ${result}`)
   }
   onChange(event: Event) {
     // Get the new input value
@@ -223,8 +235,21 @@ export class OrderDetailsComponent implements OnInit{
     console.log('Input value changed:', newValue);
   }
 
-  getValue(qty:string){
-    console.log('Get value'+parseFloat(qty));
+  getValue():number{
+    let sub:number=this.orderForm.value.subTotal;
+    let vat:number=this.orderForm.value.vat;
+    let total:number=sub+(sub * vat)/100;
+    this.orderForm.controls['totalAmount'].setValue(total);
+
+    return total;
+    
+  }
+  getDue():number{
+    let total = this.orderForm.value.totalAmount;
+    let paid = this.orderForm.value.paid
+    let due = total - paid;
+    this.orderForm.controls['due'].setValue(due);
+    return due;
   }
 
 }

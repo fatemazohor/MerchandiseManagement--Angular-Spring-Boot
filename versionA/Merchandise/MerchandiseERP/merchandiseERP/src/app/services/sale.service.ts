@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Buyers, Department, LaborCost, MeasuremntDetails, OrderDetails, OrderStatus, PurchaseStatus, RawMaterialCat, Size, StockAdjustment, Style, StyleCategories, Task, Trim, UOM, Vendors, Warehouse } from '../model/sale.model';
+import { Buyers, Department, LaborCost, MeasuremantAttachment, MeasuremntDetails, OrderDetails, OrderStatus, PurchaseStatus, RawMaterial, RawMaterialCat, Size, StockAdjustment, Style, StyleAttachment, StyleCategories, Task, Trim, UOM, Vendors, Warehouse } from '../model/sale.model';
 import { Observable } from 'rxjs';
 
 
@@ -130,11 +130,58 @@ export class SaleService {
     return this.http.delete<void>(`${this.baseUrl}/measurement_details/${id}`)
   }
   //Measurement Attachment
-  // api Raw Material end
-  // api Raw Material Attachment start
+  getAllMeasurementAttachment(): Observable<MeasuremantAttachment[]> {
+    return this.http.get<MeasuremantAttachment[]>(`${this.baseUrl}/measurement_attachment`);
+  }
+
+  createMeasurementAttachment(details: MeasuremantAttachment): Observable<MeasuremantAttachment> {
+    return this.http.post<MeasuremantAttachment>(`${this.baseUrl}/measurement_attachment`, details);
+  }
+
+  updateMeasurementAttachment(id: number, details: MeasuremantAttachment): Observable<MeasuremantAttachment> {
+    return this.http.put<MeasuremantAttachment>(`${this.baseUrl}/measurement_attachment/${id}`, details)
+  }
+
+  deleteMeasurementAttachment(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/measurement_attachment/${id}`)
+  }
+  // api Raw Material /Attachment start
+  getAllRawMaterial(): Observable<RawMaterial[]> {
+    return this.http.get<RawMaterial[]>(`${this.baseUrl}/raw_material`);
+  }
+
+  createRawMaterial(raw: RawMaterial): Observable<RawMaterial> {
+    return this.http.post<RawMaterial>(`${this.baseUrl}/raw_material`, raw);
+  }
+
+  updateRawMaterial(id: number, raw: RawMaterial): Observable<RawMaterial> {
+    return this.http.put<RawMaterial>(`${this.baseUrl}/raw_material/${id}`, raw)
+  }
+
+  deleteRawMaterial(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/raw_material/${id}`)
+  }
   // api Style Attachment start
-  // api Style Material Quantity start
+  getAllStyleAttachment(): Observable<StyleAttachment[]> {
+    return this.http.get<StyleAttachment[]>(`${this.baseUrl}/style_attachment`);
+  }
+
+  createStyleAttachment(raw: StyleAttachment): Observable<StyleAttachment> {
+    return this.http.post<StyleAttachment>(`${this.baseUrl}/style_attachment`, raw);
+  }
+
+  updateStyleAttachment(id: number, raw: StyleAttachment): Observable<StyleAttachment> {
+    return this.http.put<StyleAttachment>(`${this.baseUrl}/style_attachment/${id}`, raw)
+  }
+
+  deleteStyleAttachment(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/style_attachment/${id}`)
+  }
+
   
+
+  // api Style Material Quantity start
+
   
   
   //---------------------------------------- Inventory Table-----------------------------------------

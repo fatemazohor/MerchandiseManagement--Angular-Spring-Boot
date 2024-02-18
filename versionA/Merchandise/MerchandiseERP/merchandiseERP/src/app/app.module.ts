@@ -30,6 +30,9 @@ import { OrderStatusComponent } from './component/inventory/order-status/order-s
 import { TaskComponent } from './component/inventory/task/task.component';
 import { BuyerComponent } from './component/buyers/buyer/buyer.component';
 import { OrderDetailsComponent } from './component/buyers/order-details/order-details.component';
+import { RawMaterialComponent } from './component/sale/raw-material/raw-material.component';
+import { MeasurementAttachmentComponent } from './component/sale/measurement-attachment/measurement-attachment.component';
+import { StyleAttachmentComponent } from './component/sale/style-attachment/style-attachment.component';
 
 
 @NgModule({
@@ -58,7 +61,10 @@ import { OrderDetailsComponent } from './component/buyers/order-details/order-de
     OrderStatusComponent,
     TaskComponent,
     BuyerComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    RawMaterialComponent,
+    MeasurementAttachmentComponent,
+    StyleAttachmentComponent
     
   ],
   imports: [

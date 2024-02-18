@@ -18,4 +18,8 @@ public class RawMaterialCat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
+    public RawMaterialCat(String name) {
+        this.name = name;
+    }
 }

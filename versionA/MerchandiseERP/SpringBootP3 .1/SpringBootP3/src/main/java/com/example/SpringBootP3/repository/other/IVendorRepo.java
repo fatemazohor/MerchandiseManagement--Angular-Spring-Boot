@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IVendorRepo  extends JpaRepository<Vendors,Integer>{
+    Vendors findByCompany(String company);
 }

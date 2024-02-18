@@ -21,4 +21,8 @@ public class Vendors {
     private String cell;
     private String email;
     private String address;
+
+    public Vendors(String company) {
+        this.company = company;
+    }
 }

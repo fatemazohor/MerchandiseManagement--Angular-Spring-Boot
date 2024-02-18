@@ -67,9 +67,70 @@ export class MeasuremntDetails {
   }
 }
 
-// Raw Material end
-//  Raw Material Attachment start
+//Measuremant Attachment 
+export class MeasuremantAttachment {
+  id: number = 0
+  name?: string
+  attachment?: string
+  styleId?: {
+    id: number,
+    code: string
+    description: string
+    categoriesId?: {
+      id: number,
+      name: string
+    }
+  }
+}
+
+
+//  Raw Material /Attachment 
+export class RawMaterial {
+  id: number = 0
+  name?: string
+  description?: string
+  unitPrice?: number
+  attachment?: string
+  styleId?: {
+    id: number
+    code?: string;
+    description?: string;
+    categoriesId?: {
+      id: number,
+      name?: string
+    }
+  }
+  rawMaterialCatId?: {
+    id: number
+    name?: string;
+  }
+  uomId?: {
+    id: number,
+    name?: string
+  }
+  vendorId?: {
+    id: number,
+    company?: string,
+    contactPerson?: string,
+    cell?: string,
+    email?: string,
+    address?: string
+  }
+}
 //  Style Attachment start
+export class StyleAttachment{
+  id:number= 0
+  attachment?: string
+  styleId?: {
+    id: number,
+    code: string,
+    description: string,
+    categoriesId?: {
+      id: number,
+      name: string
+    },
+  }
+}
 //  Style Material Quantity start
 
 
@@ -79,22 +140,23 @@ export class MeasuremntDetails {
 
 
 //  Warehouse start
-export class Warehouse{
-  id:number = 0 
+export class Warehouse {
+  id: number = 0
   name?: string
   city?: string
   contact?: string
 }
+
 //  Purchase Status start
-export class PurchaseStatus{
-  id:number= 0
+export class PurchaseStatus {
+  id: number = 0
   name?: string
 }
 //  Stock Adjustment start
-export class StockAdjustment{
-  id:number= 0
+export class StockAdjustment {
+  id: number = 0
   name?: string
-  factor?:number
+  factor?: number
 }
 //  Adjustment Material start
 //  Purchase start
@@ -137,16 +199,16 @@ export class LaborCost {
   id: number = 0
   unitCost?: number
   hour?: number
-  styleId?:{
+  styleId?: {
     id: number
     code?: string
     description?: string
-    categoriesId?:{
+    categoriesId?: {
       id: number
       name?: string
     }
   }
-  departmentId?:{
+  departmentId?: {
     id: number,
     name?: string
   }
@@ -159,8 +221,8 @@ export class LaborCost {
 
 
 //  Buyers start
-export class Buyers{
-  id:number= 0
+export class Buyers {
+  id: number = 0
   organization?: string
   contactPerson?: string
   phone?: string
@@ -169,53 +231,53 @@ export class Buyers{
   country?: string
 }
 //  Task start
-export class Task{
-  id:number= 0
+export class Task {
+  id: number = 0
   name?: string
 }
 //  Orders Status start
-export class OrderStatus{
-  id:number= 0
+export class OrderStatus {
+  id: number = 0
   name?: string
 }
 //  Orders start
-export class OrderDetails{
-    id:number= 0
-    oderDate?: Date
-    deliveryDate?: Date
-    shippingAddress?: string
-    orderUniId?: string
-    totalAmount?:number
-    paid?:number
-    sAmount?: number
-    mAmount?: number
-    lAmount?: number
-    styleId?: {
-      id:number
-      code?: string
-      description?:string
-      categoriesId?: {
-        id: number
-        name?: string
-      }
-      createdAt?: Date
-      updatedAt?: Date
-    }
-    buyersId?: {
-      id:number
-      organization?: string
-      contactPerson?: string
-      phone?: string
-      email?: string
-      address?: string
-      country?: string
-    }
-    orStatusId?: {
-      id:number
+export class OrderDetails {
+  id: number = 0
+  oderDate?: Date
+  deliveryDate?: Date
+  shippingAddress?: string
+  orderUniId?: string
+  totalAmount?: number
+  paid?: number
+  samount?: number
+  mamount?: number
+  lamount?: number
+  styleId?: {
+    id: number
+    code?: string
+    description?: string
+    categoriesId?: {
+      id: number
       name?: string
     }
-    
+    createdAt?: Date
+    updatedAt?: Date
   }
+  buyersId?: {
+    id: number
+    organization?: string
+    contactPerson?: string
+    phone?: string
+    email?: string
+    address?: string
+    country?: string
+  }
+  orStatusId?: {
+    id: number
+    name?: string
+  }
+
+}
 
 //  Time Action start
 

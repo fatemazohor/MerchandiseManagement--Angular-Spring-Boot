@@ -17,4 +17,8 @@ public class UOM {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
+    public UOM(String name) {
+        this.name = name;
+    }
 }
