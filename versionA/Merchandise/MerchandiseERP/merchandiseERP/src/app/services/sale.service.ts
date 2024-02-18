@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Buyers, Department, LaborCost, MeasuremantAttachment, MeasuremntDetails, OrderDetails, OrderStatus, PurchaseStatus, RawMaterial, RawMaterialCat, Size, StockAdjustment, Style, StyleAttachment, StyleCategories, Task, Trim, UOM, Vendors, Warehouse } from '../model/sale.model';
+import { Buyers, Department, LaborCost, MeasuremantAttachment, MeasuremntDetails, OrderDetails, OrderStatus, PurchaseStatus, RawMaterial, RawMaterialCat, Size, Stock, StockAdjustment, Style, StyleAttachment, StyleCategories, Task, Trim, UOM, Vendors, Warehouse } from '../model/sale.model';
 import { Observable } from 'rxjs';
 
 
@@ -243,7 +243,9 @@ export class SaleService {
   // api Adjustment Material start
   // api Purchase start
   // api Stock start
-  
+  getAllStock(): Observable<Stock[]> {
+    return this.http.get<Stock[]>(`${this.baseUrl}/stock`);
+  }
   
   
   //-------------------------------------- Other ---------------------------------------------------

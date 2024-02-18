@@ -118,8 +118,8 @@ export class RawMaterial {
   }
 }
 //  Style Attachment start
-export class StyleAttachment{
-  id:number= 0
+export class StyleAttachment {
+  id: number = 0
   attachment?: string
   styleId?: {
     id: number,
@@ -132,6 +132,59 @@ export class StyleAttachment{
   }
 }
 //  Style Material Quantity start
+export class StyleMaterialQty {
+  id: number = 0
+  quantity?: number
+  styleId?: {
+    id: number,
+    code: string,
+    description: string,
+    categoriesId: {
+      id: number,
+      name: string
+    },
+    createdAt: Date,
+    updatedAt: Date
+  }
+  rawMaterialId?: {
+    id: number,
+    name: string,
+    description: string,
+    unitPrice: number,
+    attachment: string,
+    styleId: {
+      id: number,
+      code: string,
+      description: string,
+      categoriesId: {
+        id: number,
+        name: string
+      },
+      createdAt: Date,
+      updatedAt: Date
+    },
+    rawMaterialCatId: {
+      id: number,
+      name: string
+    },
+    uomId: {
+      id: number,
+      name: string
+    },
+    vendorId: {
+      id: number,
+      company: string,
+      contactPerson: string,
+      cell: string,
+      email: string,
+      address: string
+    }
+  }
+  sizeId?: {
+    id: number,
+    name: string
+  }
+}
 
 
 
@@ -159,8 +212,167 @@ export class StockAdjustment {
   factor?: number
 }
 //  Adjustment Material start
+export class AdjustmentMaterail {
+  id: number = 0
+  remarks?: string
+  quantity?: number
+  price?: number
+  stockAdjustmentId?: {
+    id: number,
+    name: string,
+    factor: number
+  }
+  wareHouseId?: {
+    id: number,
+    name: string,
+    city: string,
+    contact: string
+  }
+  rawMaterialId?: {
+    id: number,
+    name: string,
+    description: string,
+    unitPrice: number,
+    attachment: string,
+    styleId: {
+      id: number,
+      code: string,
+      description: string,
+      categoriesId: {
+        id: number,
+        name: string
+      },
+      createdAt: Date
+      updatedAt: Date
+    },
+    rawMaterialCatId: {
+      id: number,
+      name: string
+    },
+    uomId: {
+      id: number,
+      name: string
+    },
+    vendorId: {
+      id: number,
+      company: string,
+      contactPerson: string,
+      cell: string,
+      email: string,
+      address: string
+    }
+  }
+  orderDetailsId?: {
+    id: number,
+    oderDate: Date,
+    deliveryDate: Date,
+    shippingAddress: string,
+    orderUniId: string,
+    totalAmount: number,
+    paid: number,
+    styleId: {
+      id: number,
+      code: string,
+      description: string,
+      categoriesId: {
+        id: number,
+        name: string
+      },
+      createdAt: Date,
+      updatedAt: Date
+    },
+    buyersId: {
+      id: number,
+      organization: string,
+      contactPerson: string,
+      phone: string,
+      email: string,
+      address: string,
+      country: string
+    },
+    orStatusId: {
+      id: number,
+      name: string
+    },
+    samount?: number,
+    lamount?: number,
+    mamount?: number
+  }
+}
 //  Purchase start
+export class Purchase {
+  id:number= 0
+  purchaseDate?: Date
+  deliveryDate?: Date
+  price?: number
+  quantity?: number
+  paid?: number
+  total?: number
+  vendorsId?:Vendors
+  statusId?:PurchaseStatus 
+  wareHouseId?:Warehouse
+  rawMaterialId?: {
+    id: 0,
+    name: string,
+    description: string,
+    unitPrice: number,
+    attachment: string,
+    styleId: Style
+    rawMaterialCatId: RawMaterialCat
+    uomId: UOM
+    vendorId: {
+      id: 0,
+      company: string,
+      contactPerson: string,
+      cell: string,
+      email: string,
+      address: string
+    }
+  }
+}
+
+
 //  Stock start
+
+export class Stock {
+  id: number = 0;
+  quantity?: number
+  createDate?: Date
+  updateDate?: Date
+  rawMaterialId?: {
+    id: number
+    name: string
+    description: string
+    unitPrice: number
+    attachment: string,
+    styleId?: {
+      id: number,
+      code: string,
+      description: string,
+      categoriesId?: {
+        id: number,
+        name: string
+      },
+
+    },
+    rawMaterialCatId?: {
+      id: number
+      name: string
+    },
+    uomId: {
+      id: number,
+      name: string
+    },
+    vendorId: {
+      id: number,
+      company: string,
+      contactPerson: string,
+      cell: string,
+      email: string,
+      address: string
+    }
+  }
+}
 
 
 

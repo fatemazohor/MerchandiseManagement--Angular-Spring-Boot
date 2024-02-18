@@ -33,6 +33,7 @@ import { OrderDetailsComponent } from './component/buyers/order-details/order-de
 import { RawMaterialComponent } from './component/sale/raw-material/raw-material.component';
 import { MeasurementAttachmentComponent } from './component/sale/measurement-attachment/measurement-attachment.component';
 import { StyleAttachmentComponent } from './component/sale/style-attachment/style-attachment.component';
+import { StocksComponent } from './component/inventory/stocks/stocks.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { StyleAttachmentComponent } from './component/sale/style-attachment/styl
     OrderDetailsComponent,
     RawMaterialComponent,
     MeasurementAttachmentComponent,
-    StyleAttachmentComponent
+    StyleAttachmentComponent,
+    StocksComponent
     
   ],
   imports: [
