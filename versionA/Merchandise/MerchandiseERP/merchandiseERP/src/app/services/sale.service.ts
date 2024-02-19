@@ -224,6 +224,7 @@ export class SaleService {
   getAllPurchaseStatus(): Observable<PurchaseStatus[]> {
     return this.http.get<PurchaseStatus[]>(`${this.baseUrl}/purchase_status`);
   }
+  
 
   createPurchaseStatus(status: PurchaseStatus): Observable<PurchaseStatus> {
     return this.http.post<PurchaseStatus>(`${this.baseUrl}/purchase_status`, status);
@@ -276,6 +277,10 @@ export class SaleService {
 
   getAllPurchase(): Observable<Purchase[]> {
     return this.http.get<Purchase[]>(`${this.baseUrl}/purchase`);
+  }
+
+  getPurchaseById(id: number): Observable<Purchase> {
+    return this.http.get<Purchase>(`${this.baseUrl}/purchase/${id}`);
   }
 
   createPurchase(purchase: Purchase): Observable<Purchase> {
@@ -439,6 +444,10 @@ export class SaleService {
 
   getAllOrdersDetails(): Observable<OrderDetails[]> {
     return this.http.get<OrderDetails[]>(`${this.baseUrl}/orders`);
+  }
+// get order details by id
+  getOrderDetailsById(id: number): Observable<OrderDetails> {
+    return this.http.get<OrderDetails>(`${this.baseUrl}/orders/${id}`);
   }
 
   createOrdersDetails(order: OrderDetails): Observable<OrderDetails> {

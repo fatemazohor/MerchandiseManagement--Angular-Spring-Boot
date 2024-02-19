@@ -135,7 +135,7 @@ export class PurchaseComponent implements OnInit{
   onSubmit(){
     if(this.purchaseForm.valid){
       
-      const purchaseData:Vendors=this.purchaseForm.value;
+      const purchaseData:Purchase=this.purchaseForm.value;
       this.service.createPurchase(purchaseData).subscribe({
         next:res=>{
           console.log("Purchase saved",res)
@@ -151,20 +151,40 @@ export class PurchaseComponent implements OnInit{
     }
   }
 
+  //Purchase By Id
+  private findByPurchase(id:number){
+    this.service.getPurchaseById(id).subscribe({
+      next:res=>{
+        this.purchaseForm.patchValue(res);
+        this.purchaseForm.controls['statusId'].patchValue(res.statusId?.name);
+        this.purchaseForm.controls['wareHouseId'].patchValue(res.wareHouseId?.name);
+        this.purchaseForm.controls['vendorsId'].patchValue(res.vendorsId?.company);
+        this.purchaseForm.controls['rawMaterialId'].patchValue(res.rawMaterialId?.name);
+        
+      },
+      error:err=>{
+        console.log(err);
+      }
+    })
+    
+  }
   // set data on form to update
 onEditById(purchaseRow:any){
   this.menuType=false;
   this.purchaseModel.id=purchaseRow.id;
-  this.purchaseForm.controls['purchaseDate'].setValue(purchaseRow.purchaseDate)
-  this.purchaseForm.controls['deliveryDate'].setValue(purchaseRow.deliveryDate)
-  this.purchaseForm.controls['price'].setValue(purchaseRow.price)
-  this.purchaseForm.controls['quantity'].setValue(purchaseRow.quantity)
-  this.purchaseForm.controls['paid'].setValue(purchaseRow.paid)
-  this.purchaseForm.controls['total'].setValue(purchaseRow.total)
-  this.purchaseForm.controls['vendorId'].setValue(purchaseRow.vendorId.name)
-  this.purchaseForm.controls['wareHouseId'].setValue(purchaseRow.wareHouseId.name)
-  this.purchaseForm.controls['statusId'].setValue(purchaseRow.statusId.name)
-  this.purchaseForm.controls['rawMaterialId'].setValue(purchaseRow.rawMaterialId.name)
+  this.findByPurchase(purchaseRow.id);
+  
+  // this.purchaseForm.controls['statusId'].setValue(purchaseRow.statusId.name)
+  // this.purchaseForm.controls['rawMaterialId'].setValue(purchaseRow.rawMaterialId.name)
+  // this.purchaseForm.controls['purchaseDate'].setValue(purchaseRow.purchaseDate)
+  // this.purchaseForm.controls['deliveryDate'].setValue(purchaseRow.deliveryDate)
+  // this.purchaseForm.controls['price'].setValue(purchaseRow.price)
+  // this.purchaseForm.controls['quantity'].setValue(purchaseRow.quantity)
+  // this.purchaseForm.controls['paid'].setValue(purchaseRow.paid)
+  // this.purchaseForm.controls['total'].setValue(purchaseRow.total)
+  // this.purchaseForm.controls['vendorId'].setValue(purchaseRow.vendorId.company)
+  // this.purchaseForm.controls['wareHouseId'].setValue(purchaseRow.wareHouseId.name)
+  
 }
 
 //update purchase data

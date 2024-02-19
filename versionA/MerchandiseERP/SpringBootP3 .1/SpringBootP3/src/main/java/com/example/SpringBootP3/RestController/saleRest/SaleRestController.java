@@ -20,6 +20,7 @@ import com.example.SpringBootP3.repository.sale.*;
 import com.example.SpringBootP3.service.Stock.StockUpdateService;
 import lombok.RequiredArgsConstructor;
 
+import org.hibernate.query.Order;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -862,7 +863,7 @@ public class SaleRestController {
 
         //Order Details set
 //        String order = String.valueOf(material.getOrderDetailsId().getId());
-        if(material.getId() != null){
+        if (material.getId() != null) {
             int orderId = material.getOrderDetailsId().getId();
             boolean exist1 = orderDetailsRepo.findById(orderId).isPresent();
             OrderDetails orderDetails;
@@ -876,9 +877,9 @@ public class SaleRestController {
 //            System.out.println("Order id don't exist");
 //            material.setOrderDetailsId(null);
 //            }
-        } else{
-        System.out.println("material subtract for damage or other purpose ");
-        material.setOrderDetailsId(null);
+        } else {
+            System.out.println("material subtract for damage or other purpose ");
+            material.setOrderDetailsId(null);
         }
 
         //stock subtract
@@ -915,7 +916,7 @@ public class SaleRestController {
             material1.setStockAdjustmentId(stockAdjustment);
 
             //Order Details set
-            if(material.getId() != null){
+            if (material.getId() != null) {
                 int orderId = material.getOrderDetailsId().getId();
                 boolean exist1 = orderDetailsRepo.findById(orderId).isPresent();
                 OrderDetails orderDetails;
@@ -932,7 +933,6 @@ public class SaleRestController {
             material1.setOrderDetailsId(null);
 
 
-
             adjustmentMaterialRepo.save(material1);
             return ResponseEntity.ok(material1);
         }
@@ -940,9 +940,22 @@ public class SaleRestController {
     }
 
     // api Purchase start
+
     @GetMapping("/purchase")
     private List<Purchase> stockPurchaseList() {
         return purchaseRepo.findAll();
+    }
+
+    @GetMapping("/purchase/{id}")
+    private ResponseEntity<Purchase> stockPurchaseById(@PathVariable("id") int id) {
+
+        boolean exist = purchaseRepo.findById(id).isPresent();
+
+        if (exist) {
+            Purchase purchase = purchaseRepo.findById(id).get();
+            return ResponseEntity.ok(purchase);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/purchase/{id}")
@@ -974,10 +987,11 @@ public class SaleRestController {
         String warehouse = purchase.getWareHouseId().getName();
         WareHouse house = houseRepo.findByName(warehouse);
         purchase.setWareHouseId(house);
+        //stock add start
         double myquantity = purchase.getQuantity();
         int myid = purchase.getRawMaterialId().getId();
         stockUpdateService.addStockData(myid, myquantity);
-
+        //stock add end
         purchaseRepo.save(purchase);
         return ResponseEntity.ok(purchase);
     }
@@ -1302,6 +1316,18 @@ public class SaleRestController {
     @GetMapping("/orders")
     private List<OrderDetails> orderDetailsList() {
         return orderDetailsRepo.findAll();
+    }
+    
+    // get order details by id
+    @GetMapping("/orders/{id}")
+    private ResponseEntity<OrderDetails> orderDetailsById(@PathVariable("id") int id) {
+
+        boolean exist = orderDetailsRepo.findById(id).isPresent();
+        if (exist) {
+            OrderDetails orderDetails = orderDetailsRepo.findById(id).get();
+            return ResponseEntity.ok(orderDetails);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/orders/{id}")

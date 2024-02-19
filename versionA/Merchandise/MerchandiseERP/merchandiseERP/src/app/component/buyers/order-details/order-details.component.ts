@@ -152,21 +152,39 @@ export class OrderDetailsComponent implements OnInit{
     }
   }
 
+  //OrderDetails By Id
+  private findByOrderDetails(id:number){
+    this.service.getOrderDetailsById(id).subscribe({
+      next:res=>{
+        this.orderForm.patchValue(res);
+        this.orderForm.controls['styleId'].patchValue(res.styleId?.code);
+        this.orderForm.controls['buyersId'].patchValue(res.buyersId?.organization);
+        this.orderForm.controls['orStatusId'].patchValue(res.orStatusId?.name);
+        
+        
+      },
+      error:err=>{
+        console.log(err);
+      }
+    })
+  }
+
   // set data on form to update
   onEditById(orderRow: any) {
     this.menuType = false;
     this.orderModel.id = orderRow.id;
-    this.orderForm.controls['oderDate'].setValue(orderRow.oderDate)
-    this.orderForm.controls['deliveryDate'].setValue(orderRow.deliveryDate)
-    this.orderForm.controls['shippingAddress'].setValue(orderRow.shippingAddress)
-    this.orderForm.controls['samount'].setValue(orderRow.samount)
-    this.orderForm.controls['lamount'].setValue(orderRow.lamount)
-    this.orderForm.controls['mamount'].setValue(orderRow.mamount)
-    this.orderForm.controls['orStatusId'].setValue(orderRow.orStatusId.name)
-    this.orderForm.controls['buyersId'].setValue(orderRow.buyersId?.organization)
-    this.orderForm.controls['styleId'].setValue(orderRow.styleId?.code)
-    this.orderForm.controls['totalAmount'].setValue(orderRow.totalAmount)
-    this.orderForm.controls['paid'].setValue(orderRow.paid)
+    this.findByOrderDetails(orderRow.id)
+    // this.orderForm.controls['oderDate'].setValue(orderRow.oderDate)
+    // this.orderForm.controls['deliveryDate'].setValue(orderRow.deliveryDate)
+    // this.orderForm.controls['shippingAddress'].setValue(orderRow.shippingAddress)
+    // this.orderForm.controls['samount'].setValue(orderRow.samount)
+    // this.orderForm.controls['lamount'].setValue(orderRow.lamount)
+    // this.orderForm.controls['mamount'].setValue(orderRow.mamount)
+    // this.orderForm.controls['orStatusId'].setValue(orderRow.orStatusId.name)
+    // this.orderForm.controls['buyersId'].setValue(orderRow.buyersId?.organization)
+    // this.orderForm.controls['styleId'].setValue(orderRow.styleId?.code)
+    // this.orderForm.controls['totalAmount'].setValue(orderRow.totalAmount)
+    // this.orderForm.controls['paid'].setValue(orderRow.paid)
     
   }
 
@@ -204,14 +222,18 @@ export class OrderDetailsComponent implements OnInit{
   }
 
   emptybox(){
-    // let priceS=parseFloat(document.getElementById('txtPrceS').value)||0
-    // var sprice = parseFloat(document.getElementById('txtPriceS').value) || 0;
-    // let priceM=document.getElementById('txtPriceM').
-    // let priceL=document.getElementById('txtPriceL')
-    // if(priceL != null && priceS !=null && priceM !=null){
-      
-    //   console.log(priceS+priceM+priceL);
-    // }
+    let reset:number=0;
+    this.orderForm.controls['samount'].setValue(reset);
+    this.orderForm.controls['mamount'].setValue(reset);
+    this.orderForm.controls['lamount'].setValue(reset);
+    this.orderForm.controls['smallPrice'].setValue(reset);
+    this.orderForm.controls['mediumPrice'].setValue(reset);
+    this.orderForm.controls['largePrice'].setValue(reset);
+    this.orderForm.controls['subTotal'].setValue(reset);
+    this.orderForm.controls['vat'].setValue(reset);
+    this.orderForm.controls['paid'].setValue(reset);
+    this.orderForm.controls['due'].setValue(reset);
+    this.orderForm.controls['totalAmount'].setValue(reset);
     
   }
   totalbox(){

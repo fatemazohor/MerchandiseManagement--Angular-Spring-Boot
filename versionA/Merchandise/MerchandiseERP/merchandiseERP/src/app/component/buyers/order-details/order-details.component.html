@@ -67,7 +67,7 @@
     <!-- Entry Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">{{title2}}</h5>
@@ -76,198 +76,259 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div>
+                        <section class="section">
+                            <div class="section-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-header bg-light">
 
-                    <form [formGroup]="orderForm">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <!-- style code dropdown -->
-                                <div class="mb-3">
-                                    <label class="form-label">Style Code</label>
-                                    <select id="styleId" class="form-select" formControlName="styleId">
-                                        <option *ngFor="let sty of style" [value]="sty.code">{{sty.code}}</option>
-                                    </select>
-                                </div>
-                                <!-- buyer code dropdown -->
-                                <div class="mb-3">
-                                    <label class="form-label">Buyer</label>
-                                    <select id="buyersId" class="form-select" formControlName="buyersId">
-                                        <option *ngFor="let buy of buyer" [value]="buy.organization">
-                                            {{buy.organization}}
-                                        </option>
-                                    </select>
-                                </div>
+                                            </div>
+                                            <div class="text-center mt-3">
+                                                <h3 class="color-primary text-center mb-0">TechPacker</h3>
+                                                <h4 class="">Order Details</h4>
+                                            </div>
+                                            <hr>
 
-                                <div class="mb-3">
-                                    <label class="form-label">Address</label>
-                                    <input type="text" class="form-control" formControlName="shippingAddress">
-                                </div>
 
+                                            <form [formGroup]="orderForm">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-4 col-md-6">
+                                                            <!-- style code dropdown -->
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Style Code</label>
+                                                                <select id="styleId" class="form-select"
+                                                                    formControlName="styleId">
+                                                                    <option *ngFor="let sty of style"
+                                                                        [value]="sty.code">
+                                                                        {{sty.code}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-6">
+
+                                                            <!-- buyer code dropdown -->
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Buyer</label>
+                                                                <select id="buyersId" class="form-select"
+                                                                    formControlName="buyersId">
+                                                                    <option *ngFor="let buy of buyer"
+                                                                        [value]="buy.organization">
+                                                                        {{buy.organization}}
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-6">
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Address</label>
+                                                                <input type="text" class="form-control"
+                                                                    formControlName="shippingAddress">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-6">
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Order date</label>
+                                                                <input type="date" class="form-control"
+                                                                    formControlName="oderDate">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-6">
+                                                            <div class="mb-3">
+                                                                <label class="form-label">DeliveryDate date</label>
+                                                                <input type="date" class="form-control"
+                                                                    formControlName="deliveryDate">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-6">
+                                                            <!-- Order Status dropdown -->
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Status</label>
+                                                                <select id="orStatusId" class="form-select"
+                                                                    formControlName="orStatusId">
+                                                                    <option *ngFor="let st of status" [value]="st.name">
+                                                                        {{st.name}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <hr>
+                                                    <div class="p-3 bg-light border rounded quantity mb-2"
+                                                        >
+                                                        <h5 class="color-primary">Add Items Details</h5>
+                                                        <div class="row">
+                                                            <!-- <div class="mb-3 col-md-3">
+                                                                <label class="form-label">Small </label>
+
+                                                            </div> -->
+                                                            <div class="mb-3 col-md-6">
+                                                                <label class="form-label">Small Qty</label>
+                                                                <input type="text" class="form-control"
+                                                                    formControlName="samount">
+                                                            </div>
+                                                            <div class="mb-3 col-md-6">
+                                                                <label class="form-label">Price </label>
+                                                                <!-- <input type="text" class="form-control" id="txtPriceS" [(value)]="smallQuantity"> -->
+                                                                <input type="text" class="form-control" id="txtPriceS"
+                                                                    (change)="onChange($event)"
+                                                                    formControlName="smallPrice">
+                                                            </div>
+                                                            <!-- <div class="mb-3 col-md-3">
+                                                                <label class="form-label">Medium</label>
+
+                                                            </div> -->
+                                                            <div class="mb-3 col-md-6">
+                                                                <label class="form-label">Medium Qty</label>
+                                                                <input type="text" class="form-control"
+                                                                    formControlName="mamount">
+                                                            </div>
+                                                            <div class="mb-3 col-md-6">
+                                                                <label class="form-label">Price </label>
+                                                                <!-- <input type="text" class="form-control" id="txtPriceM" [(value)]="mediumQuantity"> -->
+                                                                <input type="text" class="form-control" id="txtPriceM"
+                                                                    formControlName="mediumPrice">
+                                                            </div>
+
+                                                            <!-- <div class="mb-3 col-md-3">
+                                                                <label class="form-label">Large</label>
+
+                                                            </div> -->
+                                                            <div class="mb-3 col-md-6">
+                                                                <label class="form-label">Large Qty</label>
+                                                                <input type="text" class="form-control"
+                                                                    formControlName="lamount">
+                                                            </div>
+                                                            <div class="mb-3 col-md-6">
+                                                                <label class="form-label">Price </label>
+                                                                <!-- <input type="text" class="form-control" id="txtPriceL" [(value)]="largeQuantity"> -->
+                                                                <input type="text" class="form-control" id="txtPriceL"
+                                                                    placeholder="0" #txtPriceL
+                                                                    formControlName="largePrice">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="btn-group">
+                                                            <button type="submit" (click)="emptybox()"
+                                                                class="btn btn-danger">Empty</button>
+                                                            <button type="submit" (click)="totalbox()"
+                                                                class="btn btn-primary">Calculate</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row py-3">
+                                                        <div class="col-sm-6">
+                                                            <div class="mb-2">
+                                                                <label class="form-label">Remarks</label>
+                                                                <input type='text' class='form-control'>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="col-lg-6 order-lg-2 order-1 ml-auto bg-light border rounded">
+                                                            <div class="my-3">
+                                                                <label class="form-label">Subtotal</label>
+                                                                <!-- <input type="text" class="form-control" [(value)]="subTotal"> -->
+                                                                <input type="text"
+                                                                    class="form-control form-control-sm text-right"
+                                                                    formControlName="subTotal" readonly>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Vat</label>
+                                                                <input type="text"
+                                                                    class="form-control form-control-sm text-right"
+                                                                    formControlName="vat" (change)="getValue()">
+                                                                <!-- <input type="text" class="form-control" [(value)]="vat"> -->
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Paid</label>
+                                                                <input type="text"
+                                                                    class="form-control form-control-sm text-right"
+                                                                    formControlName="paid" (keyup)="getDue()">
+                                                                <!-- <input type="text" class="form-control" [(value)]="paid"> -->
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Due</label>
+                                                                <input type="text"
+                                                                    class="form-control form-control-sm text-right text-danger"
+                                                                    formControlName="due" readonly placeholder="0">
+                                                                <!-- <input type="text" class="form-control" [(value)]="due"> -->
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Total</label>
+                                                                <input type="text"
+                                                                    class="form-control form-control-sm text-right"
+                                                                    formControlName="totalAmount">
+                                                                <!-- <input type="text" class="form-control" [(value)]="total"> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Order date</label>
-                                    <input type="date" class="form-control" formControlName="oderDate">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">DeliveryDate date</label>
-                                    <input type="date" class="form-control" formControlName="deliveryDate">
-                                </div>
-                                <!-- Order Status dropdown -->
-
-                                <div class="mb-3">
-                                    <label class="form-label">Status</label>
-                                    <select id="orStatusId" class="form-select" formControlName="orStatusId">
-                                        <option *ngFor="let st of status" [value]="st.name">{{st.name}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <hr>
-                        <div class="quantity" *ngIf=" menuType==true">
-                            <h5>Add Items Details</h5>
-                            <div class="row">
-                                <div class="mb-3 col-md-3">
-                                    <label class="form-label">Small </label>
-
-                                </div>
-                                <div class="mb-3 col-md-5">
-                                    <label class="form-label">Small Qty</label>
-                                    <input type="text" class="form-control" formControlName="samount">
-                                </div>
-                                <div class="mb-3 col-md-4">
-                                    <label class="form-label">Price </label>
-                                    <!-- <input type="text" class="form-control" id="txtPriceS" [(value)]="smallQuantity"> -->
-                                    <input type="text" class="form-control" id="txtPriceS" 
-                                     (change)="onChange($event)" formControlName="smallPrice">
-                                </div>
-                                <div class="mb-3 col-md-3">
-                                    <label class="form-label">Medium</label>
-
-                                </div>
-                                <div class="mb-3 col-md-5">
-                                    <label class="form-label">Medium Qty</label>
-                                    <input type="text" class="form-control" formControlName="mamount">
-                                </div>
-                                <div class="mb-3 col-md-4">
-                                    <label class="form-label">Price </label>
-                                    <!-- <input type="text" class="form-control" id="txtPriceM" [(value)]="mediumQuantity"> -->
-                                    <input type="text" class="form-control" id="txtPriceM" formControlName="mediumPrice">
-                                </div>
-
-                                <div class="mb-3 col-md-3">
-                                    <label class="form-label">Large</label>
-
-                                </div>
-                                <div class="mb-3 col-md-5">
-                                    <label class="form-label">Large Qty</label>
-                                    <input type="text" class="form-control" formControlName="lamount">
-                                </div>
-                                <div class="mb-3 col-md-4">
-                                    <label class="form-label">Price </label>
-                                    <!-- <input type="text" class="form-control" id="txtPriceL" [(value)]="largeQuantity"> -->
-                                    <input type="text" class="form-control" id="txtPriceL" placeholder="0" 
-                                    #txtPriceL  formControlName="largePrice">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="btn-group">
-                                <button type="submit" (click)="emptybox()" class="btn btn-danger">Empty</button>
-                                <button type="submit" (click)="totalbox()" class="btn btn-primary">Calculate</button>
-                            </div>
-                        </div>
-                        <div class="row py-3">
-                            <div class="col-sm-6">
-                                <div>
-                                    <label class="form-label">Remarks</label>
-                                    <textarea></textarea>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Subtotal</label>
-                                    <!-- <input type="text" class="form-control" [(value)]="subTotal"> -->
-                                    <input type="text" class="form-control" formControlName="subTotal" readonly>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Vat</label>
-                                    <input type="text" class="form-control" formControlName="vat" (change)="getValue()">
-                                    <!-- <input type="text" class="form-control" [(value)]="vat"> -->
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Paid</label>
-                                    <input type="number" class="form-control" formControlName="paid" (keyup)="getDue()">
-                                    <!-- <input type="text" class="form-control" [(value)]="paid"> -->
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Due</label>
-                                    <input type="text" class="form-control" formControlName="due" readonly>
-                                    <!-- <input type="text" class="form-control" [(value)]="due"> -->
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Total</label>
-                                    <input type="number" class="form-control" formControlName="totalAmount">
-                                    <!-- <input type="text" class="form-control" [(value)]="total"> -->
-                                </div>
-                            </div>
-                        </div>
-
-                    </form>
-
-                </div>
-                <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                    <!-- <button type="submit"  class="btn btn-success"
+                        </section>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                        <!-- <button type="submit"  class="btn btn-success"
           [disabled]="vendorForm.invalid" (click)="onSubmit()" data-bs-dismiss="modal">Submit</button>
           
               <button type="submit"  class="btn btn-warning"
               [disabled]="vendorForm.invalid" (click)="editVendors()" data-bs-dismiss="modal">Update</button> -->
 
-                    <div class="btn-group">
-                        <div class="px-2">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                        <div *ngIf=" menuType == true">
-                            <button type="submit" class="btn btn-success" [disabled]="orderForm.invalid"
-                                (click)="onSubmit()" data-bs-dismiss="modal">Submit</button>
-                        </div>
-                        <div *ngIf="menuType == false">
-                            <button type="submit" class="btn btn-warning" [disabled]="orderForm.invalid"
-                                (click)="editOrdersDetails()" data-bs-dismiss="modal">Update</button>
+                        <div class="btn-group">
+                            <div class="px-2">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                            <div *ngIf=" menuType == true">
+                                <button type="submit" class="btn btn-success" [disabled]="orderForm.invalid"
+                                    (click)="onSubmit()" data-bs-dismiss="modal">Submit</button>
+                            </div>
+                            <div *ngIf="menuType == false">
+                                <button type="submit" class="btn btn-warning" [disabled]="orderForm.invalid"
+                                    (click)="editOrdersDetails()" data-bs-dismiss="modal">Update</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <!-- Edit Modal -->
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
-        Launch demo modal
-    </button>
+        <!-- Edit Modal -->
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
+            Launch demo modal
+        </button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
