@@ -1317,7 +1317,7 @@ public class SaleRestController {
     private List<OrderDetails> orderDetailsList() {
         return orderDetailsRepo.findAll();
     }
-    
+
     // get order details by id
     @GetMapping("/orders/{id}")
     private ResponseEntity<OrderDetails> orderDetailsById(@PathVariable("id") int id) {

@@ -47,7 +47,7 @@ export class PurchaseComponent implements OnInit{
       price:['',Validators.required],
       quantity:['',Validators.required],
       paid:['',Validators.required],
-      total:['',Validators.required],
+      total:[''],
       
       vendorsId:['',Validators.required],
       statusId:['',Validators.required],
