@@ -34,6 +34,8 @@ import { RawMaterialComponent } from './component/sale/raw-material/raw-material
 import { MeasurementAttachmentComponent } from './component/sale/measurement-attachment/measurement-attachment.component';
 import { StyleAttachmentComponent } from './component/sale/style-attachment/style-attachment.component';
 import { StocksComponent } from './component/inventory/stocks/stocks.component';
+import { StyleMaterialQtyComponent } from './component/sale/style-material-qty/style-material-qty.component';
+import { AdjustmentMaterialComponent } from './component/inventory/adjustment-material/adjustment-material.component';
 
 
 @NgModule({
@@ -66,7 +68,9 @@ import { StocksComponent } from './component/inventory/stocks/stocks.component';
     RawMaterialComponent,
     MeasurementAttachmentComponent,
     StyleAttachmentComponent,
-    StocksComponent
+    StocksComponent,
+    StyleMaterialQtyComponent,
+    AdjustmentMaterialComponent
     
   ],
   imports: [

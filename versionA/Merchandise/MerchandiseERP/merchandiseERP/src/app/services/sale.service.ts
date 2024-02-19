@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Buyers, Department, LaborCost, MeasuremantAttachment, MeasuremntDetails, OrderDetails, OrderStatus, PurchaseStatus, RawMaterial, RawMaterialCat, Size, Stock, StockAdjustment, Style, StyleAttachment, StyleCategories, Task, Trim, UOM, Vendors, Warehouse } from '../model/sale.model';
+import { AdjustmentMaterail, Buyers, Department, LaborCost, MeasuremantAttachment, MeasuremntDetails, OrderDetails, OrderStatus, Purchase, PurchaseStatus, RawMaterial, RawMaterialCat, Size, Stock, StockAdjustment, Style, StyleAttachment, StyleCategories, StyleMaterialQty, Task, Trim, UOM, Vendors, Warehouse } from '../model/sale.model';
 import { Observable } from 'rxjs';
 
 
@@ -181,6 +181,21 @@ export class SaleService {
   
 
   // api Style Material Quantity start
+  getAllStyleMaterialQty(): Observable<StyleMaterialQty[]> {
+    return this.http.get<StyleMaterialQty[]>(`${this.baseUrl}/style_material_qty`);
+  }
+
+  createStyleMaterialQty(qty: StyleMaterialQty): Observable<StyleMaterialQty> {
+    return this.http.post<StyleMaterialQty>(`${this.baseUrl}/style_material_qty`, qty);
+  }
+
+  updateStyleMaterialQty(id: number, qty: StyleMaterialQty): Observable<StyleMaterialQty> {
+    return this.http.put<StyleMaterialQty>(`${this.baseUrl}/style_material_qty/${id}`, qty)
+  }
+
+  deleteStyleMaterialQty(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/style_material_qty/${id}`)
+  }
 
   
   
@@ -241,7 +256,39 @@ export class SaleService {
   }
 
   // api Adjustment Material start
+
+  getAllAdjustmentMaterial(): Observable<AdjustmentMaterail[]> {
+    return this.http.get<AdjustmentMaterail[]>(`${this.baseUrl}/adjustment_material`);
+  }
+
+  createAdjustmentMaterial(adjust: AdjustmentMaterail): Observable<AdjustmentMaterail> {
+    return this.http.post<AdjustmentMaterail>(`${this.baseUrl}/adjustment_material`, adjust);
+  }
+
+  updateAdjustmentMaterial(id: number, adjust: AdjustmentMaterail): Observable<AdjustmentMaterail> {
+    return this.http.put<AdjustmentMaterail>(`${this.baseUrl}/adjustment_material/${id}`, adjust)
+  }
+
+  deleteAdjustmentMaterial(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/adjustment_material/${id}`)
+  }
   // api Purchase start
+
+  getAllPurchase(): Observable<Purchase[]> {
+    return this.http.get<Purchase[]>(`${this.baseUrl}/purchase`);
+  }
+
+  createPurchase(purchase: Purchase): Observable<Purchase> {
+    return this.http.post<Purchase>(`${this.baseUrl}/purchase`, purchase);
+  }
+
+  updatePurchase(id: number, purchase: Purchase): Observable<Purchase> {
+    return this.http.put<Purchase>(`${this.baseUrl}/purchase/${id}`, purchase)
+  }
+
+  deletePurchase(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/purchase/${id}`)
+  }
   // api Stock start
   getAllStock(): Observable<Stock[]> {
     return this.http.get<Stock[]>(`${this.baseUrl}/stock`);

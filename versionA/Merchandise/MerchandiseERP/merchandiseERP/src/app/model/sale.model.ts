@@ -262,42 +262,7 @@ export class AdjustmentMaterail {
       address: string
     }
   }
-  orderDetailsId?: {
-    id: number,
-    oderDate: Date,
-    deliveryDate: Date,
-    shippingAddress: string,
-    orderUniId: string,
-    totalAmount: number,
-    paid: number,
-    styleId: {
-      id: number,
-      code: string,
-      description: string,
-      categoriesId: {
-        id: number,
-        name: string
-      },
-      createdAt: Date,
-      updatedAt: Date
-    },
-    buyersId: {
-      id: number,
-      organization: string,
-      contactPerson: string,
-      phone: string,
-      email: string,
-      address: string,
-      country: string
-    },
-    orStatusId: {
-      id: number,
-      name: string
-    },
-    samount?: number,
-    lamount?: number,
-    mamount?: number
-  }
+  
 }
 //  Purchase start
 export class Purchase {

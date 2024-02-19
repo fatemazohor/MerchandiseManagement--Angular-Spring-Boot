@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class StyleMaterialQuantity {
+public class  StyleMaterialQuantity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

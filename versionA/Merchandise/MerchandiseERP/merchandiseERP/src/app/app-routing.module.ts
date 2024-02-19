@@ -5,7 +5,7 @@ import { ControlWrapperComponent } from './control-wrapper/control-wrapper.compo
 import { StyleCategoriesComponent } from './component/sale/style-categories/style-categories.component';
 import { SizeComponent } from './component/sale/size/size.component';
 import { TrimComponent } from './component/sale/trim/trim.component';
-import { Department, OrderStatus, RawMaterialCat, StockAdjustment } from './model/sale.model';
+import { Department, OrderStatus, RawMaterialCat, StockAdjustment, StyleMaterialQty } from './model/sale.model';
 import { StyleComponent } from './component/sale/style/style.component';
 import { RawMaterialCategoriesComponent } from './component/sale/raw-material-categories/raw-material-categories.component';
 import { MeasurementDetailsComponent } from './component/sale/measurement-details/measurement-details.component';
@@ -24,6 +24,8 @@ import { RawMaterialComponent } from './component/sale/raw-material/raw-material
 import { MeasurementAttachmentComponent } from './component/sale/measurement-attachment/measurement-attachment.component';
 import { StyleAttachmentComponent } from './component/sale/style-attachment/style-attachment.component';
 import { StocksComponent } from './component/inventory/stocks/stocks.component';
+import { StyleMaterialQtyComponent } from './component/sale/style-material-qty/style-material-qty.component';
+import { AdjustmentMaterialComponent } from './component/inventory/adjustment-material/adjustment-material.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent},
@@ -36,6 +38,7 @@ const routes: Routes = [
   { path: "style-attachment", component:StyleAttachmentComponent},
   { path: "measurement-details", component:MeasurementDetailsComponent},
   { path: "measurement-attachment", component:MeasurementAttachmentComponent},
+  { path: "style-material-qty", component:StyleMaterialQtyComponent},
 
   //----------------------------------- Other------------------------------------------------------
 
@@ -48,6 +51,7 @@ const routes: Routes = [
   
   { path: "warehouse", component:WarehouseComponent},
   { path: "purchase_status", component:PurchaseStatusComponent},
+  { path: "adjustment_material", component:AdjustmentMaterialComponent},
   { path: "stock_adjustment", component:StockAdjustmentComponent},
   { path: "stock", component:StocksComponent},
 

@@ -48,8 +48,8 @@ export class StyleCategoriesComponent implements OnInit{
     }
   })
  }
+ 
 //get all style categories end
-
 onSubmit(){
   if(this.styleCatForm.valid){
     const styleCatData:StyleCategories =this.styleCatForm.value;

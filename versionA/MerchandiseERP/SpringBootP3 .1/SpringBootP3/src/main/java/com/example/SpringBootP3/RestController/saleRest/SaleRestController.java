@@ -58,7 +58,7 @@ public class SaleRestController {
     private final IOrderStatus statusRepo;
     private final IOrderDetails orderDetailsRepo;
     private final IMeasurementAttachmentRepo measurementAttachmentRepo;
-    private final IStyleAttachmentRepo styleAttachmentRepo ;
+    private final IStyleAttachmentRepo styleAttachmentRepo;
     private final IPurchase purchaseRepo;
     private final StockUpdateService stockUpdateService;
 
@@ -369,24 +369,24 @@ public class SaleRestController {
     //style image display display image
     @GetMapping("/style_attachment/display")
     public ResponseEntity<byte[]> getStyleAttachment(@RequestParam("id") int id)
-            throws IOException{
-        Optional<StyleAttachment> styleAttachment=styleAttachmentRepo.findById(id);
-        if (styleAttachment.isPresent()){
-            StyleAttachment styleImage=styleAttachment.get();
+            throws IOException {
+        Optional<StyleAttachment> styleAttachment = styleAttachmentRepo.findById(id);
+        if (styleAttachment.isPresent()) {
+            StyleAttachment styleImage = styleAttachment.get();
             //select directory
-            String uploadDirectory="src/main/resources/static/assets/image/style_att/";
-            String fileName=styleImage.getAttachment();
-            String filePath=Path.of(uploadDirectory,fileName).toString();
+            String uploadDirectory = "src/main/resources/static/assets/image/style_att/";
+            String fileName = styleImage.getAttachment();
+            String filePath = Path.of(uploadDirectory, fileName).toString();
             try {
-                Path path=Path.of(filePath);
-                byte[] imageByte=Files.readAllBytes(path);
+                Path path = Path.of(filePath);
+                byte[] imageByte = Files.readAllBytes(path);
                 return ResponseEntity
                         .ok()
                         .contentType(MediaType.IMAGE_JPEG)
-                        .header(HttpHeaders.CONTENT_DISPOSITION,"inline + filename="
-                                +path.getFileName().toString())
+                        .header(HttpHeaders.CONTENT_DISPOSITION, "inline + filename="
+                                + path.getFileName().toString())
                         .body(imageByte);
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
             }
@@ -415,12 +415,11 @@ public class SaleRestController {
 
     @PutMapping("/style_attachment/{id}")
     public ResponseEntity<StyleAttachment> styleAttachmentUpdate(@RequestBody StyleAttachment attachment,
-                                                                             @PathVariable("id") int id) {
+                                                                 @PathVariable("id") int id) {
         boolean exist = styleAttachmentRepo.findById(id).isPresent();
         if (exist) {
 
             StyleAttachment attachment1 = styleAttachmentRepo.findById(id).get();
-
 
 
             //style code set
@@ -492,24 +491,24 @@ public class SaleRestController {
     //measurement attachment display image
     @GetMapping("/measurement_attachment/display")
     public ResponseEntity<byte[]> getMeasurementAttachment(@RequestParam("id") int id)
-            throws IOException{
-        Optional<MeasurementAttachment> mattachment=measurementAttachmentRepo.findById(id);
-        if (mattachment.isPresent()){
-            MeasurementAttachment attachmentImage=mattachment.get();
+            throws IOException {
+        Optional<MeasurementAttachment> mattachment = measurementAttachmentRepo.findById(id);
+        if (mattachment.isPresent()) {
+            MeasurementAttachment attachmentImage = mattachment.get();
             //select directory
-            String uploadDirectory="src/main/resources/static/assets/image/measurement_att/";
-            String fileName=attachmentImage.getAttachment();
-            String filePath=Path.of(uploadDirectory,fileName).toString();
+            String uploadDirectory = "src/main/resources/static/assets/image/measurement_att/";
+            String fileName = attachmentImage.getAttachment();
+            String filePath = Path.of(uploadDirectory, fileName).toString();
             try {
-                Path path=Path.of(filePath);
-                byte[] imageByte=Files.readAllBytes(path);
+                Path path = Path.of(filePath);
+                byte[] imageByte = Files.readAllBytes(path);
                 return ResponseEntity
                         .ok()
                         .contentType(MediaType.IMAGE_JPEG)
-                        .header(HttpHeaders.CONTENT_DISPOSITION,"inline + filename="
-                                +path.getFileName().toString())
+                        .header(HttpHeaders.CONTENT_DISPOSITION, "inline + filename="
+                                + path.getFileName().toString())
                         .body(imageByte);
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
             }
@@ -541,7 +540,7 @@ public class SaleRestController {
 
     @PutMapping("/measurement_attachment/{id}")
     public ResponseEntity<MeasurementAttachment> measurementAttachmentUpdate(@RequestBody MeasurementAttachment attachment,
-                                             @PathVariable("id") int id) {
+                                                                             @PathVariable("id") int id) {
         boolean exist = measurementAttachmentRepo.findById(id).isPresent();
         if (exist) {
 
@@ -562,9 +561,6 @@ public class SaleRestController {
     }
 
 
-
-
-
     // api Raw Material start
 
     @GetMapping("/raw_material")
@@ -576,23 +572,23 @@ public class SaleRestController {
     @GetMapping("/raw_material/display")
     public ResponseEntity<byte[]> getRawMaterialAttachment(@RequestParam("id") int id)
             throws IOException {
-        Optional<RawMaterial> rawAttachment=rawMaterialRepo.findById(id);
-        if (rawAttachment.isPresent()){
-            RawMaterial rawImage=rawAttachment.get();
+        Optional<RawMaterial> rawAttachment = rawMaterialRepo.findById(id);
+        if (rawAttachment.isPresent()) {
+            RawMaterial rawImage = rawAttachment.get();
             //select directory
-            String uploadDirectory="src/main/resources/static/assets/image/material_att/";
-            String fileName=rawImage.getAttachment();
-            String filePath= Path.of(uploadDirectory,fileName).toString();
+            String uploadDirectory = "src/main/resources/static/assets/image/material_att/";
+            String fileName = rawImage.getAttachment();
+            String filePath = Path.of(uploadDirectory, fileName).toString();
             try {
-                Path path=Path.of(filePath);
-                byte[] imageByte= Files.readAllBytes(path);
+                Path path = Path.of(filePath);
+                byte[] imageByte = Files.readAllBytes(path);
                 return ResponseEntity
                         .ok()
                         .contentType(MediaType.IMAGE_JPEG)
-                        .header(HttpHeaders.CONTENT_DISPOSITION,"inline + filename="
-                                +path.getFileName().toString())
+                        .header(HttpHeaders.CONTENT_DISPOSITION, "inline + filename="
+                                + path.getFileName().toString())
                         .body(imageByte);
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
             }
@@ -622,7 +618,7 @@ public class SaleRestController {
         RawMaterialCat category = materialCatRepo.findByName(rawCategory);
         rawMaterial.setRawMaterialCatId(category);
         //Vendor set
-        String  vendors = rawMaterial.getVendorId().getCompany();
+        String vendors = rawMaterial.getVendorId().getCompany();
         Vendors company = vendorRepo.findByCompany(vendors);
         rawMaterial.setVendorId(company);
         //UOM set
@@ -651,7 +647,7 @@ public class SaleRestController {
             RawMaterialCat category = materialCatRepo.findByName(rawCategory);
             rawMaterial1.setRawMaterialCatId(category);
             //Vendor set
-            String  vendors = rawMaterial.getVendorId().getCompany();
+            String vendors = rawMaterial.getVendorId().getCompany();
             Vendors company = vendorRepo.findByCompany(vendors);
             rawMaterial1.setVendorId(company);
             //UOM set
@@ -813,15 +809,16 @@ public class SaleRestController {
     }
 
     @PostMapping("/stock_adjustment")
-    public ResponseEntity<StockAdjustment> stockAdjustmentSave(@RequestBody StockAdjustment stockAdjustment){
+    public ResponseEntity<StockAdjustment> stockAdjustmentSave(@RequestBody StockAdjustment stockAdjustment) {
         stockAdjustmentRepo.save(stockAdjustment);
         return ResponseEntity.ok(stockAdjustment);
     }
+
     @PutMapping("/stock_adjustment/{id}")
-    public ResponseEntity<StockAdjustment> stockAdjustmentUpdate(@RequestBody StockAdjustment stockAdjustment,@PathVariable("id")int id){
-        boolean exist=stockAdjustmentRepo.findById(id).isPresent();
-        if(exist){
-            StockAdjustment stockAdjustment1=stockAdjustmentRepo.findById(id).get();
+    public ResponseEntity<StockAdjustment> stockAdjustmentUpdate(@RequestBody StockAdjustment stockAdjustment, @PathVariable("id") int id) {
+        boolean exist = stockAdjustmentRepo.findById(id).isPresent();
+        if (exist) {
+            StockAdjustment stockAdjustment1 = stockAdjustmentRepo.findById(id).get();
             stockAdjustment1.setName(stockAdjustment.getName());
             stockAdjustment1.setFactor(stockAdjustment.getFactor());
 
@@ -830,6 +827,7 @@ public class SaleRestController {
         }
         return ResponseEntity.notFound().build();
     }
+
     // api Adjustment Material start
     @GetMapping("/adjustment_material")
     private List<AdjustmentMaterial> materialsAdjustmentsList() {
@@ -845,7 +843,7 @@ public class SaleRestController {
     }
 
     @PostMapping("/adjustment_material")
-    public ResponseEntity<AdjustmentMaterial> materialAdjustmentSave(@RequestBody AdjustmentMaterial material){
+    public ResponseEntity<AdjustmentMaterial> materialAdjustmentSave(@RequestBody AdjustmentMaterial material) {
 
         //Raw material set
         String rawMaterial = material.getRawMaterialId().getName();
@@ -863,26 +861,40 @@ public class SaleRestController {
         material.setStockAdjustmentId(stockAdjustment);
 
         //Order Details set
-        String order = String.valueOf(material.getOrderDetailsId().getId());
-        int orderId=material.getOrderDetailsId().getId();
-        boolean exist=orderDetailsRepo.findById(orderId).isPresent();
-
-        OrderDetails orderDetails=orderDetailsRepo.findById(orderId).get();
-        material.setOrderDetailsId(orderDetails);
+//        String order = String.valueOf(material.getOrderDetailsId().getId());
+        if(material.getId() != null){
+            int orderId = material.getOrderDetailsId().getId();
+            boolean exist1 = orderDetailsRepo.findById(orderId).isPresent();
+            OrderDetails orderDetails;
+            if (exist1) {
+                orderDetails = orderDetailsRepo.findById(orderId).get();
+                material.setOrderDetailsId(orderDetails);
+                System.out.println("material subtract for Orders");
+            }
+//            else{
+//        OrderDetails orderDetails=orderDetailsRepo.findById(orderId).get();
+//            System.out.println("Order id don't exist");
+//            material.setOrderDetailsId(null);
+//            }
+        } else{
+        System.out.println("material subtract for damage or other purpose ");
+        material.setOrderDetailsId(null);
+        }
 
         //stock subtract
         double myquantity = material.getQuantity();
-        int myid=material.getRawMaterialId().getId();
-        stockUpdateService.subtractStock(myid,myquantity);
+        int myid = material.getRawMaterialId().getId();
+        stockUpdateService.subtractStock(myid, myquantity);
         //stock subtract end
         adjustmentMaterialRepo.save(material);
         return ResponseEntity.ok(material);
     }
+
     @PutMapping("/adjustment_material/{id}")
-    public ResponseEntity<AdjustmentMaterial> materialAdjustmentUpdate(@RequestBody AdjustmentMaterial material,@PathVariable("id")int id){
-        boolean exist=adjustmentMaterialRepo.findById(id).isPresent();
-        if(exist){
-            AdjustmentMaterial material1=adjustmentMaterialRepo.findById(id).get();
+    public ResponseEntity<AdjustmentMaterial> materialAdjustmentUpdate(@RequestBody AdjustmentMaterial material, @PathVariable("id") int id) {
+        boolean exist = adjustmentMaterialRepo.findById(id).isPresent();
+        if (exist) {
+            AdjustmentMaterial material1 = adjustmentMaterialRepo.findById(id).get();
             material1.setPrice(material.getPrice());
             material1.setQuantity(material.getQuantity());
             material1.setRemarks(material.getRemarks());
@@ -903,12 +915,22 @@ public class SaleRestController {
             material1.setStockAdjustmentId(stockAdjustment);
 
             //Order Details set
-            String order = String.valueOf(material.getOrderDetailsId().getId());
-            int orderId=material.getOrderDetailsId().getId();
-            boolean exist1=orderDetailsRepo.findById(orderId).isPresent();
+            if(material.getId() != null){
+                int orderId = material.getOrderDetailsId().getId();
+                boolean exist1 = orderDetailsRepo.findById(orderId).isPresent();
+                OrderDetails orderDetails;
+                if (exist1) {
+                    orderDetails = orderDetailsRepo.findById(orderId).get();
+                    material1.setOrderDetailsId(orderDetails);
+                    System.out.println("material subtract for Orders");
+                }
+//        OrderDetails orderDetails=orderDetailsRepo.findById(orderId).get();
+                System.out.println("Order id don't exist");
+                material1.setOrderDetailsId(null);
+            }
+            System.out.println("material subtract for damage or other purpose ");
+            material1.setOrderDetailsId(null);
 
-            OrderDetails orderDetails=orderDetailsRepo.findById(orderId).get();
-            material1.setOrderDetailsId(orderDetails);
 
 
             adjustmentMaterialRepo.save(material1);
@@ -916,6 +938,7 @@ public class SaleRestController {
         }
         return ResponseEntity.notFound().build();
     }
+
     // api Purchase start
     @GetMapping("/purchase")
     private List<Purchase> stockPurchaseList() {
@@ -931,7 +954,7 @@ public class SaleRestController {
     }
 
     @PostMapping("/purchase")
-    public ResponseEntity<Purchase> PurchaseSave(@RequestBody Purchase purchase){
+    public ResponseEntity<Purchase> PurchaseSave(@RequestBody Purchase purchase) {
         //Raw material set
         String rawMaterial = purchase.getRawMaterialId().getName();
         RawMaterial material = rawMaterialRepo.findByName(rawMaterial);
@@ -952,17 +975,18 @@ public class SaleRestController {
         WareHouse house = houseRepo.findByName(warehouse);
         purchase.setWareHouseId(house);
         double myquantity = purchase.getQuantity();
-        int myid=purchase.getRawMaterialId().getId();
-        stockUpdateService.addStockData(myid,myquantity);
+        int myid = purchase.getRawMaterialId().getId();
+        stockUpdateService.addStockData(myid, myquantity);
 
         purchaseRepo.save(purchase);
         return ResponseEntity.ok(purchase);
     }
+
     @PutMapping("/purchase/{id}")
-    public ResponseEntity<Purchase> PurchaseUpdate(@RequestBody Purchase purchase,@PathVariable("id")int id){
-        boolean exist=purchaseRepo.findById(id).isPresent();
-        if(exist){
-            Purchase purchase1=purchaseRepo.findById(id).get();
+    public ResponseEntity<Purchase> PurchaseUpdate(@RequestBody Purchase purchase, @PathVariable("id") int id) {
+        boolean exist = purchaseRepo.findById(id).isPresent();
+        if (exist) {
+            Purchase purchase1 = purchaseRepo.findById(id).get();
             purchase1.setPurchaseDate(purchase.getPurchaseDate());
             purchase1.setDeliveryDate(purchase.getDeliveryDate());
             purchase1.setPrice(purchase.getPrice());
@@ -1167,32 +1191,34 @@ public class SaleRestController {
         }
         return ResponseEntity.notFound().build();
     }
+
     // api Labor Cost end
 //---------------------------------------- Buyers Table----------------------------------
     // api Buyers start
     @GetMapping("/buyers")
-    private List<Buyers> buyersList(){
+    private List<Buyers> buyersList() {
         return buyerRepo.findAll();
     }
 
     @DeleteMapping("/buyers/{id}")
-    public void deleteBuyers(@PathVariable("id")int id){
-        boolean exist=buyerRepo.existsById(id);
-        if (exist){
+    public void deleteBuyers(@PathVariable("id") int id) {
+        boolean exist = buyerRepo.existsById(id);
+        if (exist) {
             buyerRepo.deleteById(id);
         }
     }
 
     @PostMapping("/buyers")
-    public ResponseEntity<Buyers> buyersSave(@RequestBody Buyers buyers){
+    public ResponseEntity<Buyers> buyersSave(@RequestBody Buyers buyers) {
         buyerRepo.save(buyers);
         return ResponseEntity.ok(buyers);
     }
+
     @PutMapping("/buyers/{id}")
-    public ResponseEntity<Buyers> buyersUpdate(@RequestBody Buyers buyers,@PathVariable("id")int id){
-        boolean exist=buyerRepo.findById(id).isPresent();
-        if(exist){
-            Buyers buyers1=buyerRepo.findById(id).get();
+    public ResponseEntity<Buyers> buyersUpdate(@RequestBody Buyers buyers, @PathVariable("id") int id) {
+        boolean exist = buyerRepo.findById(id).isPresent();
+        if (exist) {
+            Buyers buyers1 = buyerRepo.findById(id).get();
             buyers1.setOrganization(buyers.getOrganization());
             buyers1.setContactPerson(buyers.getContactPerson());
             buyers1.setPhone(buyers.getPhone());
@@ -1205,30 +1231,32 @@ public class SaleRestController {
         }
         return ResponseEntity.notFound().build();
     }
+
     // api Task start
     @GetMapping("/task")
-    private List<Task> taskList(){
+    private List<Task> taskList() {
         return taskRepo.findAll();
     }
 
     @DeleteMapping("/task/{id}")
-    public void deleteTask(@PathVariable("id")int id){
-        boolean exist=taskRepo.existsById(id);
-        if (exist){
+    public void deleteTask(@PathVariable("id") int id) {
+        boolean exist = taskRepo.existsById(id);
+        if (exist) {
             taskRepo.deleteById(id);
         }
     }
 
     @PostMapping("/task")
-    public ResponseEntity<Task> taskSave(@RequestBody Task task){
+    public ResponseEntity<Task> taskSave(@RequestBody Task task) {
         taskRepo.save(task);
         return ResponseEntity.ok(task);
     }
+
     @PutMapping("/task/{id}")
-    public ResponseEntity<Task> taskUpdate(@RequestBody Task task,@PathVariable("id")int id){
-        boolean exist=taskRepo.findById(id).isPresent();
-        if(exist){
-            Task task1=taskRepo.findById(id).get();
+    public ResponseEntity<Task> taskUpdate(@RequestBody Task task, @PathVariable("id") int id) {
+        boolean exist = taskRepo.findById(id).isPresent();
+        if (exist) {
+            Task task1 = taskRepo.findById(id).get();
             task1.setName(task.getName());
 
             taskRepo.save(task1);
@@ -1236,30 +1264,32 @@ public class SaleRestController {
         }
         return ResponseEntity.notFound().build();
     }
+
     // api Orders Status start
     @GetMapping("/order_status")
-    private List<OrderStatus> orderStatusList(){
+    private List<OrderStatus> orderStatusList() {
         return statusRepo.findAll();
     }
 
     @DeleteMapping("/order_status/{id}")
-    public void deleteOrderStatus(@PathVariable("id")int id){
-        boolean exist=statusRepo.existsById(id);
-        if (exist){
+    public void deleteOrderStatus(@PathVariable("id") int id) {
+        boolean exist = statusRepo.existsById(id);
+        if (exist) {
             statusRepo.deleteById(id);
         }
     }
 
     @PostMapping("/order_status")
-    public ResponseEntity<OrderStatus> orderStatusSave(@RequestBody OrderStatus orderStatus){
+    public ResponseEntity<OrderStatus> orderStatusSave(@RequestBody OrderStatus orderStatus) {
         statusRepo.save(orderStatus);
         return ResponseEntity.ok(orderStatus);
     }
+
     @PutMapping("/order_status/{id}")
-    public ResponseEntity<OrderStatus> orderStatusUpdate(@RequestBody OrderStatus orderStatus,@PathVariable("id")int id){
-        boolean exist=statusRepo.findById(id).isPresent();
-        if(exist){
-            OrderStatus orderStatus1=statusRepo.findById(id).get();
+    public ResponseEntity<OrderStatus> orderStatusUpdate(@RequestBody OrderStatus orderStatus, @PathVariable("id") int id) {
+        boolean exist = statusRepo.findById(id).isPresent();
+        if (exist) {
+            OrderStatus orderStatus1 = statusRepo.findById(id).get();
             orderStatus1.setName(orderStatus.getName());
 
             statusRepo.save(orderStatus1);
@@ -1267,22 +1297,23 @@ public class SaleRestController {
         }
         return ResponseEntity.notFound().build();
     }
+
     // api Orders start
     @GetMapping("/orders")
-    private List<OrderDetails> orderDetailsList(){
+    private List<OrderDetails> orderDetailsList() {
         return orderDetailsRepo.findAll();
     }
 
     @DeleteMapping("/orders/{id}")
-    public void deleteOrderDetails(@PathVariable("id")int id){
-        boolean exist=orderDetailsRepo.existsById(id);
-        if (exist){
+    public void deleteOrderDetails(@PathVariable("id") int id) {
+        boolean exist = orderDetailsRepo.existsById(id);
+        if (exist) {
             orderDetailsRepo.deleteById(id);
         }
     }
 
     @PostMapping("/orders")
-    public ResponseEntity<OrderDetails> orderDetailsSave(@RequestBody OrderDetails orderDetails){
+    public ResponseEntity<OrderDetails> orderDetailsSave(@RequestBody OrderDetails orderDetails) {
 
         //style code set
         String styleCode = orderDetails.getStyleId().getCode();
@@ -1294,17 +1325,18 @@ public class SaleRestController {
         orderDetails.setBuyersId(buyerId);
         //order status set
         String status = orderDetails.getOrStatusId().getName();
-        OrderStatus  statusId= statusRepo.findByName(status);
+        OrderStatus statusId = statusRepo.findByName(status);
         orderDetails.setOrStatusId(statusId);
 
         orderDetailsRepo.save(orderDetails);
         return ResponseEntity.ok(orderDetails);
     }
+
     @PutMapping("/orders/{id}")
-    public ResponseEntity<OrderDetails> orderDetailsUpdate(@RequestBody OrderDetails orderDetails,@PathVariable("id")int id){
-        boolean exist=orderDetailsRepo.findById(id).isPresent();
-        if(exist){
-            OrderDetails orderDetails1=orderDetailsRepo.findById(id).get();
+    public ResponseEntity<OrderDetails> orderDetailsUpdate(@RequestBody OrderDetails orderDetails, @PathVariable("id") int id) {
+        boolean exist = orderDetailsRepo.findById(id).isPresent();
+        if (exist) {
+            OrderDetails orderDetails1 = orderDetailsRepo.findById(id).get();
             orderDetails1.setShippingAddress(orderDetails.getShippingAddress());
             //style code set
             String styleCode = orderDetails.getStyleId().getCode();
@@ -1316,7 +1348,7 @@ public class SaleRestController {
             orderDetails1.setBuyersId(buyerId);
             //order status set
             String status = orderDetails.getOrStatusId().getName();
-            OrderStatus  statusId= statusRepo.findByName(status);
+            OrderStatus statusId = statusRepo.findByName(status);
             orderDetails1.setOrStatusId(statusId);
 
             orderDetails1.setSAmount(orderDetails.getSAmount());
