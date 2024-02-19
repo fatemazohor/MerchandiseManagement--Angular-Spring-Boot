@@ -26,6 +26,7 @@ import { StyleAttachmentComponent } from './component/sale/style-attachment/styl
 import { StocksComponent } from './component/inventory/stocks/stocks.component';
 import { StyleMaterialQtyComponent } from './component/sale/style-material-qty/style-material-qty.component';
 import { AdjustmentMaterialComponent } from './component/inventory/adjustment-material/adjustment-material.component';
+import { PurchaseComponent } from './component/inventory/purchase/purchase.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent},
@@ -51,6 +52,7 @@ const routes: Routes = [
   
   { path: "warehouse", component:WarehouseComponent},
   { path: "purchase_status", component:PurchaseStatusComponent},
+  { path: "purchase", component:PurchaseComponent},
   { path: "adjustment_material", component:AdjustmentMaterialComponent},
   { path: "stock_adjustment", component:StockAdjustmentComponent},
   { path: "stock", component:StocksComponent},

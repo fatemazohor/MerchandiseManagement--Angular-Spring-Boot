@@ -1,6 +1,5 @@
 //---------------------------------------- Sale ---------------------------------------------
 
-import exp from "constants";
 
 //style Categories start
 export class StyleCategories {
