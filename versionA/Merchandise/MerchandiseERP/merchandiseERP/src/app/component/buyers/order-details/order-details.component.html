@@ -19,10 +19,11 @@
                     <th scope="col">Id</th>
                     <th scope="col">Style Code</th>
                     <th scope="col">Buyer</th>
-                    <th scope="col">Shipping Address</th>
-                    <th scope="col">Total Amount</th>
-                    <th scope="col">Paid</th>
+                    <th scope="col">Order Date</th>
+                    <th scope="col">Delivery Date</th>
+                    
                     <th scope="col">Status</th>
+                    <th scope="col">Tiem & Action</th>
                     <th scope="col">Action</th>
 
                 </tr>
@@ -33,12 +34,24 @@
                     <td>{{orderRow.id}}</td>
                     <td>{{orderRow.styleId?.code}}</td>
                     <td>{{orderRow.buyersId?.organization}}</td>
-                    <td>{{orderRow.shippingAddress}}</td>
-                    <td>{{orderRow.totalAmount}}</td>
+                    <td>{{orderRow.oderDate}}</td>
+                    <td>{{orderRow.deliveryDate}}</td>
+                    
+                    <!-- <td [ngClass]="{'badge bg-warning text-center': orderRow.orStatusId?.id == 1}">{{orderRow.orStatusId?.name}}</td> -->
+                    <!-- <td ><span [ngClass]="{'badge bg-warning rounded-pill px-2 text-light': orderRow.orStatusId?.id == 1
+                                            ,'badge bg-primary rounded-pill px-2': orderRow.orStatusId?.id == 2,
+                                            'badge bg-info rounded-pill px-2': orderRow.orStatusId?.id == 3,
+                                            'badge bg-success rounded-pill px-2': orderRow.orStatusId?.id == 4}">
+                        {{orderRow.orStatusId?.name}}</span></td> -->
+                    <td ><span [ngClass]="{'badge ':true,
+                        'bg-warning': orderRow.orStatusId?.id == 1
+                                            ,'bg-primary': orderRow.orStatusId?.id == 2,
+                                            'bg-info': orderRow.orStatusId?.id == 3,
+                                            'bg-success': orderRow.orStatusId?.id == 4}">
+                        {{orderRow.orStatusId?.name}}</span></td>
                     <td>{{orderRow.paid}}</td>
-                    <td>{{orderRow.orStatusId?.name}}</td>
                     <td>
-
+                        
                         <div class="btn-group">
                             <a class="btn" (click)="onEditById(orderRow)" data-toggle="modal"
                                 data-target="#exampleModal">
@@ -305,30 +318,6 @@
         </div>
 
 
-        <!-- Edit Modal -->
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
-            Launch demo modal
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
 
     </div>

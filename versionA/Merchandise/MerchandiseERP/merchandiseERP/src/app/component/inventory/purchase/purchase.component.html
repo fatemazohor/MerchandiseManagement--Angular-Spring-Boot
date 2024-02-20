@@ -18,9 +18,10 @@
                     <th scope="col">SI</th>
                     <th scope="col">Id</th>
                     <th scope="col">Raw Material</th>
-                    <th scope="col">Quantity</th>
+                    <th scope="col">Order Date</th>
+                    <th scope="col">Delivery Date</th>
+
                     <th scope="col">Total</th>
-                    <th scope="col">Price</th>
                     <th scope="col">Status</th>
                     <th scope="col">Action</th>
 
@@ -31,11 +32,18 @@
                     <td>{{i+1}}</td>
                     <td>{{purchaseRow.id}}</td>
                     <td>{{purchaseRow.rawMaterialId?.name}}</td>
-                    <td>{{purchaseRow.quantity}}</td>
+                    <td>{{purchaseRow.purchaseDate}}</td>
+                    <td>{{purchaseRow.deliveryDate}}</td>
 
                     <td>{{purchaseRow.total}}</td>
-                    <td>{{purchaseRow.price}}</td>
-                    <td>{{purchaseRow.statusId?.name}}</td>
+                    
+                    <!-- <td>{{purchaseRow.statusId?.name}}</td> -->
+                    <td ><span [ngClass]="{'badge ':true,
+                        'bg-warning': purchaseRow.statusId?.id == 1
+                                            ,'bg-primary': purchaseRow.statusId?.id == 2,
+                                            'bg-info': purchaseRow.statusId?.id == 3,
+                                            'bg-success': purchaseRow.statusId?.id == 4}">
+                        {{purchaseRow.statusId?.name}}</span></td>
                     <td>
 
                         <div class="btn-group">
