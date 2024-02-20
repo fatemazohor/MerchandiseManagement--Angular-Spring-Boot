@@ -58,12 +58,12 @@ export class OrderDetailsComponent implements OnInit{
       buyersId: ['', Validators.required],
       styleId: ['', Validators.required],
 
-      smallPrice: ['', Validators.required],
-      mediumPrice: ['', Validators.required],
-      largePrice: ['', Validators.required],
-      subTotal: ['', Validators.required],
-      vat: ['', Validators.required],
-      due: ['', Validators.required]
+      smallPrice: [''],
+      mediumPrice: [''],
+      largePrice: [''],
+      subTotal: [''],
+      vat: [''],
+      due: ['']
 
     })
   }
@@ -192,16 +192,16 @@ export class OrderDetailsComponent implements OnInit{
   editOrdersDetails() {
     if (this.orderForm.valid) {
 
-      this.orderModel.oderDate = this.orderForm.value.orderData
+      this.orderModel.oderDate = this.orderForm.value.oderDate
       this.orderModel.deliveryDate = this.orderForm.value.deliveryDate
       this.orderModel.shippingAddress = this.orderForm.value.shippingAddress
       this.orderModel.samount = this.orderForm.value.samount
       this.orderModel.lamount = this.orderForm.value.lamount
       this.orderModel.mamount = this.orderForm.value.mamount
       this.orderModel.orStatusId = this.orderForm.value.orStatusId
-      this.orderModel.buyersId = this.orderForm.value.buyerId
+      this.orderModel.buyersId = this.orderForm.value.buyersId
       this.orderModel.styleId = this.orderForm.value.styleId
-      this.orderModel.totalAmount = this.orderForm.value.tolerance
+      this.orderModel.totalAmount = this.orderForm.value.totalAmount
       this.orderModel.paid = this.orderForm.value.paid
 
       this.service.updateOrdersDetails(this.orderModel.id, this.orderModel).subscribe({
@@ -258,11 +258,16 @@ export class OrderDetailsComponent implements OnInit{
   }
 
   getValue():number{
+    let total:number=0;
     let sub:number=this.orderForm.value.subTotal;
     let vat:number=this.orderForm.value.vat;
-    let total:number=sub+(sub * vat)/100;
+    if(vat != null){
+    total=sub+(sub * vat)/100;
     this.orderForm.controls['totalAmount'].setValue(total);
-
+    }else{
+    total=sub+(sub * 0)/100;
+    this.orderForm.controls['totalAmount'].setValue(total);
+    }
     return total;
     
   }

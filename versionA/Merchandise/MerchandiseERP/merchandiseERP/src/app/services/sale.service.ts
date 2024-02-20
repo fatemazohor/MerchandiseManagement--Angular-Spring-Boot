@@ -100,6 +100,10 @@ export class SaleService {
   getAllStyle(): Observable<Style[]> {
     return this.http.get<Style[]>(`${this.baseUrl}/style`);
   }
+  // find single style object for report
+  getStyleById(id: number): Observable<Style> {
+    return this.http.get<Style>(`${this.baseUrl}/style/${id}`);
+  }
 
   createStyle(style: Style): Observable<Style> {
     return this.http.post<Style>(`${this.baseUrl}/style`, style)
@@ -464,5 +468,18 @@ export class SaleService {
 
   // api Time Action start
   //---------------------------------------- Report Table----------------------------------
+  // api BOM start
+
+  getLaborCostByStyleId(id: number): Observable<LaborCost[]> {
+    return this.http.get<LaborCost[]>(`${this.baseUrl}/bom_cost/${id}`);
+  }
+  getstyleMatByStyleId(id: number,sizeid:number): Observable<StyleMaterialQty[]> {
+    return this.http.get<StyleMaterialQty[]>(`${this.baseUrl}/bom_size/${id}/${sizeid}`);
+  }
+  getAttachmentByStyleId(id: number): Observable<StyleAttachment[]> {
+    return this.http.get<StyleAttachment[]>(`${this.baseUrl}/bom_attachment/${id}`);
+  }
+
+
 
 }

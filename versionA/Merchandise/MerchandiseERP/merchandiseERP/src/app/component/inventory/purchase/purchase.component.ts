@@ -196,8 +196,8 @@ editPurchase(){
     this.purchaseModel.price=this.purchaseForm.value.price
     this.purchaseModel.quantity=this.purchaseForm.value.quantity
     this.purchaseModel.paid=this.purchaseForm.value.paid
-    this.purchaseModel.total=this.purchaseForm.value.paid
-    this.purchaseModel.vendorsId=this.purchaseForm.value.vendorId
+    this.purchaseModel.total=this.purchaseForm.value.total
+    this.purchaseModel.vendorsId=this.purchaseForm.value.vendorsId
     this.purchaseModel.wareHouseId=this.purchaseForm.value.wareHouseId
     this.purchaseModel.statusId=this.purchaseForm.value.statusId
     this.purchaseModel.rawMaterialId=this.purchaseForm.value.rawMaterialId

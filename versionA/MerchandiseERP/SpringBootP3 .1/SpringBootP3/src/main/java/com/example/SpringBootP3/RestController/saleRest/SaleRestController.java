@@ -18,6 +18,7 @@ import com.example.SpringBootP3.repository.other.IUOMRepo;
 import com.example.SpringBootP3.repository.other.IVendorRepo;
 import com.example.SpringBootP3.repository.sale.*;
 import com.example.SpringBootP3.service.Stock.StockUpdateService;
+import com.example.SpringBootP3.service.techPack.BillOfMaterialService;
 import lombok.RequiredArgsConstructor;
 
 import org.hibernate.query.Order;
@@ -66,6 +67,7 @@ public class SaleRestController {
     private final IAdjustmentMaterial adjustmentMaterialRepo;
     private final IStock stockRepo;
     private final IStyleMaterialQuantityRepo styleMaterialQuantityRepo;
+    private final BillOfMaterialService billOfMaterialService;
     private final ITimeActionRepo timeActionRepo;
 
 //    public SaleRestController(IMeasurementDetailsRepo detailsRepo, IStyleCategories styleCatApiRepo, ISizeRepo iSizeRepo, ITrim trimRepo, IFabricName fabricRepo, IRawMaterialCat materialCatRepo, IStyle styleRepo, IRawMaterialRepo rawMaterialRepo, IVendorRepo vendorRepo, ILaborCost costRepo, IUOMRepo iuomRepo, IDepartmentRepo departmentRepo) {
@@ -293,6 +295,16 @@ public class SaleRestController {
     @GetMapping("/style")
     private List<Style> styleList() {
         return styleRepo.findAll();
+    }
+
+    @GetMapping("/style/{id}")
+    private ResponseEntity<Style> styleById(@PathVariable("id") int id) {
+        boolean exist = styleRepo.findById(id).isPresent();
+        if (exist) {
+            Style st = styleRepo.findById(id).get();
+            return ResponseEntity.ok(st);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/style/{id}")
@@ -1394,6 +1406,27 @@ public class SaleRestController {
         }
         return ResponseEntity.notFound().build();
     }
+
     // api Time Action start
 //---------------------------------------- Report Table----------------------------------
+    // api Bill of Material start
+    //style attachment list by style id
+    @GetMapping("/bom_attachment/{id}")
+    private List<StyleAttachment> stAttachmentByStyleIdList(@PathVariable("id") int id) {
+        return billOfMaterialService.getStyleImage(id);
+    }
+
+    //style material by size  list by style id
+    @GetMapping("/bom_size/{id}/{sizeid}")
+    private List<StyleMaterialQuantity> stMaterialByStyleIdList(@PathVariable("id") int id, @PathVariable("sizeid") int sizeid) {
+        return billOfMaterialService.getPriceList(sizeid, id);
+    }
+
+    //labor cost list by style id
+    @GetMapping("/bom_cost/{id}")
+    private List<LaborCost> laborCostsByStyleIdList(@PathVariable("id") int id) {
+        return costRepo.findCostbyStyleId(id);
+    }
+
+
 }
