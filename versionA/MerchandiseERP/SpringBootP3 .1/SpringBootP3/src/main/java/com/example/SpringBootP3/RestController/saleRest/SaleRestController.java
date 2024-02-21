@@ -15,6 +15,7 @@ import com.example.SpringBootP3.repository.other.IUOMRepo;
 import com.example.SpringBootP3.repository.other.IVendorRepo;
 import com.example.SpringBootP3.repository.sale.*;
 import com.example.SpringBootP3.service.Stock.StockUpdateService;
+import com.example.SpringBootP3.service.dashboard.OrderPurchaseRevenueService;
 import com.example.SpringBootP3.service.techPack.BillOfMaterialService;
 import com.example.SpringBootP3.service.techPack.TechPackService;
 import com.example.SpringBootP3.service.techPack.TimeActionService;
@@ -70,6 +71,7 @@ public class SaleRestController {
     private final BillOfMaterialService billOfMaterialService;
     private final TechPackService packService;
     private final TimeActionService actionService;
+    private final OrderPurchaseRevenueService revenueService;
 
 //    public SaleRestController(IMeasurementDetailsRepo detailsRepo, IStyleCategories styleCatApiRepo, ISizeRepo iSizeRepo, ITrim trimRepo, IFabricName fabricRepo, IRawMaterialCat materialCatRepo, IStyle styleRepo, IRawMaterialRepo rawMaterialRepo, IVendorRepo vendorRepo, ILaborCost costRepo, IUOMRepo iuomRepo, IDepartmentRepo departmentRepo) {
 //        this.detailsRepo = detailsRepo;
@@ -1521,4 +1523,30 @@ public class SaleRestController {
         return packService.getMSketchList(id);
     }
 
+    //---------------------------------------- DashBoard -------------------------------------------------------------
+    @GetMapping("/dash_order_count")
+    private ResponseEntity<String> getOrderCount() {
+        int orderCount=orderDetailsRepo.findByOrder();
+        int orderCount2= (int) orderDetailsRepo.count();
+        System.out.println("order Count "+orderCount2);
+        return ResponseEntity.ok(String.valueOf(orderCount));
+    }
+    @GetMapping("/dash_order_total")
+    private ResponseEntity<String> getOrderTotal() {
+        //Transaction Order total amount
+        double totalOrderSale=orderDetailsRepo.findByTotal();
+        return ResponseEntity.ok(String.valueOf(totalOrderSale));
+    }
+    @GetMapping("/dash_purchase_total")
+    private ResponseEntity<String> getPurchaseTotal() {
+        //Transaction Purchase total amount
+        double totalPurchase=purchaseRepo.findByTotalPurchase();
+        return ResponseEntity.ok(String.valueOf(totalPurchase));
+    }
+    @GetMapping("/dash_revenue")
+    private ResponseEntity<String> getRevenue() {
+        //Transaction Revenue percentage
+        int revenuePercentage=revenueService.revenue();
+        return ResponseEntity.ok(String.valueOf(revenuePercentage));
+    }
 }

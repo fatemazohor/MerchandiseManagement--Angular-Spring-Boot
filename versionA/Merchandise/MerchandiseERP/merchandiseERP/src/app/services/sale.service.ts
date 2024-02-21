@@ -412,6 +412,22 @@ export class SaleService {
   deleteBuyers(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/buyers/${id}`)
   }
+  // api TNA start
+  getAllTNA(): Observable<TimeAction[]> {
+    return this.http.get<TimeAction[]>(`${this.baseUrl}/time_action`);
+  }
+
+  createTNA(tna: TimeAction): Observable<TimeAction> {
+    return this.http.post<TimeAction>(`${this.baseUrl}/time_action`, tna);
+  }
+
+  updateTNA(id: number, tna: TimeAction): Observable<TimeAction> {
+    return this.http.put<TimeAction>(`${this.baseUrl}/time_action/${id}`, tna)
+  }
+
+  deleteTNA(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/time_action/${id}`)
+  }
   // api Task start
 
   getAllTask(): Observable<Task[]> {
@@ -497,6 +513,25 @@ export class SaleService {
   getSketchByStyleId(id: number): Observable<MeasuremantAttachment[]> {
     return this.http.get<MeasuremantAttachment[]>(`${this.baseUrl}/techpage_attachment/${id}`);
   }
+
+  //---------------------------------------- Dashboard-------------------------------------------
+  //DashBoard Data
+  getOrdercount(): Observable<String> {
+    return this.http.get<String>(`${this.baseUrl}/dash_order_count`);
+  }
+  //Transaction Order total amount
+  getOrderTotal(): Observable<String> {
+    return this.http.get<String>(`${this.baseUrl}/dash_order_total`);
+  }
+  //Transaction Purchase total amount
+  getPurchaseTotal(): Observable<String> {
+    return this.http.get<String>(`${this.baseUrl}/dash_purchase_total`);
+  }
+  //Transaction Revenue percentage
+  getRevenue(): Observable<String> {
+    return this.http.get<String>(`${this.baseUrl}/dash_revenue`);
+  }
+
 
 
 

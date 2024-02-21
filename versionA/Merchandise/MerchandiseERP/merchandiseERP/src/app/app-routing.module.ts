@@ -31,6 +31,7 @@ import { StyleBomComponent } from './component/reports/style-bom/style-bom.compo
 import { BomMaterialComponent } from './component/reports/bom-material/bom-material.component';
 import { TechpageComponent } from './component/reports/techpage/techpage.component';
 import { TimeActionPageComponent } from './component/reports/time-action-page/time-action-page.component';
+import { TnaComponent } from './component/buyers/tna/tna.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent},
@@ -67,6 +68,7 @@ const routes: Routes = [
   { path: "task", component:TaskComponent},
   { path: "buyers", component:BuyerComponent},
   { path: "orders", component:OrderDetailsComponent},
+  { path: "tna", component:TnaComponent},
 
   //---------------------------------- Report----------------------------------------------------------------
   { path: "style-bom", component:StyleBomComponent},

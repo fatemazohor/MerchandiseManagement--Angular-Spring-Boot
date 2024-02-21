@@ -41,6 +41,7 @@ import { StyleBomComponent } from './component/reports/style-bom/style-bom.compo
 import { BomMaterialComponent } from './component/reports/bom-material/bom-material.component';
 import { TechpageComponent } from './component/reports/techpage/techpage.component';
 import { TimeActionPageComponent } from './component/reports/time-action-page/time-action-page.component';
+import { TnaComponent } from './component/buyers/tna/tna.component';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import { TimeActionPageComponent } from './component/reports/time-action-page/ti
     StyleBomComponent,
     BomMaterialComponent,
     TechpageComponent,
-    TimeActionPageComponent
+    TimeActionPageComponent,
+    TnaComponent
     
   ],
   imports: [
