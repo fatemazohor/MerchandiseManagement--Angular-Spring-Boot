@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AdjustmentMaterail, Buyers, Department, LaborCost, MeasuremantAttachment, MeasuremntDetails, OrderDetails, OrderStatus, Purchase, PurchaseStatus, RawMaterial, RawMaterialCat, Size, Stock, StockAdjustment, Style, StyleAttachment, StyleCategories, StyleMaterialQty, Task, Trim, UOM, Vendors, Warehouse } from '../model/sale.model';
+import { AdjustmentMaterail, Buyers, Department, LaborCost, MeasuremantAttachment, MeasuremntDetails, OrderDetails, OrderStatus, Purchase, PurchaseStatus, RawMaterial, RawMaterialCat, Size, Stock, StockAdjustment, Style, StyleAttachment, StyleCategories, StyleMaterialQty, Task, TimeAction, Trim, UOM, Vendors, Warehouse } from '../model/sale.model';
 import { Observable } from 'rxjs';
 
 
@@ -325,6 +325,7 @@ export class SaleService {
     return this.http.delete<void>(`${this.baseUrl}/vendors/${id}`)
   }
   // api Vendors end
+  
   // api Unit of Measurement start
 
   getAllUOM(): Observable<UOM[]> {
@@ -370,6 +371,7 @@ export class SaleService {
   }
 
   // api Department end
+
   // api Labor Cost start
   getAllLaborCost(): Observable<LaborCost[]> {
     return this.http.get<LaborCost[]>(`${this.baseUrl}/labor_cost`);
@@ -466,10 +468,15 @@ export class SaleService {
     return this.http.delete<void>(`${this.baseUrl}/orders/${id}`)
   }
 
+  
+  //---------------------------------------- Report Table-------------------------------------------
+  
   // api Time Action start
-  //---------------------------------------- Report Table----------------------------------
-  // api BOM start
+  getTimeActionByOrderId(id: number): Observable<TimeAction[]> {
+    return this.http.get<TimeAction[]>(`${this.baseUrl}/time_action_report/${id}`);
+  }
 
+  // api BOM start
   getLaborCostByStyleId(id: number): Observable<LaborCost[]> {
     return this.http.get<LaborCost[]>(`${this.baseUrl}/bom_cost/${id}`);
   }
@@ -478,6 +485,17 @@ export class SaleService {
   }
   getAttachmentByStyleId(id: number): Observable<StyleAttachment[]> {
     return this.http.get<StyleAttachment[]>(`${this.baseUrl}/bom_attachment/${id}`);
+  }
+
+  // api TechPack start
+  getrawMaterialByStyleId(id: number): Observable<RawMaterial[]> {
+    return this.http.get<RawMaterial[]>(`${this.baseUrl}/techpage_mat/${id}`);
+  }
+  getMeasurementByStyleId(id: number): Observable<MeasuremntDetails[]> {
+    return this.http.get<MeasuremntDetails[]>(`${this.baseUrl}/techpage_measurement/${id}`);
+  }
+  getSketchByStyleId(id: number): Observable<MeasuremantAttachment[]> {
+    return this.http.get<MeasuremantAttachment[]>(`${this.baseUrl}/techpage_attachment/${id}`);
   }
 
 

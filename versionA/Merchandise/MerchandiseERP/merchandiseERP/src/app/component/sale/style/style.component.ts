@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { SaleService } from '../../../services/sale.service';
 import { Style, StyleCategories } from '../../../model/sale.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class StyleComponent implements OnInit{
 
   constructor(
     private saleService:SaleService,
-    private formBuilder:FormBuilder
+    private formBuilder:FormBuilder,
+    private router:Router
    
   ){}
 
@@ -130,6 +132,10 @@ export class StyleComponent implements OnInit{
         }
       })
     }
+  }
+
+  findStyleById(id:number){
+    this.router.navigate(['/techpage',id])
   }
 
 

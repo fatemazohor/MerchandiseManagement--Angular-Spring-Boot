@@ -17,4 +17,8 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
     private String name;
+
+    public Task(String name) {
+        this.name = name;
+    }
 }

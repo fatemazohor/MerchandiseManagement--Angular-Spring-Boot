@@ -261,20 +261,20 @@ export class AdjustmentMaterail {
       address: string
     }
   }
-  
+
 }
 //  Purchase start
 export class Purchase {
-  id:number= 0
+  id: number = 0
   purchaseDate?: Date
   deliveryDate?: Date
   price?: number
   quantity?: number
   paid?: number
   total?: number
-  vendorsId?:Vendors
-  statusId?:PurchaseStatus 
-  wareHouseId?:Warehouse
+  vendorsId?: Vendors
+  statusId?: PurchaseStatus
+  wareHouseId?: Warehouse
   rawMaterialId?: {
     id: 0,
     name: string,
@@ -456,6 +456,16 @@ export class OrderDetails {
 }
 
 //  Time Action start
+export class TimeAction {
+  id: number = 0
+  remarks?: string
+  expectedStartDate?: Date
+  actualStartDate?: Date
+  expectedEndDate?: Date
+  actualEndDate?: Date
+  orderId?: OrderDetails
+  taskId?: Task
+}
 
 
 

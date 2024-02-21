@@ -4,10 +4,7 @@ import com.example.SpringBootP3.model.UOM;
 import com.example.SpringBootP3.model.Vendors;
 import com.example.SpringBootP3.model.bom.Department;
 import com.example.SpringBootP3.model.bom.LaborCost;
-import com.example.SpringBootP3.model.buyer.Buyers;
-import com.example.SpringBootP3.model.buyer.OrderDetails;
-import com.example.SpringBootP3.model.buyer.OrderStatus;
-import com.example.SpringBootP3.model.buyer.Task;
+import com.example.SpringBootP3.model.buyer.*;
 import com.example.SpringBootP3.model.inventory.*;
 import com.example.SpringBootP3.model.sale.*;
 import com.example.SpringBootP3.repository.bom.IDepartmentRepo;
@@ -19,6 +16,8 @@ import com.example.SpringBootP3.repository.other.IVendorRepo;
 import com.example.SpringBootP3.repository.sale.*;
 import com.example.SpringBootP3.service.Stock.StockUpdateService;
 import com.example.SpringBootP3.service.techPack.BillOfMaterialService;
+import com.example.SpringBootP3.service.techPack.TechPackService;
+import com.example.SpringBootP3.service.techPack.TimeActionService;
 import lombok.RequiredArgsConstructor;
 
 import org.hibernate.query.Order;
@@ -67,8 +66,10 @@ public class SaleRestController {
     private final IAdjustmentMaterial adjustmentMaterialRepo;
     private final IStock stockRepo;
     private final IStyleMaterialQuantityRepo styleMaterialQuantityRepo;
-    private final BillOfMaterialService billOfMaterialService;
     private final ITimeActionRepo timeActionRepo;
+    private final BillOfMaterialService billOfMaterialService;
+    private final TechPackService packService;
+    private final TimeActionService actionService;
 
 //    public SaleRestController(IMeasurementDetailsRepo detailsRepo, IStyleCategories styleCatApiRepo, ISizeRepo iSizeRepo, ITrim trimRepo, IFabricName fabricRepo, IRawMaterialCat materialCatRepo, IStyle styleRepo, IRawMaterialRepo rawMaterialRepo, IVendorRepo vendorRepo, ILaborCost costRepo, IUOMRepo iuomRepo, IDepartmentRepo departmentRepo) {
 //        this.detailsRepo = detailsRepo;
@@ -1407,8 +1408,84 @@ public class SaleRestController {
         return ResponseEntity.notFound().build();
     }
 
-    // api Time Action start
+
 //---------------------------------------- Report Table----------------------------------
+
+    //Time Action Table
+    @GetMapping("/time_action")
+    private List<TimeAction> timeActionsList() {
+        return timeActionRepo.findAll();
+    }
+
+    @DeleteMapping("/time_action/{id}")
+    public void deleteTimeActions(@PathVariable("id") int id) {
+        boolean exist = timeActionRepo.existsById(id);
+        if (exist) {
+            timeActionRepo.deleteById(id);
+
+        }
+    }
+
+    @PostMapping("/time_action")
+    public ResponseEntity<TimeAction> timeActionsSave(@RequestBody TimeAction action) {
+        //Order Details set
+        int orderId = action.getOrderId().getId();
+        boolean exist1 = orderDetailsRepo.findById(orderId).isPresent();
+        OrderDetails orderDetails;
+        if (exist1) {
+            orderDetails = orderDetailsRepo.findById(orderId).get();
+            action.setOrderId(orderDetails);
+
+        }
+        //task set
+        String taskId = action.getTaskId().getName();
+        Task task = taskRepo.findByName(taskId);
+        action.setTaskId(task);
+
+
+        timeActionRepo.save(action);
+        return ResponseEntity.ok(action);
+
+    }
+
+    @PutMapping("/time_action/{id}")
+    public ResponseEntity<TimeAction> timeActionsUpdate(@RequestBody TimeAction action,
+                                                  @PathVariable("id") int id) {
+        boolean exist = timeActionRepo.findById(id).isPresent();
+        if (exist) {
+
+            TimeAction action1 = timeActionRepo.findById(id).get();
+            action1.setRemarks(action.getRemarks());
+            action1.setExpectedStartDate(action.getExpectedStartDate());
+            action1.setExpectedEndDate(action.getExpectedEndDate());
+            action1.setActualStartDate(action.getActualStartDate());
+            action1.setActualEndDate(action.getActualEndDate());
+            //Order Details set
+            int orderId = action.getOrderId().getId();
+            boolean exist1 = orderDetailsRepo.findById(orderId).isPresent();
+            OrderDetails orderDetails;
+            if (exist1) {
+                orderDetails = orderDetailsRepo.findById(orderId).get();
+                action1.setOrderId(orderDetails);
+
+            }
+            //task set
+            String taskId = action.getTaskId().getName();
+            Task task = taskRepo.findByName(taskId);
+            action1.setTaskId(task);
+
+            timeActionRepo.save(action1);
+            return ResponseEntity.ok(action1);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    // api Time Action start
+    @GetMapping("/time_action_report/{id}")
+    private List<TimeAction> timeActionsByOrderIdList(@PathVariable("id") int id) {
+        return actionService.getTNA(id);
+    }
+
     // api Bill of Material start
     //style attachment list by style id
     @GetMapping("/bom_attachment/{id}")
@@ -1428,5 +1505,20 @@ public class SaleRestController {
         return costRepo.findCostbyStyleId(id);
     }
 
+    // api TechPage start
+    @GetMapping("/techpage_mat/{id}")
+    private List<RawMaterial> rawMaterialByStyleIdList(@PathVariable("id") int id) {
+        return packService.getTechPack(id);
+    }
+
+    @GetMapping("/techpage_measurement/{id}")
+    private List<MeasurementDetails> measurementByStyleIdList(@PathVariable("id") int id) {
+        return packService.getMeasuermentDetList(id);
+    }
+
+    @GetMapping("/techpage_attachment/{id}")
+    private List<MeasurementAttachment> measurementAttachmentByStyleIdList(@PathVariable("id") int id) {
+        return packService.getMSketchList(id);
+    }
 
 }

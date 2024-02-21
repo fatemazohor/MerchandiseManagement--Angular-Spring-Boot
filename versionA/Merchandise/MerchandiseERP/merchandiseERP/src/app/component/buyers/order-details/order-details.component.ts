@@ -3,6 +3,7 @@ import { Buyers, OrderDetails, OrderStatus, Style } from '../../../model/sale.mo
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { SaleService } from '../../../services/sale.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order-details',
@@ -34,7 +35,8 @@ export class OrderDetailsComponent implements OnInit{
   
   constructor(
     private service:SaleService,
-    private formBuilder:FormBuilder
+    private formBuilder:FormBuilder,
+    private router:Router
   ){}
   ngOnInit(): void {
     this.initOrdersForm()
@@ -277,6 +279,10 @@ export class OrderDetailsComponent implements OnInit{
     let due = total - paid;
     this.orderForm.controls['due'].setValue(due);
     return due;
+  }
+
+  findTimeActionById(id:number){
+    this.router.navigate(['/time_action_page',id])
   }
 
 }

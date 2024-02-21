@@ -39,6 +39,8 @@ import { AdjustmentMaterialComponent } from './component/inventory/adjustment-ma
 import { PurchaseComponent } from './component/inventory/purchase/purchase.component';
 import { StyleBomComponent } from './component/reports/style-bom/style-bom.component';
 import { BomMaterialComponent } from './component/reports/bom-material/bom-material.component';
+import { TechpageComponent } from './component/reports/techpage/techpage.component';
+import { TimeActionPageComponent } from './component/reports/time-action-page/time-action-page.component';
 
 
 @NgModule({
@@ -76,7 +78,9 @@ import { BomMaterialComponent } from './component/reports/bom-material/bom-mater
     AdjustmentMaterialComponent,
     PurchaseComponent,
     StyleBomComponent,
-    BomMaterialComponent
+    BomMaterialComponent,
+    TechpageComponent,
+    TimeActionPageComponent
     
   ],
   imports: [

@@ -17,9 +17,10 @@
                 <tr>
                     <th scope="col">SI</th>
                     <th scope="col">Id</th>
-                    <th scope="col">style</th>
+                    <th scope="col">Style</th>
                     <th scope="col">Description</th>
                     <th scope="col">Category</th>
+                    <th scope="col">TechPack</th>
                     <th scope="col">Action</th>
 
                 </tr>
@@ -31,6 +32,11 @@
                     <td>{{styleRow.code}}</td>
                     <td>{{styleRow.description}}</td>
                     <td>{{styleRow.categoriesId?.name}}</td>
+                    <td><div class="btn-group">
+                        <button type="submit" class="btn btn-sm btn-outline-primary"
+                            (click)="findStyleById(styleRow.id)">TechPack</button>
+                       
+                    </div></td>
                     <td>
 
                         <div class="btn-group">

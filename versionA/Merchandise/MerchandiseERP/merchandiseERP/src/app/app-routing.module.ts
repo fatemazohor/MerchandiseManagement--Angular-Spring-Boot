@@ -29,6 +29,8 @@ import { AdjustmentMaterialComponent } from './component/inventory/adjustment-ma
 import { PurchaseComponent } from './component/inventory/purchase/purchase.component';
 import { StyleBomComponent } from './component/reports/style-bom/style-bom.component';
 import { BomMaterialComponent } from './component/reports/bom-material/bom-material.component';
+import { TechpageComponent } from './component/reports/techpage/techpage.component';
+import { TimeActionPageComponent } from './component/reports/time-action-page/time-action-page.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent},
@@ -69,6 +71,8 @@ const routes: Routes = [
   //---------------------------------- Report----------------------------------------------------------------
   { path: "style-bom", component:StyleBomComponent},
   { path: "bom/:id", component:BomMaterialComponent},
+  { path: "techpage/:id", component:TechpageComponent},
+  { path: "time_action_page/:id", component:TimeActionPageComponent},
   //---------------------------------- Dashboard--------------------------------------------------------------
   
   {path:"dashboard", component:ControlWrapperComponent},
