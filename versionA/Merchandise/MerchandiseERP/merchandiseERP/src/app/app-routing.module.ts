@@ -28,6 +28,7 @@ import { StyleMaterialQtyComponent } from './component/sale/style-material-qty/s
 import { AdjustmentMaterialComponent } from './component/inventory/adjustment-material/adjustment-material.component';
 import { PurchaseComponent } from './component/inventory/purchase/purchase.component';
 import { StyleBomComponent } from './component/reports/style-bom/style-bom.component';
+import { BomMaterialComponent } from './component/reports/bom-material/bom-material.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent},
@@ -66,7 +67,8 @@ const routes: Routes = [
   { path: "orders", component:OrderDetailsComponent},
 
   //---------------------------------- Report----------------------------------------------------------------
-  { path: "bom", component:StyleBomComponent},
+  { path: "style-bom", component:StyleBomComponent},
+  { path: "bom/:id", component:BomMaterialComponent},
   //---------------------------------- Dashboard--------------------------------------------------------------
   
   {path:"dashboard", component:ControlWrapperComponent},

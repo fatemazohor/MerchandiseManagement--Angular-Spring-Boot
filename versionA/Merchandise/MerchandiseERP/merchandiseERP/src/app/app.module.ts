@@ -38,6 +38,7 @@ import { StyleMaterialQtyComponent } from './component/sale/style-material-qty/s
 import { AdjustmentMaterialComponent } from './component/inventory/adjustment-material/adjustment-material.component';
 import { PurchaseComponent } from './component/inventory/purchase/purchase.component';
 import { StyleBomComponent } from './component/reports/style-bom/style-bom.component';
+import { BomMaterialComponent } from './component/reports/bom-material/bom-material.component';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import { StyleBomComponent } from './component/reports/style-bom/style-bom.compo
     StyleMaterialQtyComponent,
     AdjustmentMaterialComponent,
     PurchaseComponent,
-    StyleBomComponent
+    StyleBomComponent,
+    BomMaterialComponent
     
   ],
   imports: [
