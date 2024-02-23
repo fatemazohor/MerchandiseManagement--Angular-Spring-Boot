@@ -43,65 +43,65 @@ const routes: Routes = [
     component: AppLayoutComponent,
     children: [
       // Add other routes for the main layout
-    
-  { path: "home", component: HomeComponent},
-  { path: "style-categories", component:StyleCategoriesComponent},
-  { path: "size", component:SizeComponent},
-  { path: "trim", component:TrimComponent},
-  { path: "raw-material", component:RawMaterialComponent},
-  { path: "raw-material-categories", component:RawMaterialCategoriesComponent},
-  { path: "style", component:StyleComponent},
-  { path: "style-attachment", component:StyleAttachmentComponent},
-  { path: "measurement-details", component:MeasurementDetailsComponent},
-  { path: "measurement-attachment", component:MeasurementAttachmentComponent},
-  { path: "style-material-qty", component:StyleMaterialQtyComponent},
 
-  //----------------------------------- Other------------------------------------------------------
+      { path: "home", component: HomeComponent },
+      { path: "style-categories", component: StyleCategoriesComponent },
+      { path: "size", component: SizeComponent },
+      { path: "trim", component: TrimComponent },
+      { path: "raw-material", component: RawMaterialComponent },
+      { path: "raw-material-categories", component: RawMaterialCategoriesComponent },
+      { path: "style", component: StyleComponent },
+      { path: "style-attachment", component: StyleAttachmentComponent },
+      { path: "measurement-details", component: MeasurementDetailsComponent },
+      { path: "measurement-attachment", component: MeasurementAttachmentComponent },
+      { path: "style-material-qty", component: StyleMaterialQtyComponent },
 
-  { path: "vendors", component:VendorsComponent},
-  { path: "uom", component:UomComponent},
-  { path: "department", component:DepartmentComponent},
-  { path: "labor-cost", component:LaborCostComponent},
+      //----------------------------------- Other------------------------------------------------------
 
-  //---------------------------------- Inventory----------------------------------------------------------
-  
-  { path: "warehouse", component:WarehouseComponent},
-  { path: "purchase_status", component:PurchaseStatusComponent},
-  { path: "purchase", component:PurchaseComponent},
-  { path: "order_receipt/:id", component:PurchaseReceiptComponent},
-  { path: "adjustment_material", component:AdjustmentMaterialComponent},
-  { path: "stock_adjustment", component:StockAdjustmentComponent},
-  { path: "stock", component:StocksComponent},
+      { path: "vendors", component: VendorsComponent },
+      { path: "uom", component: UomComponent },
+      { path: "department", component: DepartmentComponent },
+      { path: "labor-cost", component: LaborCostComponent },
 
-  //---------------------------------- Buyers--------------------------------------------------------------
+      //---------------------------------- Inventory----------------------------------------------------------
 
-  { path: "order_status", component:OrderStatusComponent},
-  { path: "task", component:TaskComponent},
-  { path: "buyers", component:BuyerComponent},
-  { path: "orders", component:OrderDetailsComponent},
-  { path: "tna", component:TnaComponent},
+      { path: "warehouse", component: WarehouseComponent },
+      { path: "purchase_status", component: PurchaseStatusComponent },
+      { path: "purchase", component: PurchaseComponent },
+      { path: "order_receipt/:id", component: PurchaseReceiptComponent },
+      { path: "adjustment_material", component: AdjustmentMaterialComponent },
+      { path: "stock_adjustment", component: StockAdjustmentComponent },
+      { path: "stock", component: StocksComponent },
 
-  //---------------------------------- Report----------------------------------------------------------------
-  { path: "style-bom", component:StyleBomComponent},
-  { path: "bom/:id", component:BomMaterialComponent},
-  { path: "techpage/:id", component:TechpageComponent},
-  { path: "time_action_page/:id", component:TimeActionPageComponent},
-  //---------------------------------- Dashboard--------------------------------------------------------------
-  
-  {path:"dashboard", component:ControlWrapperComponent},
-  
-  // {path:"login", component:LoginFormComponent},
-]
-},
+      //---------------------------------- Buyers--------------------------------------------------------------
+
+      { path: "order_status", component: OrderStatusComponent },
+      { path: "task", component: TaskComponent },
+      { path: "buyers", component: BuyerComponent },
+      { path: "orders", component: OrderDetailsComponent },
+      { path: "tna", component: TnaComponent },
+
+      //---------------------------------- Report----------------------------------------------------------------
+      { path: "style-bom", component: StyleBomComponent },
+      { path: "bom/:id", component: BomMaterialComponent },
+      { path: "techpage/:id", component: TechpageComponent },
+      { path: "time_action_page/:id", component: TimeActionPageComponent },
+      //---------------------------------- Dashboard--------------------------------------------------------------
+
+      { path: "dashboard", component: ControlWrapperComponent },
+
+      // {path:"login", component:LoginFormComponent},
+    ]
+  },
   {
     path: 'login',
     component: LoginLayoutComponent,
     children: [
       { path: '', component: LoginFormComponent },
-      {path:"registration", component:RegistrationFormComponent},
+      { path: "registration", component: RegistrationFormComponent },
     ]
   },
-  {path:"**",redirectTo:"/login",pathMatch:'full'},
+  { path: "**", redirectTo: "/login", pathMatch: 'full' },
 ];
 
 @NgModule({
