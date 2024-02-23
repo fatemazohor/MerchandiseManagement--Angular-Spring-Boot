@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Purchase, PurchaseStatus, RawMaterial, Vendors, Warehouse } from '../../../model/sale.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare, faSearchPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { SaleService } from '../../../services/sale.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-purchase',
@@ -25,10 +26,12 @@ export class PurchaseComponent implements OnInit{
   //font awesome icon list
   fatrash=faTrash;
   editicon=faPenToSquare
+  fasearch=faSearchPlus
 
   constructor(
     private service:SaleService,
     private formBuilder:FormBuilder,
+    private router:Router
     
   ){}
   ngOnInit(): void {
@@ -166,7 +169,6 @@ export class PurchaseComponent implements OnInit{
         console.log(err);
       }
     })
-    
   }
   // set data on form to update
 onEditById(purchaseRow:any){
@@ -218,6 +220,7 @@ editPurchase(){
     })
   }
 }
+
 
 
 }

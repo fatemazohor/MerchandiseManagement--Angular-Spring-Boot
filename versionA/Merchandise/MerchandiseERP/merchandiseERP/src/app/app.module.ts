@@ -42,6 +42,9 @@ import { BomMaterialComponent } from './component/reports/bom-material/bom-mater
 import { TechpageComponent } from './component/reports/techpage/techpage.component';
 import { TimeActionPageComponent } from './component/reports/time-action-page/time-action-page.component';
 import { TnaComponent } from './component/buyers/tna/tna.component';
+import { PurchaseReceiptComponent } from './component/inventory/purchase-receipt/purchase-receipt.component';
+import { RegistrationFormComponent } from './component/login/registration-form/registration-form.component';
+import { LoginFormComponent } from './component/login/login-form/login-form.component';
 
 
 @NgModule({
@@ -82,7 +85,10 @@ import { TnaComponent } from './component/buyers/tna/tna.component';
     BomMaterialComponent,
     TechpageComponent,
     TimeActionPageComponent,
-    TnaComponent
+    TnaComponent,
+    PurchaseReceiptComponent,
+    RegistrationFormComponent,
+    LoginFormComponent
     
   ],
   imports: [

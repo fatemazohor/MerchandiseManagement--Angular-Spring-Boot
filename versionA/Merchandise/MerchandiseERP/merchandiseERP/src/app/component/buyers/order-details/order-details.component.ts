@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Buyers, OrderDetails, OrderStatus, Style } from '../../../model/sale.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare, faSearchPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { SaleService } from '../../../services/sale.service';
 import { Router } from '@angular/router';
 
@@ -24,6 +24,7 @@ export class OrderDetailsComponent implements OnInit{
   //font awesome icon list
   fatrash=faTrash;
   editicon=faPenToSquare
+  fasearch=faSearchPlus
   //calculation
   
   // subTotal?:number=0;
@@ -283,6 +284,10 @@ export class OrderDetailsComponent implements OnInit{
 
   findTimeActionById(id:number){
     this.router.navigate(['/time_action_page',id])
+  }
+
+  findOrdersDetailsById(id:number){
+    this.router.navigate(['/order_receipt',id])
   }
 
 }

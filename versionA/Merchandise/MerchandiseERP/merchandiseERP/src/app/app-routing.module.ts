@@ -32,6 +32,9 @@ import { BomMaterialComponent } from './component/reports/bom-material/bom-mater
 import { TechpageComponent } from './component/reports/techpage/techpage.component';
 import { TimeActionPageComponent } from './component/reports/time-action-page/time-action-page.component';
 import { TnaComponent } from './component/buyers/tna/tna.component';
+import { PurchaseReceiptComponent } from './component/inventory/purchase-receipt/purchase-receipt.component';
+import { LoginFormComponent } from './component/login/login-form/login-form.component';
+import { RegistrationFormComponent } from './component/login/registration-form/registration-form.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent},
@@ -58,6 +61,7 @@ const routes: Routes = [
   { path: "warehouse", component:WarehouseComponent},
   { path: "purchase_status", component:PurchaseStatusComponent},
   { path: "purchase", component:PurchaseComponent},
+  { path: "order_receipt/:id", component:PurchaseReceiptComponent},
   { path: "adjustment_material", component:AdjustmentMaterialComponent},
   { path: "stock_adjustment", component:StockAdjustmentComponent},
   { path: "stock", component:StocksComponent},
@@ -78,7 +82,9 @@ const routes: Routes = [
   //---------------------------------- Dashboard--------------------------------------------------------------
   
   {path:"dashboard", component:ControlWrapperComponent},
-  {path:"**",redirectTo:"/dashboard",pathMatch:'full'}
+  {path:"registration", component:RegistrationFormComponent},
+  {path:"login", component:LoginFormComponent},
+  {path:"**",redirectTo:"/login",pathMatch:'full'}
 ];
 
 @NgModule({

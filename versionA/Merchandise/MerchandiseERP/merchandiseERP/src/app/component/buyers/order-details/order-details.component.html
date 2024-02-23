@@ -60,7 +60,8 @@
                             <a class="btn" (click)="onEditById(orderRow)" data-toggle="modal"
                                 data-target="#exampleModal">
                                 <fa-icon [icon]="editicon" style="color: #5c34d5;"></fa-icon></a>
-                            <!-- style={{color: "#5c34d5",}} -->
+                                <a class="btn" (click)="findOrdersDetailsById(orderRow.id)">
+                                    <fa-icon [icon]="fasearch" style="color: #349dd5;"></fa-icon></a>
 
                             <a class="btn" (click)="deleteOrder(orderRow.id)">
                                 <fa-icon [icon]="fatrash" style="color: #d53449;"></fa-icon></a>
