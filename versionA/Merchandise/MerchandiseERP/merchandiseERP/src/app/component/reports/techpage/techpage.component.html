@@ -1,11 +1,5 @@
-<<<<<<< Updated upstream
-<!-- <p>techpage works!</p>
-<button type="submit" class="btn btn-lg btn-primary rounded" routerLink="/style">
-=======
+<button type="submit" class="btn btn-lg btn-primary rounded" routerLink="/style">Manage Style</button>
 
-<!-- <button type="submit" class="btn btn-lg btn-primary rounded" routerLink="/style">
->>>>>>> Stashed changes
-    Manage Style</button> -->
 <div>
     <div class="row">
         <div class="col-12">
@@ -45,23 +39,23 @@
                                 </div>
                                 <div class="px-2 bg-light">
                                     <!-- <div class="px-2 pt-3 mx-2"> -->
-                                        <table class="table table-bordered">
-                                            <tbody>
-                                                <tr *ngFor="let mat of material">
-                                                    <td>
-                                                        <strong>{{mat.rawMaterialCatId?.name}}: {{mat.name}}</strong>
-                                                        <br>
-                                                        <p>{{mat.description}}</p>
-                                                    </td>
-                                                    <td>
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr *ngFor="let mat of material">
+                                                <td>
+                                                    <strong>{{mat.rawMaterialCatId?.name}}: {{mat.name}}</strong>
+                                                    <br>
+                                                    <p>{{mat.description}}</p>
+                                                </td>
+                                                <td>
 
-                                                        <img height="80px"
-                                                            src="http://localhost:8098/api/sale/raw_material/display?id={{mat.id}}">
-                                                    </td>
+                                                    <img height="80px"
+                                                        src="http://localhost:8098/api/sale/raw_material/display?id={{mat.id}}">
+                                                </td>
 
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                     <!-- </div> -->
                                 </div>
                             </div>
@@ -78,13 +72,13 @@
                                             <div class="col-xl-4 col-md-6 my-2 mx-auto text-center"
                                                 *ngFor="let im of attachment">
                                                 <div class="card bg-transparent rounded-0 shadow-none aling-middle">
-                                                    <strong ><u>{{im.name}}</u></strong>
+                                                    <strong><u>{{im.name}}</u></strong>
                                                     <br>
                                                     <img height="300px"
                                                         src="http://localhost:8098/api/sale/measurement_attachment/display?id={{im.id}}">
                                                 </div>
                                             </div>
-                                                <!-- <table class="table">
+                                            <!-- <table class="table">
                                                     <thead>
                                                         <tr *ngFor="let im of attachment">
                                                             <th colspan="1"><u>{{im.name}}</u></th>
@@ -100,7 +94,7 @@
                                                         </tr>
                                                     </tbody>
                                                 </table> -->
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -128,13 +122,13 @@
                                                 <tr *ngFor="let me of measurement;index as i">
                                                     <td>{{i+1}}</td>
                                                     <!--                <td th:text="${si.styleId.code}"></td>-->
-                                                    <td >{{me.description}}</td>
-                                                    <td >{{me.tolerance}}</td>
-                                                    <td >{{me.small}}</td>
-                                                    <td >{{me.medium}}</td>
-                                                    <td >{{me.large}}</td>
+                                                    <td>{{me.description}}</td>
+                                                    <td>{{me.tolerance}}</td>
+                                                    <td>{{me.small}}</td>
+                                                    <td>{{me.medium}}</td>
+                                                    <td>{{me.large}}</td>
                                                 </tr>
-                                                
+
                                             </tbody>
                                         </table>
                                     </div>

@@ -8,9 +8,6 @@
         <form method="post" th:action="@{/measurement_attachment/save}" th:object="${measurementAttachment}" enctype="multipart/form-data">
             <input type="hidden" class="form-control" th:field="*{id}">
 
-
-
-
             <div class="mb-3">
                 <label for="styleCode" class="form-label">Style Code</label>
                 <select name="styleCode" id="styleCode" class="form-control" th:field="*{styleId}">

@@ -10,16 +10,16 @@ import { NavigationEnd, Router } from '@angular/router';
 export class AppComponent {
   title = 'merchandiseERP';
 
-  isLoginPage: boolean = false;
+  // isLoginPage: boolean = false;
 
-  constructor(private router: Router) {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.isLoginPage = event.url === '/login';
-        // this.isLoginPage = event.url === '/registration';
-      }
-    });
-  }
+  // constructor(private router: Router) {
+  //   this.router.events.subscribe((event) => {
+  //     if (event instanceof NavigationEnd) {
+  //       this.isLoginPage = event.url === '/login';
+  //       // this.isLoginPage = event.url === '/registration';
+  //     }
+  //   });
+  // }
   
   // this.isLoginPage = false;
 
