@@ -5,7 +5,6 @@ import { ControlWrapperComponent } from './control-wrapper/control-wrapper.compo
 import { StyleCategoriesComponent } from './component/sale/style-categories/style-categories.component';
 import { SizeComponent } from './component/sale/size/size.component';
 import { TrimComponent } from './component/sale/trim/trim.component';
-import { Department, OrderStatus, RawMaterialCat, StockAdjustment, StyleMaterialQty } from './model/sale.model';
 import { StyleComponent } from './component/sale/style/style.component';
 import { RawMaterialCategoriesComponent } from './component/sale/raw-material-categories/raw-material-categories.component';
 import { MeasurementDetailsComponent } from './component/sale/measurement-details/measurement-details.component';
@@ -35,8 +34,16 @@ import { TnaComponent } from './component/buyers/tna/tna.component';
 import { PurchaseReceiptComponent } from './component/inventory/purchase-receipt/purchase-receipt.component';
 import { LoginFormComponent } from './component/login/login-form/login-form.component';
 import { RegistrationFormComponent } from './component/login/registration-form/registration-form.component';
+import { LoginLayoutComponent } from './login-layout/login-layout.component';
+import { AppLayoutComponent } from './app-layout/app-layout.component';
 
 const routes: Routes = [
+  {
+    path: 'techpack',
+    component: AppLayoutComponent,
+    children: [
+      // Add other routes for the main layout
+    
   { path: "home", component: HomeComponent},
   { path: "style-categories", component:StyleCategoriesComponent},
   { path: "size", component:SizeComponent},
@@ -82,9 +89,19 @@ const routes: Routes = [
   //---------------------------------- Dashboard--------------------------------------------------------------
   
   {path:"dashboard", component:ControlWrapperComponent},
-  {path:"registration", component:RegistrationFormComponent},
-  {path:"login", component:LoginFormComponent},
-  {path:"**",redirectTo:"/login",pathMatch:'full'}
+  
+  // {path:"login", component:LoginFormComponent},
+]
+},
+  {
+    path: 'login',
+    component: LoginLayoutComponent,
+    children: [
+      { path: '', component: LoginFormComponent },
+      {path:"registration", component:RegistrationFormComponent},
+    ]
+  },
+  {path:"**",redirectTo:"/login",pathMatch:'full'},
 ];
 
 @NgModule({

@@ -45,6 +45,8 @@ import { TnaComponent } from './component/buyers/tna/tna.component';
 import { PurchaseReceiptComponent } from './component/inventory/purchase-receipt/purchase-receipt.component';
 import { RegistrationFormComponent } from './component/login/registration-form/registration-form.component';
 import { LoginFormComponent } from './component/login/login-form/login-form.component';
+import { AppLayoutComponent } from './app-layout/app-layout.component';
+import { LoginLayoutComponent } from './login-layout/login-layout.component';
 
 
 @NgModule({
@@ -88,7 +90,9 @@ import { LoginFormComponent } from './component/login/login-form/login-form.comp
     TnaComponent,
     PurchaseReceiptComponent,
     RegistrationFormComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    AppLayoutComponent,
+    LoginLayoutComponent
     
   ],
   imports: [

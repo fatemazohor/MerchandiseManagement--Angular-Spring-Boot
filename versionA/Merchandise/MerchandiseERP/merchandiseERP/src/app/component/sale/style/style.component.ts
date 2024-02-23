@@ -135,7 +135,7 @@ export class StyleComponent implements OnInit{
   }
 
   findStyleById(id:number){
-    this.router.navigate(['/techpage',id])
+    this.router.navigate(['/techpack/techpage',id])
   }
 
 

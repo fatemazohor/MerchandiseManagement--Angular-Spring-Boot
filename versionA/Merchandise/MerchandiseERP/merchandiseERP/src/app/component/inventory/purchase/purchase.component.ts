@@ -31,7 +31,7 @@ export class PurchaseComponent implements OnInit{
   constructor(
     private service:SaleService,
     private formBuilder:FormBuilder,
-    private router:Router
+    
     
   ){}
   ngOnInit(): void {

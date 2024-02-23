@@ -50,7 +50,7 @@ export class StyleBomComponent implements OnInit {
 
   //style by id
   findStyleById(styleId: number) {
-    this.router.navigate(['/bom',styleId])
+    this.router.navigate(['/techpack/bom',styleId])
   }
 
 

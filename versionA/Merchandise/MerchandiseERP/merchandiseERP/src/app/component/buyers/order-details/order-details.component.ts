@@ -283,11 +283,11 @@ export class OrderDetailsComponent implements OnInit{
   }
 
   findTimeActionById(id:number){
-    this.router.navigate(['/time_action_page',id])
+    this.router.navigate(['/techpack/time_action_page',id])
   }
 
   findOrdersDetailsById(id:number){
-    this.router.navigate(['/order_receipt',id])
+    this.router.navigate(['/techpack/order_receipt',id])
   }
 
 }
