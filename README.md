@@ -50,3 +50,5 @@ Project Preview.
 ---------------------------------------------------------------------
 :pushpin: Login page for Admin:
 ![ Login page](https://github.com/fatemazohor/MerchandiseManagement--Angular-Spring-Boot/blob/main/screenshot/techpack1.JPG)
+:pushpin: Dashboard page for Admin:
+![ Login page](https://github.com/fatemazohor/MerchandiseManagement--Angular-Spring-Boot/blob/main/screenshot/tp2.JPG)
