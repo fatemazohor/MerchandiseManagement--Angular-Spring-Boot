@@ -1,8 +1,6 @@
 # MerchandiseManagementERP-Angular-SpringBoot
-Merchandise management system with Spring Boot, Angular, and MySQL.
-Different clothing materials (style codes) and TechPacks are created by the merchandise in accordance with the designer plan. Customers place orders for specific materials, specifying the size and quantity needed.The business will then produce a Bill of Material (BOM) that includes the cost of each material by size and labor.
-The company also buys raw materials based on how much it requires for production.
-For a comprehensive picture of the business process, the order, sales, and revenue are displayed on the dashboard together with the order, buy, and stock tables.
+
+A merchandise management system utilizing Spring Boot, Angular, and MySQL is designed to handle various aspects of clothing production. It involves the creation of different clothing materials and TechPacks, aligning with the designer's specifications. Customers place orders for specific materials, indicating size and quantity requirements. Subsequently, a Bill of Material (BOM) is generated, detailing the cost of each material by size and labor. Raw materials are procured based on production needs. The system offers a comprehensive view of the business process, displaying order, sales, and revenue data on the dashboard alongside tables for order, procurement, and inventory management.
 -----------------   ---------------------------------------------
 ## There are 1 user in the system
 
