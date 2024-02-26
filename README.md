@@ -96,3 +96,8 @@ Project Preview.
 ![ Login page](https://github.com/fatemazohor/MerchandiseManagement--Angular-Spring-Boot/blob/main/screenshot/tp23.JPG)
 :pushpin: Dashboard page 2:
 ![ Login page](https://github.com/fatemazohor/MerchandiseManagement--Angular-Spring-Boot/blob/main/screenshot/tp24.JPG)
+
+**"Suggestions and project Improvements are always Invited!"**  
+Thanks a lot,    
+Project Leader  
+[Fatema Tuz Zohora](https://github.com/fatemazohor)
