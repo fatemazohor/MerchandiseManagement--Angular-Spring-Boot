@@ -91,7 +91,7 @@ public class SaleRestController {
 
     //    swagger link: http://localhost:8098/swagger-ui/index.html#/
 
-//----------------------- Sale independent Table----------------------
+//----------------------- Sale independent Table---------------------------------
     //    api StyleCategories start
 
     @GetMapping("/style-categories")
