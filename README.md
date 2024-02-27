@@ -16,13 +16,13 @@ A merchandise management system utilizing Spring Boot, Angular, and MySQL is des
 7. View All the Orders.
 
 ## Technologies used:-
-- Front-End Development:
+### Front-End Development:
 - Html
 - Css
 - Javascript
 - BootStrap
 - Angular
-## Back-End Development
+### Back-End Development
 - Spring Boot
 - JDBC
 - Servlet
