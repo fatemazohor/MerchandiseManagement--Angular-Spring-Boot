@@ -30,11 +30,11 @@ A merchandise management system utilizing Spring Boot, Angular, and MySQL is des
 - MySQL
 
 **==== Software And Tools Required ======**
--:  MySQL
--:  IntelliJ IDEA
--:  Visual Studio
--:  Spring Initializer
--:  Java JDK 17+
+- :  MySQL
+- :  IntelliJ IDEA
+- :  Visual Studio
+- :  Spring Initializer
+- :  Java JDK 17+
 
 
 **================= Dummy Database Initialization USING QUERY =================**  
