@@ -17,8 +17,8 @@ A merchandise management system utilizing Spring Boot, Angular, and MySQL is des
 
 ## Technologies used:-
 ### Front-End Development:
-- Html
-- Css
+- [<img src="svg/html5.svg" width="40" height="40">](https://github.com/fatemazohor)
+- [<img src="svg/css3.svg" width="40" height="40">](https://github.com/fatemazohor) Css
 - Javascript
 - BootStrap
 - Angular
