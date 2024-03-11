@@ -27,7 +27,7 @@ A merchandise management system utilizing Spring Boot, Angular, and MySQL is des
 - [<img src="https://github.com/fatemazohor/fatemazohor/blob/main/svg/css3.svg" width="40" height="40">](https://github.com/fatemazohor)JDBC
 - [<img src="https://github.com/fatemazohor/fatemazohor/blob/main/svg/css3.svg" width="40" height="40">](https://github.com/fatemazohor)Servlet
 - [<img src="https://github.com/fatemazohor/fatemazohor/blob/main/svg/css3.svg" width="40" height="40">](https://github.com/fatemazohor)JSP
-- [<img src="https://github.com/fatemazohor/fatemazohor/blob/main/svg/css3.svg" width="40" height="40">](https://github.com/fatemazohor)MySQL
+- [<img src="https://github.com/fatemazohor/SwingSMEManagement/blob/main/Screenshot/mysql.png" width="40" height="40">](https://github.com/fatemazohor) MySQL
 
 **==== Software And Tools Required ======**
 - :  MySQL
