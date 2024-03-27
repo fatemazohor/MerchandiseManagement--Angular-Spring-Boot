@@ -15,13 +15,12 @@ import com.example.SpringBootP3.repository.other.IUOMRepo;
 import com.example.SpringBootP3.repository.other.IVendorRepo;
 import com.example.SpringBootP3.repository.sale.*;
 import com.example.SpringBootP3.service.Stock.StockUpdateService;
-import com.example.SpringBootP3.service.dashboard.OrderPurchaseRevenueService;
+import com.example.SpringBootP3.service.dashboard.RevenueService;
 import com.example.SpringBootP3.service.techPack.BillOfMaterialService;
 import com.example.SpringBootP3.service.techPack.TechPackService;
 import com.example.SpringBootP3.service.techPack.TimeActionService;
 import lombok.RequiredArgsConstructor;
 
-import org.hibernate.query.Order;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -71,7 +70,7 @@ public class SaleRestController {
     private final BillOfMaterialService billOfMaterialService;
     private final TechPackService packService;
     private final TimeActionService actionService;
-    private final OrderPurchaseRevenueService revenueService;
+    private final RevenueService revenueService;
 
 //    public SaleRestController(IMeasurementDetailsRepo detailsRepo, IStyleCategories styleCatApiRepo, ISizeRepo iSizeRepo, ITrim trimRepo, IFabricName fabricRepo, IRawMaterialCat materialCatRepo, IStyle styleRepo, IRawMaterialRepo rawMaterialRepo, IVendorRepo vendorRepo, ILaborCost costRepo, IUOMRepo iuomRepo, IDepartmentRepo departmentRepo) {
 //        this.detailsRepo = detailsRepo;

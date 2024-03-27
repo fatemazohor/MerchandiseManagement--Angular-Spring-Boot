@@ -6,7 +6,7 @@ import com.example.SpringBootP3.model.inventory.Stock;
 import com.example.SpringBootP3.repository.buyer.IOrderDetails;
 import com.example.SpringBootP3.repository.inventory.IPurchase;
 import com.example.SpringBootP3.repository.inventory.IStock;
-import com.example.SpringBootP3.service.dashboard.OrderPurchaseRevenueService;
+import com.example.SpringBootP3.service.dashboard.RevenueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +23,7 @@ public class DashBoardController {
     @Autowired
     private IStock iStockRepo;
     @Autowired
-    private OrderPurchaseRevenueService revenueService;
+    private RevenueService revenueService;
 
     //Dashboard All table
     @GetMapping("/dashboard")
